@@ -14,6 +14,7 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
+          style="width: 100px"
         />
         <q-input
           v-model.number="il_RangeTop"
@@ -22,6 +23,7 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
+          style="width: 100px"
         />
       </q-card-actions>
     </q-card-section>
@@ -45,6 +47,7 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
+          style="width: 100px"
         />
         <q-input
           v-model.number="lev_RangeTop"
@@ -53,6 +56,7 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
+          style="width: 100px"
         />
       </q-card-actions>
     </q-card-section>

@@ -24,8 +24,20 @@
         <q-btn
           color="positive"
         >
-          <q-icon name="sync" />
+          <q-icon
+            left
+            name="sync"
+          />
           <span>Apply Filter</span>
+        </q-btn>
+        <q-btn
+          color="negative"
+        >
+          <q-icon
+            left
+            name="functions"
+          />
+          <span>Calculate</span>
         </q-btn>
       </div>
       <div class="col">
