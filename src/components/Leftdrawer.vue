@@ -4,7 +4,7 @@
       <q-toolbar-title>战斗</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level="1"
+      :content-inset-level=".5"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -68,7 +68,7 @@
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level="1"
+      :content-inset-level=".5"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -105,7 +105,7 @@
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level="1"
+      :content-inset-level=".5"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -141,7 +141,7 @@
       </q-item>
     </q-expansion-item>
     <q-expansion-item
-      :content-inset-level="1"
+      :content-inset-level=".5"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -177,7 +177,7 @@
       </q-item>
     </q-expansion-item>
     <q-expansion-item
-      :content-inset-level="1"
+      :content-inset-level=".5"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -216,7 +216,7 @@
       <q-toolbar-title>生产&采集</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level="1"
+      :content-inset-level=".5"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -252,7 +252,7 @@
       </q-item>
     </q-expansion-item>
     <q-expansion-item
-      :content-inset-level="1"
+      :content-inset-level=".5"
       group="selectGroup"
       expand-separator
       icon="mail"

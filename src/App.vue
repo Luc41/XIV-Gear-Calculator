@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh Lpr lFf">
     <q-header
-      reveal
+      elevated
       class="flat"
     >
       <q-toolbar>
@@ -29,9 +29,8 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      elevated
       show-if-above
-      :width="240"
+      :width="200"
       content-class="bg-grey-2"
     >
       <LeftDrawerContent />

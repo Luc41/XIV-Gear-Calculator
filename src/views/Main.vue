@@ -15,63 +15,11 @@
 
     <div class="column">
       <div class="col">
-        <q-item class="bg-primary">
-          <q-item-section>
-            <q-item-label overline>
-              il range
-            </q-item-label>
-          </q-item-section>
-          <q-input
-            v-model.number="il_RangeBottom"
-            type="number"
-            outlined
-            dense
-            bg-color="white"
-            :input-style="{color: 'orange'}"
-            style="max-width: 70px"
-            class="q-mx-xs"
-          />
-          <q-input
-            v-model.number="il_RangeTop"
-            type="number"
-            outlined
-            dense
-            bg-color="white"
-            :input-style="{color: 'orange'}"
-            style="max-width: 70px"
-            class="q-mx-xs"
-          />
-        </q-item>
+        <div class="row">
+          <level-filter />
 
-        <q-separator spaced />
-
-        <q-item class="bg-secondary">
-          <q-item-section>
-            <q-item-label overline>
-              lev range
-            </q-item-label>
-          </q-item-section>
-          <q-input
-            v-model.number="lev_RangeBottom"
-            type="number"
-            outlined
-            dense
-            bg-color="white"
-            :input-style="{color: 'orange'}"
-            style="max-width: 70px"
-            class="q-mx-xs"
-          />
-          <q-input
-            v-model.number="lev_RangeTop"
-            type="number"
-            outlined
-            dense
-            bg-color="white"
-            :input-style="{color: 'orange'}"
-            style="max-width: 70px"
-            class="q-mx-xs"
-          />
-        </q-item>
+          <gear-filter />
+        </div>
       </div>
       <div class="col">
         <img
@@ -84,18 +32,17 @@
 </template>
 
 <script>
+import gearFilter from '../components/Gearfilter'
+import levelFilter from '../components/Levelfilter'
+
 export default {
   name: 'Main',
+  components: {
+    gearFilter,
+    levelFilter
+  },
   data () {
     return {
-      snap: {
-        min: '470',
-        max: '505'
-      },
-      il_RangeBottom: 470,
-      il_RangeTop: 505,
-      lev_RangeBottom: 1,
-      lev_RangeTop: 80
     }
   }
 }
