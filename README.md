@@ -1,7 +1,5 @@
 # XIV-Gear-Calculator
 
-# equipment_cal_tool
-
 ## Project setup
 ```
 npm install
