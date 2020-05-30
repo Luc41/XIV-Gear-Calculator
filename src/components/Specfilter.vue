@@ -3,6 +3,7 @@
     <q-card-section horizontal>
       <q-card-section>
         <q-select
+          style="width: 8em;"
           standout="bg-info text-white"
           v-model="model"
           transition-show="jump-up"
@@ -13,12 +14,12 @@
           emit-value
           dense
           label="Racies"
-          style="width: 14em;"
         />
       </q-card-section>
 
       <q-card-section>
         <q-select
+          style="width: 12em;"
           standout="bg-info text-white"
           v-model="model1"
           transition-show="jump-up"
@@ -29,7 +30,6 @@
           emit-value
           dense
           label="Born"
-          style="width: 16em;"
         />
       </q-card-section>
     </q-card-section>

@@ -14,22 +14,19 @@
     </q-page-sticky>
 
     <div class="column">
-      <div class="col">
-        <div class="row justify-center q-gutter-sm">
-          <spec-filter />
+      <div class="col q-gutter-sm">
+        <spec-filter />
 
-          <level-filter />
+        <level-filter />
 
-          <gear-filter />
+        <gear-filter />
 
-          <q-btn
-            class="q-my-lg"
-            color="positive"
-          >
-            <q-icon name="sync" />
-            <span>Apply Filter</span>
-          </q-btn>
-        </div>
+        <q-btn
+          color="positive"
+        >
+          <q-icon name="sync" />
+          <span>Apply Filter</span>
+        </q-btn>
       </div>
       <div class="col">
         <img
@@ -61,4 +58,5 @@ export default {
 </script>
 
 <style>
+
 </style>
