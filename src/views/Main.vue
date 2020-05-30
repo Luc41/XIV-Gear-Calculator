@@ -15,10 +15,20 @@
 
     <div class="column">
       <div class="col">
-        <div class="row">
+        <div class="row justify-center q-gutter-sm">
+          <spec-filter />
+
           <level-filter />
 
           <gear-filter />
+
+          <q-btn
+            class="q-my-lg"
+            color="positive"
+          >
+            <q-icon name="sync" />
+            <span>Apply Filter</span>
+          </q-btn>
         </div>
       </div>
       <div class="col">
@@ -34,12 +44,14 @@
 <script>
 import gearFilter from '../components/Gearfilter'
 import levelFilter from '../components/Levelfilter'
+import specFilter from '../components/Specfilter'
 
 export default {
   name: 'Main',
   components: {
     gearFilter,
-    levelFilter
+    levelFilter,
+    specFilter
   },
   data () {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bg-secondary q-mx-xs">
+  <q-card class="bg-secondary q-pa-sm">
     <q-card-section horizontal>
       <q-card-section>
         rare
@@ -85,6 +85,7 @@
 
     <q-separator
       color="orange"
+      size="3px"
       inset
     />
 
@@ -101,7 +102,7 @@
           icon=""
         >
           <q-tooltip
-            anchor="top middle"
+            anchor="bottom middle"
             self="center middle"
             content-class="bg-orange text-white shadow-4"
           >
@@ -116,7 +117,7 @@
           icon=""
         >
           <q-tooltip
-            anchor="top middle"
+            anchor="bottom middle"
             self="center middle"
             content-class="bg-orange text-white shadow-4"
           >
@@ -131,7 +132,7 @@
           icon=""
         >
           <q-tooltip
-            anchor="top middle"
+            anchor="bottom middle"
             self="center middle"
             content-class="bg-orange text-white shadow-4"
           >
@@ -146,7 +147,7 @@
           icon=""
         >
           <q-tooltip
-            anchor="top middle"
+            anchor="bottom middle"
             self="center middle"
             content-class="bg-orange text-white shadow-4"
           >

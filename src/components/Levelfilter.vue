@@ -1,12 +1,12 @@
 <template>
-  <q-card class="bg-primary q-mx-xs">
+  <q-card class="bg-primary q-pa-sm">
     <q-card-section
       class="numInput"
       horizontal
     >
       <q-card-section>il range</q-card-section>
 
-      <q-card-actions>
+      <q-card-actions class="q-gutter-xs">
         <q-input
           v-model.number="il_RangeBottom"
           type="number"
@@ -14,8 +14,6 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
-          style="max-width: 70px;"
-          class="q-px-xs"
         />
         <q-input
           v-model.number="il_RangeTop"
@@ -24,14 +22,13 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
-          style="max-width: 70px;"
-          class="q-px-xs"
         />
       </q-card-actions>
     </q-card-section>
 
     <q-separator
       color="orange"
+      size="3px"
       inset
     />
 
@@ -40,7 +37,7 @@
       horizontal
     >
       <q-card-section>lv range</q-card-section>
-      <q-card-actions>
+      <q-card-actions class="q-gutter-xs">
         <q-input
           v-model.number="lev_RangeBottom"
           type="number"
@@ -48,8 +45,6 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
-          style="max-width: 70px"
-          class="q-px-xs"
         />
         <q-input
           v-model.number="lev_RangeTop"
@@ -58,8 +53,6 @@
           dense
           bg-color="white"
           :input-style="{color: 'orange'}"
-          style="max-width: 70px"
-          class="q-px-xs"
         />
       </q-card-actions>
     </q-card-section>
@@ -71,10 +64,6 @@ export default {
   name: 'Levelfilter',
   data () {
     return {
-      snap: {
-        min: '470',
-        max: '505'
-      },
       il_RangeBottom: 470,
       il_RangeTop: 505,
       lev_RangeBottom: 1,
