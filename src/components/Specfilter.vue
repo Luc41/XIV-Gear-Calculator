@@ -59,7 +59,7 @@
 
 <script>
 export default {
-  name: 'Specfilter',
+  name: 'SpecFilter',
   data () {
     return {
       model: null,

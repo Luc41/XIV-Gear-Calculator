@@ -161,7 +161,7 @@
 
 <script>
 export default {
-  name: 'Gearfilter',
+  name: 'GearFilter',
   data () {
     return {
       rarity: {

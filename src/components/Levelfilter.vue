@@ -65,7 +65,7 @@
 
 <script>
 export default {
-  name: 'Levelfilter',
+  name: 'LevelFilter',
   data () {
     return {
       il_RangeBottom: 470,

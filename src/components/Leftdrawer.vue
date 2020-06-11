@@ -292,7 +292,7 @@
 
 <script>
 export default {
-  name: 'RightDrawerContent',
+  name: 'LeftDrawer',
   data () {
     return {
       link: 'inbox'

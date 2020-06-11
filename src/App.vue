@@ -33,7 +33,7 @@
       :width="200"
       content-class="bg-grey-2"
     >
-      <LeftDrawerContent />
+      <left-drawer />
     </q-drawer>
 
     <q-drawer
@@ -57,13 +57,13 @@
 </template>
 
 <script>
-import LeftDrawerContent from './components/Leftdrawer'
+import leftDrawer from './components/leftDrawer'
 
 export default {
   name: 'LayoutDefault',
 
   components: {
-    LeftDrawerContent
+    leftDrawer
   },
 
   data () {
