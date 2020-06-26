@@ -76,4 +76,7 @@ export default {
 </script>
 
 <style lang="scss">
+html,body {
+  overflow: hidden;
+}
 </style>

@@ -6,7 +6,7 @@
     card-class="bg-grey-6 text-white"
     table-header-class="bg-grey-9"
     table-class="text-white"
-    :data="headData"
+    :data="data"
     :columns="columns"
     row-key="name"
     selection="single"
@@ -15,6 +15,8 @@
     virtual-scroll
     :pagination.sync="pagination"
     :rows-per-page-options="[0]"
+    no-data-label="Find nothing, may need refresh"
+    loading-label="Loading data"
   >
     <template v-slot:loading>
       <q-inner-loading
@@ -61,7 +63,7 @@ export default {
         { name: 'calcium', label: 'Calcium (%)', field: 'calcium', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
         { name: 'iron', label: 'Iron (%)', field: 'iron', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) }
       ],
-      headData: [
+      data: [
         {
           name: 'Frozen Yogurt',
           calories: 159,
