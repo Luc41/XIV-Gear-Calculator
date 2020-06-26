@@ -27,6 +27,10 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer>
+      test
+    </q-footer>
+
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
