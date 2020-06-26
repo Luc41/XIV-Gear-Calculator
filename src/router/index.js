@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/bard',
     name: 'Bard',
-    component: () => import('../views/Main.vue')
+    component: () => import('../views/Container.vue')
   }
 ]
 

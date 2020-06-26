@@ -13,15 +13,16 @@
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'bard'"
+        @click="link = 'bard'"
         active-class="my-menu-link"
+        to="/bard"
         dense
       >
         <q-item-section avatar>
           <q-icon name="inbox" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>bard</q-item-section>
       </q-item>
 
       <q-item
