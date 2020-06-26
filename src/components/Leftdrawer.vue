@@ -174,7 +174,7 @@
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level=".5"
+      :content-inset-level="0"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/TankRole.png"
@@ -184,140 +184,283 @@
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'pal'"
+        @click="link = 'pal'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/01_TANK/Job/Paladin.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>Paladin</q-item-section>
       </q-item>
 
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'war'"
+        @click="link = 'war'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/01_TANK/Job/Warrior.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>Warrior</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'drk'"
+        @click="link = 'drk'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/01_TANK/Job/DarkKnight.png" />
+        </q-item-section>
+        <q-item-section>Dark Knight</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'gnb'"
+        @click="link = 'gnb'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/01_TANK/Job/Gunbreaker.png" />
+        </q-item-section>
+        <q-item-section>Gunbreaker</q-item-section>
       </q-item>
     </q-expansion-item>
+
     <q-expansion-item
-      :content-inset-level=".5"
+      :content-inset-level="0"
       group="selectGroup"
       expand-separator
-      icon="mail"
-      label="治疗"
+      icon="img:/images/00_ROLE/HealerRole.png"
+      label="Healer"
       caption
     >
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'whm'"
+        @click="link = 'whm'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/02_HEALER/Job/Whitemage.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>White Mage</q-item-section>
       </q-item>
 
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'sch'"
+        @click="link = 'sch'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/02_HEALER/Job/Scholar.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>Scholar</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'ast'"
+        @click="link = 'ast'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/02_HEALER/Job/Astrologian.png" />
+        </q-item-section>
+        <q-item-section>Astrologian</q-item-section>
       </q-item>
     </q-expansion-item>
+
     <q-toolbar class="bg-secondary text-white no-shadow">
-      <q-toolbar-title>生产&采集</q-toolbar-title>
+      <q-toolbar-title>生活</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level=".5"
+      :content-inset-level="0"
       group="selectGroup"
       expand-separator
       icon="mail"
-      label="生产"
+      label="Crafter"
       caption
     >
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'alc'"
+        @click="link = 'alc'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/04_CRAFTER/Alchemist.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>Alchemist</q-item-section>
       </q-item>
 
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'arm'"
+        @click="link = 'arm'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/04_CRAFTER/Armorer.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>Armorer</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'bsm'"
+        @click="link = 'bsm'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/04_CRAFTER/Blacksmith.png" />
+        </q-item-section>
+        <q-item-section>Blacksmith</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'crp'"
+        @click="link = 'crp'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/04_CRAFTER/Carpenter.png" />
+        </q-item-section>
+        <q-item-section>Carpenter</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'cul'"
+        @click="link = 'cul'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/04_CRAFTER/Culinarian.png" />
+        </q-item-section>
+        <q-item-section>Culinarian</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'gsm'"
+        @click="link = 'gsm'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/04_CRAFTER/Goldsmith.png" />
+        </q-item-section>
+        <q-item-section>Goldsmith</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'ltw'"
+        @click="link = 'ltw'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/04_CRAFTER/Leatherworker.png" />
+        </q-item-section>
+        <q-item-section>Leatherworker</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'wvr'"
+        @click="link = 'wvr'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/04_CRAFTER/Weaver.png" />
+        </q-item-section>
+        <q-item-section>Weaver</q-item-section>
       </q-item>
     </q-expansion-item>
+
     <q-expansion-item
-      :content-inset-level=".5"
+      :content-inset-level="0"
       group="selectGroup"
       expand-separator
       icon="mail"
-      label="采集"
+      label="Gatherer"
       caption
     >
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'btn'"
+        @click="link = 'btn'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/05_GATHERER/Botanist.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>Botanist</q-item-section>
       </q-item>
 
       <q-item
         clickable
         v-ripple
-        :active="link === 'inbox'"
-        @click="link = 'inbox'"
+        :active="link === 'min'"
+        @click="link = 'min'"
         active-class="my-menu-link"
         dense
       >
         <q-item-section avatar>
-          <q-icon name="inbox" />
+          <q-icon name="img:/images/05_GATHERER/Miner.png" />
         </q-item-section>
-        <q-item-section>inbox</q-item-section>
+        <q-item-section>Miner</q-item-section>
+      </q-item>
+
+      <q-item
+        clickable
+        v-ripple
+        :active="link === 'fsh'"
+        @click="link = 'fsh'"
+        active-class="my-menu-link"
+        dense
+      >
+        <q-item-section avatar>
+          <q-icon name="img:/images/05_GATHERER/Fisher.png" />
+        </q-item-section>
+        <q-item-section>Fisher</q-item-section>
       </q-item>
     </q-expansion-item>
   </q-scroll-area>
