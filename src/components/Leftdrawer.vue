@@ -17,20 +17,13 @@
         物理远程
       </q-banner>
 
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'bard'"
-        @click="link = 'bard'"
+      <sidebar-select
+        @click="link = 'brd'"
         active-class="my-menu-link"
         to="/bard"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Bard.png" />
-        </q-item-section>
-        <q-item-section>Bard</q-item-section>
-      </q-item>
+        src="/images/03_DPS/Job/Bard.png"
+        job="Bard"
+      />
 
       <q-item
         clickable
@@ -467,8 +460,13 @@
 </template>
 
 <script>
+import sidebarSelect from './sidebarSelect'
+
 export default {
   name: 'LeftDrawer',
+  components: {
+    sidebarSelect
+  },
   data () {
     return {
       link: 'inbox'
