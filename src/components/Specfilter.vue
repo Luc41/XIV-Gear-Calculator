@@ -9,8 +9,8 @@
           transition-show="jump-up"
           transition-hide="jump-up"
           :options="Racies"
-          option-value="racies"
-          option-label="racies"
+          option-label="Name"
+          option-value="Name"
           emit-value
           dense
           label="Racies"
@@ -25,8 +25,8 @@
           transition-show="jump-up"
           transition-hide="jump-up"
           :options="Racies"
-          option-label="born"
-          option-value="born"
+          option-label="Name"
+          option-value="Name"
           emit-value
           dense
           label="Born"
@@ -50,7 +50,7 @@
         :max="80"
         :step="1"
         snap
-        label
+        label-always
         style="margin-right: 2em;"
       />
     </q-card-section>
@@ -64,25 +64,12 @@ export default {
     return {
       model: null,
       model1: null,
-      Racies: [
-        { racies: 'Hyur', born: ['Midlander', 'Highlander'] },
-        { racies: 'Miqo\'te', born: ['Seeker of the Sun', 'Keeper of the Moon'] },
-        { racies: 'Lalafell', born: ['Plainsfolk', 'Dunesfolk'] },
-        { racies: 'Elezen', born: ['Wildwood', 'Duskwight'] },
-        { racies: 'Roegadyn', born: ['Hellsguard', 'Sea Wolf'] },
-        { racies: 'Au Ra', born: ['Xaela', 'Raen'] },
-        { racies: 'Viera', born: ['Rava', 'Veena'] },
-        { racies: 'Hrothgar', born: ['Helions', 'The Lost'] }
-      ],
+      Racies: [],
       levelSlider: 80
     }
   },
-  mounted: {
-    Cascade (fa) {
-
-    }
+  methods: {
   }
-
 }
 </script>
 

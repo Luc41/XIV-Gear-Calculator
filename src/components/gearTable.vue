@@ -1,6 +1,6 @@
 <template>
   <q-table
-    title="head"
+    :title="title"
     dense
     hide-bottom
     card-class="bg-grey-6 text-white"
@@ -10,8 +10,8 @@
     :columns="columns"
     row-key="name"
     selection="single"
-    :selected.sync="selectedHead"
-    :loading="loadingHead"
+    :selected.sync="selected"
+    :loading="loading"
     virtual-scroll
     :pagination.sync="pagination"
     :rows-per-page-options="[0]"
@@ -28,10 +28,18 @@
 <script>
 export default {
   name: 'GearTable',
+  props: {
+    title: {
+      type: String,
+      default: function () {
+        return 'Unknown'
+      }
+    }
+  },
   data () {
     return {
-      selectedHead: [],
-      loadingHead: true,
+      selected: [],
+      loading: false,
       pagination: {
         rowsPerPage: 0
       },

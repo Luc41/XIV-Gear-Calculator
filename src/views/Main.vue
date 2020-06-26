@@ -50,7 +50,7 @@
           style="height: 100%;"
           :delay="1200"
         >
-          <gear-table />
+          <gear-table title="Head" />
         </q-scroll-area>
       </div>
     </div>
