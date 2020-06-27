@@ -24,8 +24,8 @@
         <q-item
           clickable
           v-ripple
-          :active="link === job.short"
-          @click="link = job.short"
+          :active="$store.state.job === job.job"
+          @click="$store.commit('changejob', job.job)"
           active-class="activelink"
           :to="'/' + job.job"
           dense
@@ -51,8 +51,8 @@
         <q-item
           clickable
           v-ripple
-          :active="link === job.short"
-          @click="link = job.short"
+          :active="$store.state.job === job.job"
+          @click="$store.commit('changejob', job.job)"
           active-class="activelink"
           :to="'/' + job.job"
           dense
@@ -78,8 +78,8 @@
         <q-item
           clickable
           v-ripple
-          :active="link === job.short"
-          @click="link = job.short"
+          :active="$store.state.job === job.job"
+          @click="$store.commit('changejob', job.job)"
           active-class="activelink"
           :to="'/' + job.job"
           dense
@@ -107,8 +107,8 @@
         <q-item
           clickable
           v-ripple
-          :active="link === job.short"
-          @click="link = job.short"
+          :active="$store.state.job === job.job"
+          @click="$store.commit('changejob', job.job)"
           active-class="activelink"
           :to="'/' + job.job"
           dense
@@ -136,8 +136,8 @@
         <q-item
           clickable
           v-ripple
-          :active="link === job.short"
-          @click="link = job.short"
+          :active="$store.state.job === job.job"
+          @click="$store.commit('changejob', job.job)"
           active-class="activelink"
           :to="'/' + job.job"
           dense
@@ -168,8 +168,8 @@
         <q-item
           clickable
           v-ripple
-          :active="link === job.short"
-          @click="link = job.short"
+          :active="$store.state.job === job.job"
+          @click="$store.commit('changejob', job.job)"
           active-class="activelink"
           :to="'/' + job.job"
           dense
@@ -197,8 +197,8 @@
         <q-item
           clickable
           v-ripple
-          :active="link === job.short"
-          @click="link = job.short"
+          :active="$store.state.job === job.job"
+          @click="$store.commit('changejob', job.job)"
           active-class="activelink"
           :to="'/' + job.job"
           dense

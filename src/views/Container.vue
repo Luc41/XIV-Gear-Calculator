@@ -8,7 +8,7 @@
       class="bg-accent text-white"
     >
       <q-toolbar>
-        <q-toolbar-title>Title</q-toolbar-title>
+        <q-toolbar-title>{{ $store.state.job }}</q-toolbar-title>
 
         <q-btn
           flat
