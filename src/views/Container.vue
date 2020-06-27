@@ -22,14 +22,15 @@
       <div class="col-auto">
         <div class="column">
           <div class="col q-gutter-sm">
-            <spec-filter />
+            <spec-filter class="animate__animated animate__slideInLeft" />
 
-            <level-filter />
+            <level-filter class="animate__animated animate__slideInLeft" />
 
-            <gear-filter />
+            <gear-filter class="animate__animated animate__slideInLeft" />
 
             <q-btn
               color="positive"
+              class="animate__animated animate__slideInLeft"
             >
               <q-icon
                 left
@@ -38,7 +39,7 @@
               <span>Apply Filter</span>
             </q-btn>
 
-            <q-card class="q-mt-sm bg-yellow">
+            <q-card class="q-mt-sm bg-yellow animate__animated animate__slideInLeft">
               <q-card-section horizontal>
                 <span class="text-h4 text-grey q-mt-sm q-ml-md">Overall</span>
               </q-card-section>
@@ -54,6 +55,7 @@
                 hide-pagination
                 :pagination.sync="pagination"
                 :rows-per-page-options="[0]"
+                class="animate__animated animate__flipInX"
               >
                 <template v-slot:item="props">
                   <div class="q-pa-xs col-xs-6 col-sm-4 col-md-4">
@@ -84,6 +86,7 @@
                 hide-pagination
                 :pagination.sync="pagination"
                 :rows-per-page-options="[0]"
+                class="animate__animated animate__flipInX"
               >
                 <template v-slot:item="props">
                   <div class="q-pa-xs col-xs-6 col-sm-4 col-md-4">
@@ -114,6 +117,7 @@
                 hide-pagination
                 :pagination.sync="pagination"
                 :rows-per-page-options="[0]"
+                class="animate__animated animate__flipInX"
               >
                 <template v-slot:item="props">
                   <div class="q-pa-xs col-xs-6 col-sm-4 col-md-4">
@@ -138,7 +142,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col animate__animated animate__slideInUp">
         <q-scroll-area
           style="height: 100%; width: 100%;"
           :delay="1200"
@@ -201,4 +205,16 @@ export default {
 </script>
 
 <style lang="scss" scope>
+.animate__animated.animate__slideInUp {
+  animation-duration: .8s;
+}
+
+.animate__animated.animate__slideInLeft {
+  animation-duration: .8s;
+}
+
+.animate__animated.animate__flipInX {
+  animation-duration: 1s;
+  animation-delay: .8s;
+}
 </style>

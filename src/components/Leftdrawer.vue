@@ -9,6 +9,7 @@
       expand-separator
       icon="img:/images/00_ROLE/DPSRole.png"
       label="DPS"
+      caption
     >
       <q-banner
         dense
@@ -26,7 +27,7 @@
           v-ripple
           :active="$store.state.job === job.job"
           @click="$store.commit('changejob', job.job)"
-          active-class="activelink"
+          active-class="active-link"
           :to="'/' + job.job"
           dense
         >
@@ -53,7 +54,7 @@
           v-ripple
           :active="$store.state.job === job.job"
           @click="$store.commit('changejob', job.job)"
-          active-class="activelink"
+          active-class="active-link"
           :to="'/' + job.job"
           dense
         >
@@ -80,7 +81,7 @@
           v-ripple
           :active="$store.state.job === job.job"
           @click="$store.commit('changejob', job.job)"
-          active-class="activelink"
+          active-class="active-link"
           :to="'/' + job.job"
           dense
         >
@@ -109,7 +110,7 @@
           v-ripple
           :active="$store.state.job === job.job"
           @click="$store.commit('changejob', job.job)"
-          active-class="activelink"
+          active-class="active-link"
           :to="'/' + job.job"
           dense
         >
@@ -138,7 +139,7 @@
           v-ripple
           :active="$store.state.job === job.job"
           @click="$store.commit('changejob', job.job)"
-          active-class="activelink"
+          active-class="active-link"
           :to="'/' + job.job"
           dense
         >
@@ -170,7 +171,7 @@
           v-ripple
           :active="$store.state.job === job.job"
           @click="$store.commit('changejob', job.job)"
-          active-class="activelink"
+          active-class="active-link"
           :to="'/' + job.job"
           dense
         >
@@ -199,7 +200,7 @@
           v-ripple
           :active="$store.state.job === job.job"
           @click="$store.commit('changejob', job.job)"
-          active-class="activelink"
+          active-class="active-link"
           :to="'/' + job.job"
           dense
         >
@@ -275,7 +276,7 @@ export default {
 </script>
 
 <style lang="sass" scope>
-.activelink
+.active-link
   color: white
   background: #f2c037
 </style>
