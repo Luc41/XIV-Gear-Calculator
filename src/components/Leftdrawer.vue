@@ -1,10 +1,12 @@
 <template>
   <q-scroll-area class="fit">
     <q-toolbar class="bg-secondary text-white no-shadow">
-      <q-toolbar-title>战斗</q-toolbar-title>
+      <q-toolbar-title>
+        战斗
+      </q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level="0"
+      :content-inset-level=".2"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/DPSRole.png"
@@ -12,7 +14,7 @@
     >
       <q-banner
         dense
-        class="bg-info text-white no-shadow"
+        class="bg-info text-white shadow-2"
       >
         物理远程
       </q-banner>
@@ -21,18 +23,25 @@
         v-for="job in jobs.slice(0,3)"
         :key="job.index"
       >
-        <sidebar-select
+        <q-item
+          clickable
+          v-ripple
           :active="link === job.short"
           @click="link = job.short"
-          :to="'/' + job.job"
-          :job="job.job"
-          :src="job.src"
-        />
+          active-class="job-menu-link"
+          :to="to"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
       </div>
 
       <q-banner
         dense
-        class="bg-info text-white no-shadow"
+        class="bg-info text-white shadow-2"
       >
         物理近战
       </q-banner>
@@ -41,18 +50,25 @@
         v-for="job in jobs.slice(3,7)"
         :key="job.index"
       >
-        <sidebar-select
+        <q-item
+          clickable
+          v-ripple
           :active="link === job.short"
           @click="link = job.short"
-          :to="'/' + job.job"
-          :job="job.job"
-          :src="job.src"
-        />
+          active-class="job-menu-link"
+          :to="to"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
       </div>
 
       <q-banner
         dense
-        class="bg-info text-white no-shadow"
+        class="bg-info text-white shadow-2"
       >
         魔法
       </q-banner>
@@ -61,18 +77,25 @@
         v-for="job in jobs.slice(7,10)"
         :key="job.index"
       >
-        <sidebar-select
+        <q-item
+          clickable
+          v-ripple
           :active="link === job.short"
           @click="link = job.short"
-          :to="'/' + job.job"
-          :job="job.job"
-          :src="job.src"
-        />
+          active-class="job-menu-link"
+          :to="to"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
       </div>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level="0"
+      :content-inset-level=".2"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/TankRole.png"
@@ -83,18 +106,25 @@
         v-for="job in jobs.slice(10,14)"
         :key="job.index"
       >
-        <sidebar-select
+        <q-item
+          clickable
+          v-ripple
           :active="link === job.short"
           @click="link = job.short"
-          :to="'/' + job.job"
-          :job="job.job"
-          :src="job.src"
-        />
+          active-class="job-menu-link"
+          :to="to"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
       </div>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level="0"
+      :content-inset-level=".2"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/HealerRole.png"
@@ -105,13 +135,20 @@
         v-for="job in jobs.slice(14,17)"
         :key="job.index"
       >
-        <sidebar-select
+        <q-item
+          clickable
+          v-ripple
           :active="link === job.short"
           @click="link = job.short"
-          :to="'/' + job.job"
-          :job="job.job"
-          :src="job.src"
-        />
+          active-class="job-menu-link"
+          :to="to"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
       </div>
     </q-expansion-item>
 
@@ -119,7 +156,7 @@
       <q-toolbar-title>生活</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level="0"
+      :content-inset-level=".2"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -130,18 +167,25 @@
         v-for="job in jobs.slice(17,24)"
         :key="job.index"
       >
-        <sidebar-select
+        <q-item
+          clickable
+          v-ripple
           :active="link === job.short"
           @click="link = job.short"
-          :to="'/' + job.job"
-          :job="job.job"
-          :src="job.src"
-        />
+          active-class="job-menu-link"
+          :to="to"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
       </div>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level="0"
+      :content-inset-level=".2"
       group="selectGroup"
       expand-separator
       icon="mail"
@@ -152,20 +196,26 @@
         v-for="job in jobs.slice(24,27)"
         :key="job.index"
       >
-        <sidebar-select
+        <q-item
+          clickable
+          v-ripple
           :active="link === job.short"
           @click="link = job.short"
-          :to="'/' + job.job"
-          :job="job.job"
-          :src="job.src"
-        />
+          active-class="job-menu-link"
+          :to="to"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
       </div>
     </q-expansion-item>
   </q-scroll-area>
 </template>
 
 <script>
-import sidebarSelect from './sidebarSelect'
 
 const jobs = [
   { index: 1, job: 'Bard', short: 'brd', src: '/images/03_DPS/Job/Bard.png' },
@@ -200,7 +250,6 @@ const jobs = [
 export default {
   name: 'LeftDrawer',
   components: {
-    sidebarSelect
   },
   data () {
     return {
@@ -213,6 +262,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
-
+<style lang="scss">
+.job-menu-link {
+  color: white;
+  background: #f2c037;
+}
 </style>
