@@ -3,7 +3,7 @@
     clickable
     v-ripple
     :active="active"
-    :active-class="activeClass"
+    active-class="job-menu-link"
     :to="to"
     dense
   >
@@ -18,12 +18,6 @@
 export default {
   name: 'SidebarSelect',
   props: {
-    activeClass: {
-      type: String,
-      default: function () {
-        return ''
-      }
-    },
     to: {
       type: String,
       default: function () {
@@ -32,14 +26,16 @@ export default {
     },
     src: {
       type: String,
-      default: function () {
-        return '/'
-      }
+      required: true
     },
     job: {
       type: String,
+      required: true
+    },
+    active: {
+      type: Boolean,
       default: function () {
-        return 'unknown'
+        return false
       }
     }
   }
@@ -47,6 +43,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.job-menu-link {
+  color: white;
+  background: #f2c037;
+}
 </style>

@@ -17,41 +17,18 @@
         物理远程
       </q-banner>
 
-      <sidebar-select
-        @click="link = 'brd'"
-        active-class="my-menu-link"
-        to="/bard"
-        src="/images/03_DPS/Job/Bard.png"
-        job="Bard"
-      />
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'mach'"
-        @click="link = 'mach'"
-        active-class="my-menu-link"
-        dense
+      <div
+        v-for="job in jobs.slice(0,3)"
+        :key="job.index"
       >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Machinist.png" />
-        </q-item-section>
-        <q-item-section>Machinist</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'dancer'"
-        @click="link = 'dancer'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Dancer.png" />
-        </q-item-section>
-        <q-item-section>Dancer</q-item-section>
-      </q-item>
+        <sidebar-select
+          :active="link === job.short"
+          @click="link = job.short"
+          :to="'/' + job.job"
+          :job="job.job"
+          :src="job.src"
+        />
+      </div>
 
       <q-banner
         dense
@@ -60,61 +37,18 @@
         物理近战
       </q-banner>
 
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'drag'"
-        @click="link = 'drag'"
-        active-class="my-menu-link"
-        dense
+      <div
+        v-for="job in jobs.slice(3,7)"
+        :key="job.index"
       >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Dragoon.png" />
-        </q-item-section>
-        <q-item-section>Dragoon</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'monk'"
-        @click="link = 'monk'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Monk.png" />
-        </q-item-section>
-        <q-item-section>Monk</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'sam'"
-        @click="link = 'sam'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Samurai.png" />
-        </q-item-section>
-        <q-item-section>Samruai</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'nin'"
-        @click="link = 'nin'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Ninja.png" />
-        </q-item-section>
-        <q-item-section>Ninja</q-item-section>
-      </q-item>
+        <sidebar-select
+          :active="link === job.short"
+          @click="link = job.short"
+          :to="'/' + job.job"
+          :job="job.job"
+          :src="job.src"
+        />
+      </div>
 
       <q-banner
         dense
@@ -123,47 +57,18 @@
         魔法
       </q-banner>
 
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'blm'"
-        @click="link = 'blm'"
-        active-class="my-menu-link"
-        dense
+      <div
+        v-for="job in jobs.slice(7,10)"
+        :key="job.index"
       >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Blackmage.png" />
-        </q-item-section>
-        <q-item-section>Black Mage</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'sum'"
-        @click="link = 'sum'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Summoner.png" />
-        </q-item-section>
-        <q-item-section>Summoner</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'rdm'"
-        @click="link = 'rdm'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/03_DPS/Job/Redmage.png" />
-        </q-item-section>
-        <q-item-section>Red Mage</q-item-section>
-      </q-item>
+        <sidebar-select
+          :active="link === job.short"
+          @click="link = job.short"
+          :to="'/' + job.job"
+          :job="job.job"
+          :src="job.src"
+        />
+      </div>
     </q-expansion-item>
 
     <q-expansion-item
@@ -174,61 +79,18 @@
       label="Tank"
       caption
     >
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'pal'"
-        @click="link = 'pal'"
-        active-class="my-menu-link"
-        dense
+      <div
+        v-for="job in jobs.slice(10,14)"
+        :key="job.index"
       >
-        <q-item-section avatar>
-          <q-icon name="img:/images/01_TANK/Job/Paladin.png" />
-        </q-item-section>
-        <q-item-section>Paladin</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'war'"
-        @click="link = 'war'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/01_TANK/Job/Warrior.png" />
-        </q-item-section>
-        <q-item-section>Warrior</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'drk'"
-        @click="link = 'drk'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/01_TANK/Job/DarkKnight.png" />
-        </q-item-section>
-        <q-item-section>Dark Knight</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'gnb'"
-        @click="link = 'gnb'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/01_TANK/Job/Gunbreaker.png" />
-        </q-item-section>
-        <q-item-section>Gunbreaker</q-item-section>
-      </q-item>
+        <sidebar-select
+          :active="link === job.short"
+          @click="link = job.short"
+          :to="'/' + job.job"
+          :job="job.job"
+          :src="job.src"
+        />
+      </div>
     </q-expansion-item>
 
     <q-expansion-item
@@ -239,47 +101,18 @@
       label="Healer"
       caption
     >
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'whm'"
-        @click="link = 'whm'"
-        active-class="my-menu-link"
-        dense
+      <div
+        v-for="job in jobs.slice(14,17)"
+        :key="job.index"
       >
-        <q-item-section avatar>
-          <q-icon name="img:/images/02_HEALER/Job/Whitemage.png" />
-        </q-item-section>
-        <q-item-section>White Mage</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'sch'"
-        @click="link = 'sch'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/02_HEALER/Job/Scholar.png" />
-        </q-item-section>
-        <q-item-section>Scholar</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'ast'"
-        @click="link = 'ast'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/02_HEALER/Job/Astrologian.png" />
-        </q-item-section>
-        <q-item-section>Astrologian</q-item-section>
-      </q-item>
+        <sidebar-select
+          :active="link === job.short"
+          @click="link = job.short"
+          :to="'/' + job.job"
+          :job="job.job"
+          :src="job.src"
+        />
+      </div>
     </q-expansion-item>
 
     <q-toolbar class="bg-secondary text-white no-shadow">
@@ -293,117 +126,18 @@
       label="Crafter"
       caption
     >
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'alc'"
-        @click="link = 'alc'"
-        active-class="my-menu-link"
-        dense
+      <div
+        v-for="job in jobs.slice(17,24)"
+        :key="job.index"
       >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Alchemist.png" />
-        </q-item-section>
-        <q-item-section>Alchemist</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'arm'"
-        @click="link = 'arm'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Armorer.png" />
-        </q-item-section>
-        <q-item-section>Armorer</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'bsm'"
-        @click="link = 'bsm'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Blacksmith.png" />
-        </q-item-section>
-        <q-item-section>Blacksmith</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'crp'"
-        @click="link = 'crp'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Carpenter.png" />
-        </q-item-section>
-        <q-item-section>Carpenter</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'cul'"
-        @click="link = 'cul'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Culinarian.png" />
-        </q-item-section>
-        <q-item-section>Culinarian</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'gsm'"
-        @click="link = 'gsm'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Goldsmith.png" />
-        </q-item-section>
-        <q-item-section>Goldsmith</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'ltw'"
-        @click="link = 'ltw'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Leatherworker.png" />
-        </q-item-section>
-        <q-item-section>Leatherworker</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'wvr'"
-        @click="link = 'wvr'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/04_CRAFTER/Weaver.png" />
-        </q-item-section>
-        <q-item-section>Weaver</q-item-section>
-      </q-item>
+        <sidebar-select
+          :active="link === job.short"
+          @click="link = job.short"
+          :to="'/' + job.job"
+          :job="job.job"
+          :src="job.src"
+        />
+      </div>
     </q-expansion-item>
 
     <q-expansion-item
@@ -414,53 +148,54 @@
       label="Gatherer"
       caption
     >
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'btn'"
-        @click="link = 'btn'"
-        active-class="my-menu-link"
-        dense
+      <div
+        v-for="job in jobs.slice(24,27)"
+        :key="job.index"
       >
-        <q-item-section avatar>
-          <q-icon name="img:/images/05_GATHERER/Botanist.png" />
-        </q-item-section>
-        <q-item-section>Botanist</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'min'"
-        @click="link = 'min'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/05_GATHERER/Miner.png" />
-        </q-item-section>
-        <q-item-section>Miner</q-item-section>
-      </q-item>
-
-      <q-item
-        clickable
-        v-ripple
-        :active="link === 'fsh'"
-        @click="link = 'fsh'"
-        active-class="my-menu-link"
-        dense
-      >
-        <q-item-section avatar>
-          <q-icon name="img:/images/05_GATHERER/Fisher.png" />
-        </q-item-section>
-        <q-item-section>Fisher</q-item-section>
-      </q-item>
+        <sidebar-select
+          :active="link === job.short"
+          @click="link = job.short"
+          :to="'/' + job.job"
+          :job="job.job"
+          :src="job.src"
+        />
+      </div>
     </q-expansion-item>
   </q-scroll-area>
 </template>
 
 <script>
 import sidebarSelect from './sidebarSelect'
+
+const jobs = [
+  { index: 1, job: 'Bard', short: 'brd', src: '/images/03_DPS/Job/Bard.png' },
+  { index: 2, job: 'Machinist', short: 'mch', src: '/images/03_DPS/Job/Machinist.png' },
+  { index: 3, job: 'Dancer', short: 'dnc', src: '/images/03_DPS/Job/Dancer.png' },
+  { index: 4, job: 'Dragoon', short: 'drg', src: '/images/03_DPS/Job/Dragoon.png' },
+  { index: 5, job: 'Monk', short: 'mnk', src: '/images/03_DPS/Job/Monk.png' },
+  { index: 6, job: 'Samurai', short: 'sam', src: '/images/03_DPS/Job/Samurai.png' },
+  { index: 7, job: 'Ninja', short: 'nin', src: '/images/03_DPS/Job/Ninja.png' },
+  { index: 8, job: 'Blackmage', short: 'blm', src: '/images/03_DPS/Job/Blackmage.png' },
+  { index: 9, job: 'Summoner', short: 'smr', src: '/images/03_DPS/Job/Summoner.png' },
+  { index: 10, job: 'Redmage', short: 'rdm', src: '/images/03_DPS/Job/Redmage.png' },
+  { index: 11, job: 'Paladin', short: 'pld', src: '/images/01_TANK/Job/Paladin.png' },
+  { index: 12, job: 'Warrior', short: 'war', src: '/images/01_TANK/Job/Warrior.png' },
+  { index: 13, job: 'Darkknight', short: 'drk', src: '/images/01_TANK/Job/Darkknight.png' },
+  { index: 14, job: 'Gunbreaker', short: 'gnb', src: '/images/01_TANK/Job/Gunbreaker.png' },
+  { index: 15, job: 'Whitemage', short: 'whm', src: '/images/02_HEALER/Job/Whitemage.png' },
+  { index: 16, job: 'Scholar', short: 'sch', src: '/images/02_HEALER/Job/Scholar.png' },
+  { index: 17, job: 'Astrologian', short: 'ast', src: '/images/02_HEALER/Job/Astrologian.png' },
+  { index: 18, job: 'Alchemist', short: 'alc', src: '/images/04_CRAFTER/Alchemist.png' },
+  { index: 19, job: 'Armorer', short: 'arm', src: '/images/04_CRAFTER/Armorer.png' },
+  { index: 20, job: 'Blacksmith', short: 'bsm', src: '/images/04_CRAFTER/Blacksmith.png' },
+  { index: 21, job: 'Carpenter', short: 'crp', src: '/images/04_CRAFTER/Carpenter.png' },
+  { index: 22, job: 'Culinarian', short: 'cul', src: '/images/04_CRAFTER/Culinarian.png' },
+  { index: 23, job: 'Goldsmith', short: 'gsm', src: '/images/04_CRAFTER/Goldsmith.png' },
+  { index: 24, job: 'Leatherworker', short: 'ltw', src: '/images/04_CRAFTER/Leatherworker.png' },
+  { index: 25, job: 'Botanist', short: 'btn', src: '/images/05_GATHERER/Botanist.png' },
+  { index: 26, job: 'Miner', short: 'min', src: '/images/05_GATHERER/Miner.png' },
+  { index: 27, job: 'Fisher', short: 'fsh', src: '/images/05_GATHERER/Fisher.png' }
+]
 
 export default {
   name: 'LeftDrawer',
@@ -469,17 +204,15 @@ export default {
   },
   data () {
     return {
-      link: 'inbox'
+      link: '',
+      jobs: jobs
     }
+  },
+  methods: {
   }
 }
 </script>
 
 <style lang="scss" scope>
-.my-menu-link {
-  color: white;
-  background: #f2c037;
-  border-radius: 0 32px 32px 0;
-  margin: 1% 0% 1% 0%;
-}
+
 </style>
