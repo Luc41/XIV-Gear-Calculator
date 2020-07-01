@@ -12,7 +12,7 @@
 
         <q-btn
           flat
-          round
+          label="share"
           icon="share"
         />
       </q-toolbar>
@@ -24,12 +24,20 @@
           <div class="col q-gutter-sm">
             <spec-filter class="animate__animated animate__slideInLeft" />
 
-            <level-filter class="animate__animated animate__slideInLeft" />
+            <level-filter
+              class="animate__animated animate__slideInLeft"
+              style="animation-delay: .1s;"
+            />
 
-            <gear-filter class="animate__animated animate__slideInLeft" />
+            <gear-filter
+              class="animate__animated animate__slideInLeft"
+              style="animation-delay: .2s;"
+            />
 
             <q-btn-group
               spread
+              class="animate__animated animate__slideInLeft"
+              style="animation-delay: .3s;"
             >
               <q-btn
                 label="Apply"
@@ -46,7 +54,10 @@
               />
             </q-btn-group>
 
-            <q-card class="q-mt-sm bg-yellow animate__animated animate__slideInLeft">
+            <q-card
+              class="q-mt-sm bg-yellow animate__animated animate__slideInLeft"
+              style="animation-delay: .4s;"
+            >
               <q-card-section horizontal>
                 <span class="text-h4 text-grey q-mt-sm q-ml-md">Overall</span>
               </q-card-section>
