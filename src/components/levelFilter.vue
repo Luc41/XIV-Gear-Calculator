@@ -16,6 +16,41 @@
           :input-style="{color: 'orange'}"
           style="width: 100px"
         />
+
+        <q-field
+          dark
+          dense
+          standout
+        >
+          <template v-slot:control>
+            <div
+              class="self-center no-outline"
+              tabindex="0"
+            >
+              {{ il_RangeBottom }}
+            </div>
+          </template>
+          <template v-slot:append>
+            <q-btn
+              flat
+              round
+              dense
+              :disable="il_RangeBottom < 1"
+              icon="remove"
+              @click.stop="il_RangeBottom -= 5"
+            />
+            <q-separator />
+            <q-btn
+              flat
+              round
+              dense
+              :disable="il_RangeBottom > 500"
+              icon="add"
+              @click.stop="il_RangeBottom += 5"
+            />
+          </template>
+        </q-field>
+
         <q-input
           v-model.number="il_RangeTop"
           type="number"
@@ -25,6 +60,40 @@
           :input-style="{color: 'orange'}"
           style="width: 100px"
         />
+
+        <q-field
+          dark
+          dense
+          standout
+        >
+          <template v-slot:control>
+            <div
+              class="self-center no-outline"
+              tabindex="0"
+            >
+              {{ il_RangeTop }}
+            </div>
+          </template>
+          <template v-slot:append>
+            <q-btn
+              flat
+              round
+              dense
+              :disable="il_RangeTop < 1"
+              icon="remove"
+              @click.stop="il_RangeTop -= 5"
+            />
+            <q-separator />
+            <q-btn
+              flat
+              round
+              dense
+              :disable="il_RangeTop > 500"
+              icon="add"
+              @click.stop="il_RangeTop += 5"
+            />
+          </template>
+        </q-field>
       </q-card-actions>
     </q-card-section>
 
@@ -74,7 +143,6 @@ export default {
       lev_RangeTop: 80
     }
   }
-
 }
 </script>
 

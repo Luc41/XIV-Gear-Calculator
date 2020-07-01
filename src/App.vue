@@ -81,7 +81,6 @@ export default {
 
 <style lang="scss">
 html,body {
-  overflow: hidden;
   background-image: linear-gradient(#d0021b,#000000);
 }
 </style>
