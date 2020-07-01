@@ -6,101 +6,37 @@
     >
       <q-card-section>il range</q-card-section>
 
-      <q-card-actions class="q-gutter-xs">
+      <q-space />
+
+      <q-card-actions class="q-gutter-sm">
         <q-input
           v-model.number="il_RangeBottom"
+          :step="5"
+          :min="0"
+          :max="il_RangeTop"
           type="number"
-          outlined
-          dense
-          bg-color="white"
-          :input-style="{color: 'orange'}"
-          style="width: 100px"
-        />
-
-        <q-field
-          dark
-          dense
           standout
-        >
-          <template v-slot:control>
-            <div
-              class="self-center no-outline"
-              tabindex="0"
-            >
-              {{ il_RangeBottom }}
-            </div>
-          </template>
-          <template v-slot:append>
-            <q-btn
-              flat
-              round
-              dense
-              :disable="il_RangeBottom < 1"
-              icon="remove"
-              @click.stop="il_RangeBottom -= 5"
-            />
-            <q-separator />
-            <q-btn
-              flat
-              round
-              dense
-              :disable="il_RangeBottom > 500"
-              icon="add"
-              @click.stop="il_RangeBottom += 5"
-            />
-          </template>
-        </q-field>
+          dense
+          dark
+        />
 
         <q-input
           v-model.number="il_RangeTop"
+          :step="5"
+          :min="il_RangeBottom"
+          :max="il_PatchMax"
           type="number"
-          outlined
-          dense
-          bg-color="white"
-          :input-style="{color: 'orange'}"
-          style="width: 100px"
-        />
-
-        <q-field
-          dark
-          dense
           standout
-        >
-          <template v-slot:control>
-            <div
-              class="self-center no-outline"
-              tabindex="0"
-            >
-              {{ il_RangeTop }}
-            </div>
-          </template>
-          <template v-slot:append>
-            <q-btn
-              flat
-              round
-              dense
-              :disable="il_RangeTop < 1"
-              icon="remove"
-              @click.stop="il_RangeTop -= 5"
-            />
-            <q-separator />
-            <q-btn
-              flat
-              round
-              dense
-              :disable="il_RangeTop > 500"
-              icon="add"
-              @click.stop="il_RangeTop += 5"
-            />
-          </template>
-        </q-field>
+          dense
+          dark
+        />
       </q-card-actions>
     </q-card-section>
 
     <q-separator
-      color="orange"
-      size="3px"
-      inset
+      color="white"
+      size="2px"
+      style="border-radius: 2px;"
     />
 
     <q-card-section
@@ -108,24 +44,30 @@
       horizontal
     >
       <q-card-section>lv range</q-card-section>
-      <q-card-actions class="q-gutter-xs">
+
+      <q-space />
+
+      <q-card-actions class="q-gutter-sm">
         <q-input
-          v-model.number="lev_RangeBottom"
+          v-model.number="lv_RangeBottom"
+          :step="1"
+          :min="1"
+          :max="lv_RangeTop"
           type="number"
-          outlined
+          standout
           dense
-          bg-color="white"
-          :input-style="{color: 'orange'}"
-          style="width: 100px"
+          dark
         />
+
         <q-input
-          v-model.number="lev_RangeTop"
+          v-model.number="lv_RangeTop"
+          :step="1"
+          :min="lv_RangeBottom"
+          :max="lv_PatchMax"
           type="number"
-          outlined
+          standout
           dense
-          bg-color="white"
-          :input-style="{color: 'orange'}"
-          style="width: 100px"
+          dark
         />
       </q-card-actions>
     </q-card-section>
@@ -139,13 +81,17 @@ export default {
     return {
       il_RangeBottom: 470,
       il_RangeTop: 505,
-      lev_RangeBottom: 1,
-      lev_RangeTop: 80
+      il_PatchMax: 505,
+      lv_RangeBottom: 1,
+      lv_RangeTop: 80,
+      lv_PatchMax: 80
     }
   }
 }
 </script>
 
-<style>
-
+<style lang="scss" scope>
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 </style>

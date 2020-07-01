@@ -4,6 +4,9 @@
       <q-card-section>
         rare
       </q-card-section>
+
+      <q-space />
+
       <q-card-actions>
         <q-chip
           :selected.sync="rarity.White"
@@ -93,6 +96,9 @@
       <q-card-section>
         cate
       </q-card-section>
+
+      <q-space />
+
       <q-card-actions>
         <q-chip
           :selected.sync="categories.General"
