@@ -28,16 +28,23 @@
 
             <gear-filter class="animate__animated animate__slideInLeft" />
 
-            <q-btn
-              color="positive"
-              class="animate__animated animate__slideInLeft"
+            <q-btn-group
+              spread
             >
-              <q-icon
-                left
-                name="sync"
+              <q-btn
+                label="Apply"
+                color="green"
+                text-color="white"
+                icon="sync"
               />
-              <span>Apply Filter</span>
-            </q-btn>
+
+              <q-btn
+                label="Reset"
+                color="orange"
+                text-color="white"
+                icon="replay"
+              />
+            </q-btn-group>
 
             <q-card class="q-mt-sm bg-yellow animate__animated animate__slideInLeft">
               <q-card-section horizontal>
