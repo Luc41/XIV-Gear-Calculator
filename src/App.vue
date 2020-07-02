@@ -27,13 +27,17 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer>
+      test
+    </q-footer>
+
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
       :width="200"
       content-class="bg-grey-2"
     >
-      <LeftDrawerContent />
+      <left-drawer />
     </q-drawer>
 
     <q-drawer
@@ -57,13 +61,13 @@
 </template>
 
 <script>
-import LeftDrawerContent from './components/Leftdrawer'
+import leftDrawer from './components/leftDrawer'
 
 export default {
   name: 'LayoutDefault',
 
   components: {
-    LeftDrawerContent
+    leftDrawer
   },
 
   data () {
@@ -76,4 +80,7 @@ export default {
 </script>
 
 <style lang="scss">
+html,body {
+  background-image: linear-gradient(#d0021b,#000000);
+}
 </style>
