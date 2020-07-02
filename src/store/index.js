@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    job: ''
+    job: '',
+    raciesStorage: null,
+    clansStorage: null
   },
   mutations: {
     changejob (state, desc) {

@@ -1,6 +1,9 @@
 <template>
-  <q-card class="bg-secondary q-pa-sm">
-    <q-card-section horizontal>
+  <q-card class="bg-secondary">
+    <q-card-section
+      horizontal
+      class="q-px-xs"
+    >
       <q-card-section>
         rare
       </q-card-section>
@@ -86,13 +89,12 @@
       </q-card-actions>
     </q-card-section>
 
-    <q-separator
-      color="orange"
-      size="3px"
-      inset
-    />
+    <q-separator inset />
 
-    <q-card-section horizontal>
+    <q-card-section
+      horizontal
+      class="q-px-xs"
+    >
       <q-card-section>
         cate
       </q-card-section>

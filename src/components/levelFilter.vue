@@ -1,7 +1,7 @@
 <template>
-  <q-card class="bg-primary q-pa-sm">
+  <q-card class="bg-primary">
     <q-card-section
-      class="numInput"
+      class="q-px-xs"
       horizontal
     >
       <q-card-section>il range</q-card-section>
@@ -33,14 +33,10 @@
       </q-card-actions>
     </q-card-section>
 
-    <q-separator
-      color="white"
-      size="2px"
-      style="border-radius: 2px;"
-    />
+    <q-separator inset />
 
     <q-card-section
-      class="numInput"
+      class="q-px-xs"
       horizontal
     >
       <q-card-section>lv range</q-card-section>
@@ -91,7 +87,5 @@ export default {
 </script>
 
 <style lang="scss" scope>
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
+
 </style>
