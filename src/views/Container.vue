@@ -1,23 +1,9 @@
 <template>
   <q-page
-    class="q-pa-md q-mt-xl"
+    class="q-pa-md"
+    padding
+    style="padding-top: 66px"
   >
-    <q-page-sticky
-      position="top"
-      expand
-      class="bg-accent text-white"
-    >
-      <q-toolbar>
-        <q-toolbar-title>{{ $store.state.job }}</q-toolbar-title>
-
-        <q-btn
-          flat
-          label="share"
-          icon="share"
-        />
-      </q-toolbar>
-    </q-page-sticky>
-
     <div class="row q-gutter-sm">
       <div class="col-auto">
         <div class="column">
@@ -59,7 +45,7 @@
               style="animation-delay: .4s;"
             >
               <q-card-section horizontal>
-                <span class="text-h4 text-grey q-mt-sm q-ml-md">Overall</span>
+                <span class="text-h5 q-mt-sm q-ml-md">Overall</span>
               </q-card-section>
 
               <q-separator />
@@ -81,8 +67,8 @@
                       flat
                       class="bg-pink no-shadow"
                     >
-                      <q-card-section class="text-center text-white bg-brown">
-                        <strong>{{ props.row.name }}</strong>
+                      <q-card-section class="text-caption text-center text-white bg-brown">
+                        <span>{{ props.row.name }}</span>
                       </q-card-section>
                       <q-separator />
                       <q-card-section
@@ -112,8 +98,8 @@
                       flat
                       class="bg-pink no-shadow"
                     >
-                      <q-card-section class="text-center text-white bg-brown">
-                        <strong>{{ props.row.name }}</strong>
+                      <q-card-section class="text-caption text-center text-white bg-brown">
+                        <span>{{ props.row.name }}</span>
                       </q-card-section>
                       <q-separator />
                       <q-card-section
@@ -143,8 +129,8 @@
                       flat
                       class="bg-pink no-shadow"
                     >
-                      <q-card-section class="text-center text-white bg-brown">
-                        <strong>{{ props.row.name }}</strong>
+                      <q-card-section class="text-caption text-center text-white bg-brown">
+                        <span>{{ props.row.name }}</span>
                       </q-card-section>
                       <q-separator />
                       <q-card-section
@@ -181,6 +167,22 @@
         </q-scroll-area>
       </div>
     </div>
+
+    <q-page-sticky
+      position="top"
+      expand
+      class="bg-accent text-white"
+    >
+      <q-toolbar>
+        <q-toolbar-title>{{ $store.state.job }}</q-toolbar-title>
+
+        <q-btn
+          flat
+          label="share"
+          icon="share"
+        />
+      </q-toolbar>
+    </q-page-sticky>
   </q-page>
 </template>
 
@@ -208,14 +210,14 @@ export default {
         { name: 'value', label: 'Value', field: 'value' }
       ],
       data: [
-        { name: 'HP', value: 100 },
-        { name: 'MP', value: 100 },
-        { name: 'strength', value: 100 },
-        { name: 'direct hit', value: 101 },
-        { name: 'critical hit', value: 102 },
-        { name: 'determination', value: 103 },
-        { name: 'skillspeed', value: 104 },
-        { name: 'vitality', value: 105 }
+        { name: 'HP', value: 100000 },
+        { name: 'MP', value: 100000 },
+        { name: 'strength', value: 10000 },
+        { name: 'direct hit', value: 10100 },
+        { name: 'critical hit', value: 10002 },
+        { name: 'determination', value: 10300 },
+        { name: 'skillspeed', value: 10400 },
+        { name: 'vitality', value: 10500 }
       ]
     }
   }
