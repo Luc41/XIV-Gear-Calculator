@@ -1,8 +1,9 @@
 <template>
-  <q-layout view="hHh Lpr lFf">
+  <q-layout view="hHh Lpr fFf">
     <q-header
+      reveal
       elevated
-      class="flat"
+      class="flat bg-brand"
     >
       <q-toolbar>
         <q-btn
@@ -27,7 +28,10 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer>
+    <q-footer
+      elevated
+      class="bg-brand"
+    >
       test
     </q-footer>
 
@@ -82,5 +86,12 @@ export default {
 <style lang="scss">
 html,body {
   background-image: linear-gradient(#d0021b,#000000);
+}
+
+.text-brand {
+  color: linear-gradient(to right, #6e6e6e, #303030);
+}
+.bg-brand {
+  background: linear-gradient(to right, #6e6e6e, #303030);
 }
 </style>
