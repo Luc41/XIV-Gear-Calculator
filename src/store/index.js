@@ -6,8 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     job: '',
+    patch: [],
     raciesStorage: null,
-    clansStorage: null
+    clansStorage: null,
+    charStatus: []
   },
   mutations: {
     changejob (state, desc) {

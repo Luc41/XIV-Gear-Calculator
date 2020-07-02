@@ -174,7 +174,16 @@
       class="bg-accent text-white"
     >
       <q-toolbar>
-        <q-toolbar-title>{{ $store.state.job }}</q-toolbar-title>
+        <q-toolbar-title>
+          {{ $store.state.job }}
+
+          <q-badge
+            align="top"
+            color="green"
+          >
+            {{ $store.state.patch[0].Name }}
+          </q-badge>
+        </q-toolbar-title>
 
         <q-btn
           flat
@@ -219,6 +228,20 @@ export default {
         { name: 'skillspeed', value: 10400 },
         { name: 'vitality', value: 10500 }
       ]
+    }
+  },
+  mounted: {
+    getPatch () {
+      this.$axios
+        .get('https://xivapi.com/patchlist')
+        .then(response => (this.$store.state.patch = response.data.reverse()))
+        .catch(error => console.log(error))
+    },
+    getStatus () {
+      this.$axios
+        .get('https://xivapi.com/patchlist')
+        .then(response => (this.$store.state.charStatus = response.data.reverse()))
+        .catch(error => console.log(error))
     }
   }
 }
