@@ -89,7 +89,10 @@
       </q-card-actions>
     </q-card-section>
 
-    <q-separator inset />
+    <q-separator
+      color="white"
+      inset
+    />
 
     <q-card-section
       horizontal
