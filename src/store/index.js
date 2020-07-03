@@ -12,8 +12,8 @@ export default new Vuex.Store({
     charStatus: []
   },
   mutations: {
-    changejob (state, desc) {
-      state.job = desc
+    changejob (state, value) {
+      state.job = value
     }
   },
   actions: {
