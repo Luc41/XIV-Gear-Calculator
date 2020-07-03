@@ -20,7 +20,7 @@
         >
           <q-tooltip
             anchor="top middle"
-            self="center middle"
+            self="bottom middle"
             content-class="bg-white text-grey-7 shadow-4"
           >
             White Items
@@ -35,7 +35,7 @@
         >
           <q-tooltip
             anchor="top middle"
-            self="center middle"
+            self="bottom middle"
             content-class="bg-green text-white shadow-4"
           >
             Green Items
@@ -50,7 +50,7 @@
         >
           <q-tooltip
             anchor="top middle"
-            self="center middle"
+            self="bottom middle"
             content-class="bg-blue text-white shadow-4"
           >
             Blue Items
@@ -65,7 +65,7 @@
         >
           <q-tooltip
             anchor="top middle"
-            self="center middle"
+            self="bottom middle"
             content-class="bg-purple text-white shadow-4"
           >
             Relic Items
@@ -80,7 +80,7 @@
         >
           <q-tooltip
             anchor="top middle"
-            self="center middle"
+            self="bottom middle"
             content-class="bg-pink text-white shadow-4"
           >
             Aetherial Items
@@ -114,7 +114,7 @@
         >
           <q-tooltip
             anchor="bottom middle"
-            self="center middle"
+            self="top middle"
             content-class="bg-orange text-white shadow-4"
           >
             General
@@ -129,7 +129,7 @@
         >
           <q-tooltip
             anchor="bottom middle"
-            self="center middle"
+            self="top middle"
             content-class="bg-orange text-white shadow-4"
           >
             Crafted
@@ -144,7 +144,7 @@
         >
           <q-tooltip
             anchor="bottom middle"
-            self="center middle"
+            self="top middle"
             content-class="bg-orange text-white shadow-4"
           >
             PVP
@@ -159,7 +159,7 @@
         >
           <q-tooltip
             anchor="bottom middle"
-            self="center middle"
+            self="top middle"
             content-class="bg-orange text-white shadow-4"
           >
             Food

@@ -84,8 +84,15 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap");
+
 html,body {
   background-image: linear-gradient(#d0021b,#000000);
+}
+
+.q-layout {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
 }
 
 .text-brand {
