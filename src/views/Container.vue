@@ -230,19 +230,11 @@ export default {
       ]
     }
   },
-  mounted: {
-    getPatch () {
-      this.$axios
-        .get('https://xivapi.com/patchlist')
-        .then(response => (this.$store.state.patch = response.data.reverse()))
-        .catch(error => console.log(error))
-    },
-    getStatus () {
-      this.$axios
-        .get('https://xivapi.com/patchlist')
-        .then(response => (this.$store.state.charStatus = response.data.reverse()))
-        .catch(error => console.log(error))
-    }
+  mounted () {
+    this.$axios
+      .get('https://xivapi.com/patchlist')
+      .then(response => (this.$store.state.patch = response.data.reverse()))
+      .catch(error => console.log(error))
   }
 }
 </script>
