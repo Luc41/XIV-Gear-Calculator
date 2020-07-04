@@ -41,107 +41,54 @@
             </q-btn-group>
 
             <q-card
-              class="q-mt-sm bg-yellow animate__animated animate__slideInLeft"
+              class="q-pa-xs bg-yellow animate__animated animate__slideInLeft"
               style="animation-delay: .4s;"
             >
-              <q-card-section horizontal>
-                <span class="text-h5 q-mt-sm q-ml-md">Overall</span>
+              <q-card-section class="q-pa-xs">
+                <span class="text-h5">Overall</span>
               </q-card-section>
 
               <q-separator />
-
-              <q-table
-                grid
-                :data="data.slice(0,3)"
-                :columns="columns"
-                row-key="name"
-                hide-header
-                hide-pagination
-                :pagination.sync="pagination"
-                :rows-per-page-options="[0]"
-                class="animate__animated animate__flipInX"
-              >
-                <template v-slot:item="props">
-                  <div class="q-pa-xs col-xs-6 col-sm-4 col-md-4">
+              <q-card-section class="q-pa-none">
+                <div
+                  v-for="i in 5"
+                  :key="i"
+                  class="row"
+                >
+                  <div
+                    class="col"
+                    v-for="param in data.slice(2*(i-1), 2*i)"
+                    :key="param"
+                  >
                     <q-card
                       flat
-                      class="bg-pink no-shadow"
+                      class="q-ma-xs text-center bg-orange animate__animated animate__flipInX"
                     >
-                      <q-card-section class="text-caption text-center text-white bg-brown">
-                        <span>{{ props.row.name }}</span>
-                      </q-card-section>
-                      <q-separator />
-                      <q-card-section
-                        class="text-white text-bold flex flex-center"
+                      <q-chip
+                        color="transparent"
+                        text-color="white"
                       >
-                        <div>{{ props.row.value }}</div>
-                      </q-card-section>
+                        {{ param.Name }}
+                        :
+                        {{ param.Value }}
+                      </q-chip>
+                      <q-space />
+                      <q-chip
+                        color="green"
+                        text-color="white"
+                        class="q-mt-none"
+                        style="border-radius: 4px;"
+                      >
+                        + {{ param.Plus }}
+                      </q-chip>
                     </q-card>
                   </div>
-                </template>
-              </q-table>
-
-              <q-table
-                grid
-                :data="data.slice(3,6)"
-                :columns="columns"
-                row-key="name"
-                hide-header
-                hide-pagination
-                :pagination.sync="pagination"
-                :rows-per-page-options="[0]"
-                class="animate__animated animate__flipInX"
-              >
-                <template v-slot:item="props">
-                  <div class="q-pa-xs col-xs-6 col-sm-4 col-md-4">
-                    <q-card
-                      flat
-                      class="bg-pink no-shadow"
-                    >
-                      <q-card-section class="text-caption text-center text-white bg-brown">
-                        <span>{{ props.row.name }}</span>
-                      </q-card-section>
-                      <q-separator />
-                      <q-card-section
-                        class="text-white text-bold flex flex-center"
-                      >
-                        <div>{{ props.row.value }}</div>
-                      </q-card-section>
-                    </q-card>
-                  </div>
-                </template>
-              </q-table>
-
-              <q-table
-                grid
-                :data="data.slice(6,9)"
-                :columns="columns"
-                row-key="name"
-                hide-header
-                hide-pagination
-                :pagination.sync="pagination"
-                :rows-per-page-options="[0]"
-                class="animate__animated animate__flipInX"
-              >
-                <template v-slot:item="props">
-                  <div class="q-pa-xs col-xs-6 col-sm-4 col-md-4">
-                    <q-card
-                      flat
-                      class="bg-pink no-shadow"
-                    >
-                      <q-card-section class="text-caption text-center text-white bg-brown">
-                        <span>{{ props.row.name }}</span>
-                      </q-card-section>
-                      <q-separator />
-                      <q-card-section
-                        class="text-white text-bold flex flex-center"
-                      >
-                        <div>{{ props.row.value }}</div>
-                      </q-card-section>
-                    </q-card>
-                  </div>
-                </template>
-              </q-table>
+                  <div
+                    class="col"
+                    v-if="i === 5"
+                  />
+                </div>
+              </q-card-section>
             </q-card>
           </div>
         </div>
@@ -152,6 +99,13 @@
           :delay="1200"
         >
           <div class="q-gutter-sm">
+            <gear-table title="weapon" />
+
+            <gear-table
+              title="sub weapon"
+              v-if="$store.state.job === 'Paladin'"
+            />
+
             <gear-table title="Head" />
 
             <gear-table title="Body" />
@@ -163,6 +117,18 @@
             <gear-table title="Leg" />
 
             <gear-table title="Shoe" />
+
+            <gear-table title="ear" />
+
+            <gear-table title="necklace" />
+
+            <gear-table title="wrist" />
+
+            <gear-table title="ring-l" />
+
+            <gear-table title="ring-r" />
+
+            <gear-table title="food" />
           </div>
         </q-scroll-area>
       </div>
@@ -214,19 +180,16 @@ export default {
       pagination: {
         rowsPerPage: 0
       },
-      columns: [
-        { name: 'name', label: 'Name', field: 'name' },
-        { name: 'value', label: 'Value', field: 'value' }
-      ],
       data: [
-        { name: 'HP', value: 100000 },
-        { name: 'MP', value: 100000 },
-        { name: 'strength', value: 10000 },
-        { name: 'direct hit', value: 10100 },
-        { name: 'critical hit', value: 10002 },
-        { name: 'determination', value: 10300 },
-        { name: 'skillspeed', value: 10400 },
-        { name: 'vitality', value: 10500 }
+        { ID: 1, Name: 'HP', Value: 1000000, Plus: 10000 },
+        { ID: 2, Name: 'MP', Value: 1000000, Plus: 10000 },
+        { ID: 3, Name: 'STR', Value: 100000, Plus: 1000 },
+        { ID: 4, Name: 'CTH', Value: 100001, Plus: 1001 },
+        { ID: 5, Name: 'DTH', Value: 100002, Plus: 1002 },
+        { ID: 6, Name: 'DET', Value: 100003, Plus: 1003 },
+        { ID: 7, Name: 'SS', Value: 100004, Plus: 1004 },
+        { ID: 8, Name: 'VIT', Value: 100005, Plus: 1005 },
+        { ID: 8, Name: 'PTY', Value: 100006, Plus: 1006 }
       ]
     }
   },
@@ -250,6 +213,6 @@ export default {
 
 .animate__animated.animate__flipInX {
   animation-duration: 1s;
-  animation-delay: .8s;
+  animation-delay: 1s;
 }
 </style>
