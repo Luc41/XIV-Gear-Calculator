@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    job: '',
+    job: sessionStorage.getItem('selectedJob'),
     patch: [],
     raciesStorage: null,
     clansStorage: null,
@@ -13,7 +13,8 @@ export default new Vuex.Store({
   },
   mutations: {
     changejob (state, value) {
-      state.job = value
+      sessionStorage.setItem('selectedJob', value)
+      state.job = sessionStorage.getItem('selectedJob')
     }
   },
   actions: {

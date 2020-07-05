@@ -1,7 +1,4 @@
-import Vue from 'vue'
 import Axios from 'axios'
-
-Vue.prototype.$axios = Axios
 
 class requestChinese {
   constructor (filter) {
@@ -47,4 +44,4 @@ class requestDefault {
   }
 }
 
-module.exports = { requestChinese, requestDefault }
+export default { requestChinese, requestDefault }
