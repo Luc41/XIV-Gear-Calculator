@@ -44,7 +44,7 @@
               class="q-pa-xs bg-yellow animate__animated animate__slideInLeft"
               style="animation-delay: .4s;"
             >
-              <q-card-section class="q-pa-xs">
+              <q-card-section class="q-py-none q-px-xs">
                 <span class="text-h5">Overall</span>
               </q-card-section>
 
@@ -61,7 +61,7 @@
                     :key="param"
                   >
                     <q-card
-                      flat
+                      bordered
                       class="q-ma-xs text-center bg-orange animate__animated animate__flipInX"
                     >
                       <q-chip

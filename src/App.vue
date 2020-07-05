@@ -15,7 +15,7 @@
           icon="menu"
         />
 
-        <q-toolbar-title>Quasar App</q-toolbar-title>
+        <q-toolbar-title>Gear Calculator</q-toolbar-title>
 
         <q-btn
           flat
