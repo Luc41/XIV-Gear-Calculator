@@ -1,8 +1,9 @@
 <template>
-  <q-layout view="hHh Lpr lFf">
+  <q-layout view="hHh Lpr fFf">
     <q-header
+      reveal
       elevated
-      class="flat"
+      class="flat bg-brand"
     >
       <q-toolbar>
         <q-btn
@@ -14,7 +15,7 @@
           icon="menu"
         />
 
-        <q-toolbar-title>Quasar App</q-toolbar-title>
+        <q-toolbar-title>Gear Calculator</q-toolbar-title>
 
         <q-btn
           flat
@@ -27,7 +28,10 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer>
+    <q-footer
+      elevated
+      class="bg-brand"
+    >
       test
     </q-footer>
 
@@ -80,7 +84,21 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap");
+
 html,body {
   background-image: linear-gradient(#d0021b,#000000);
+}
+
+.q-layout {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+}
+
+.text-brand {
+  color: linear-gradient(to right, #6e6e6e, #303030);
+}
+.bg-brand {
+  background: linear-gradient(to right, #6e6e6e, #303030);
 }
 </style>

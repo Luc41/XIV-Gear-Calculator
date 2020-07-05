@@ -275,8 +275,9 @@ export default {
 }
 </script>
 
-<style lang="sass" scope>
-.active-link
-  color: white
-  background: #f2c037
+<style lang="scss">
+.active-link {
+  color: white;
+  background: #f2c037;
+}
 </style>

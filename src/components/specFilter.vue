@@ -6,6 +6,7 @@
           style="width: 8em;"
           standout="bg-info text-white"
           v-model="raciesModel"
+          :loading="raceSelectLoadingState"
           transition-show="jump-up"
           transition-hide="jump-down"
           :options="$store.state.raciesStorage"
@@ -22,6 +23,7 @@
           style="width: 12em;"
           standout="bg-info text-white"
           v-model="clansModel"
+          :loading="clanSelectLoadingState"
           transition-show="jump-up"
           transition-hide="jump-down"
           :options="$store.state.clansStorage"
@@ -34,7 +36,10 @@
       </q-card-section>
     </q-card-section>
 
-    <q-separator inset />
+    <q-separator
+      color="white"
+      inset
+    />
 
     <q-card-section
       horizontal
@@ -84,7 +89,9 @@ export default {
   data () {
     return {
       raciesModel: null,
+      raceSelectLoadingState: true,
       clansModel: null,
+      clanSelectLoadingState: true,
       levelSlider: 80
     }
   },
@@ -95,6 +102,13 @@ export default {
       .get('https://xivapi.com/Race')
       .then(response => (this.$store.state.raciesStorage = response.data.Results))
       .catch(error => console.log(error))
+      .finally(this.raceSelectLoadingState = false)
+
+    this.$axios
+      .get('https://xivapi.com/Tribe')
+      .then(response => (this.$store.state.clansStorage = response.data.Results))
+      .catch(error => console.log(error))
+      .finally(this.clanSelectLoadingState = false)
   }
 }
 </script>
