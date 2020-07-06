@@ -9,12 +9,16 @@ export default new Vuex.Store({
     patch: [],
     raciesStorage: null,
     clansStorage: null,
-    charStatus: []
+    charStatus: [],
+    loadingState: false
   },
   mutations: {
     changejob (state, value) {
       sessionStorage.setItem('selectedJob', value)
       state.job = sessionStorage.getItem('selectedJob')
+    },
+    changeLoadingState (state) {
+      state.loadingState = !state.loadingState
     }
   },
   actions: {
