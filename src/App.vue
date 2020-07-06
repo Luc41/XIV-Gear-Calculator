@@ -18,12 +18,12 @@
         <q-toolbar-title>Gear Calculator</q-toolbar-title>
 
         <q-btn
-          flat
+          outline
           dense
           round
           @click="rightDrawerOpen = !rightDrawerOpen"
           aria-label="Menu"
-          icon="menu"
+          icon="person"
         />
       </q-toolbar>
     </q-header>
