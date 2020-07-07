@@ -4,7 +4,7 @@
     padding
     style="padding-top: 66px"
   >
-    <div class="row q-gutter-sm">
+    <div class="row justify-center q-gutter-sm">
       <div class="col-auto">
         <div class="column">
           <div class="col q-gutter-sm">
@@ -58,7 +58,7 @@
                   <div
                     class="col"
                     v-for="param in data.slice(2*(i-1), 2*i)"
-                    :key="param"
+                    :key="param.ID"
                   >
                     <q-card
                       bordered
@@ -93,7 +93,7 @@
           </div>
         </div>
       </div>
-      <div class="col animate__animated animate__slideInUp">
+      <div class="col-8 animate__animated animate__slideInUp">
         <q-scroll-area
           style="height: 100%; width: 100%;"
           :delay="1200"
@@ -146,6 +146,7 @@
           <q-badge
             align="top"
             color="green"
+            v-if="$store.state.patch !== null"
           >
             {{ $store.state.patch[0].Name }}
           </q-badge>

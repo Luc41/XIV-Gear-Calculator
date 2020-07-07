@@ -18,12 +18,12 @@
         <q-toolbar-title>Gear Calculator</q-toolbar-title>
 
         <q-btn
-          flat
+          outline
           dense
           round
           @click="rightDrawerOpen = !rightDrawerOpen"
           aria-label="Menu"
-          icon="menu"
+          icon="person"
         />
       </q-toolbar>
     </q-header>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import service from './api'
 import leftDrawer from './components/leftDrawer'
 
 export default {
@@ -79,6 +80,10 @@ export default {
       leftDrawerOpen: false,
       rightDrawerOpen: false
     }
+  },
+
+  mounted () {
+    service.get('/race')
   }
 }
 </script>

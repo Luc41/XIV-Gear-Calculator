@@ -4,8 +4,8 @@
       horizontal
       class="q-px-xs"
     >
-      <q-card-section>
-        rare
+      <q-card-section class="text-white text-capitalize">
+        rarity
       </q-card-section>
 
       <q-space />
@@ -98,8 +98,8 @@
       horizontal
       class="q-px-xs"
     >
-      <q-card-section>
-        cate
+      <q-card-section class="text-white text-capitalize">
+        categories
       </q-card-section>
 
       <q-space />

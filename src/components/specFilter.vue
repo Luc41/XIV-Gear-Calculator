@@ -1,8 +1,9 @@
 <template>
   <q-card class="bg-info">
     <q-card-section horizontal>
-      <q-card-section>
+      <q-card-section class="q-pr-none">
         <q-select
+          class="ellipsis"
           style="width: 8em;"
           standout="bg-info text-white"
           v-model="raciesModel"
@@ -20,13 +21,15 @@
 
       <q-card-section>
         <q-select
+          class="ellipsis"
           style="width: 12em;"
           standout="bg-info text-white"
           v-model="clansModel"
           :loading="clanSelectLoadingState"
+          :disable="disableClanSelect"
           transition-show="jump-up"
           transition-hide="jump-down"
-          :options="$store.state.clansStorage"
+          :options="cascader"
           option-label="Name"
           option-value="Name"
           emit-value
@@ -45,8 +48,8 @@
       horizontal
       class="q-mr-sm"
     >
-      <q-card-section>
-        LEVEL
+      <q-card-section class="text-white text-capitalize">
+        level
       </q-card-section>
 
       <q-slider
@@ -91,11 +94,32 @@ export default {
       raciesModel: null,
       raceSelectLoadingState: true,
       clansModel: null,
+      cascader: null,
       clanSelectLoadingState: true,
+      disableClanSelect: true,
       levelSlider: 80
     }
   },
   methods: {
+  },
+  watch: {
+    raciesModel (val) {
+      this.clansModel = null
+      if (val) {
+        this.disableClanSelect = false
+      }
+      let index = 0
+      for (const i in this.$store.state.raciesStorage) {
+        switch (val) {
+          case this.$store.state.raciesStorage[i].Name:
+            this.cascader = this.$store.state.clansStorage.slice(2 * index, 2 * (index + 1))
+            break
+          default:
+            break
+        }
+        index += 1
+      }
+    }
   },
   mounted () {
     this.$axios

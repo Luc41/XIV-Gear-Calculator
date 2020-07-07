@@ -4,7 +4,9 @@
       class="q-px-xs"
       horizontal
     >
-      <q-card-section>il range</q-card-section>
+      <q-card-section class="text-white text-capitalize">
+        item level range
+      </q-card-section>
 
       <q-space />
 
@@ -42,7 +44,9 @@
       class="q-px-xs"
       horizontal
     >
-      <q-card-section>lv range</q-card-section>
+      <q-card-section class="text-white text-capitalize">
+        equip level range
+      </q-card-section>
 
       <q-space />
 
