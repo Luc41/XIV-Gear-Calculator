@@ -3,7 +3,8 @@
     <q-card-section horizontal>
       <q-card-section class="q-pr-none">
         <q-select
-          style="width: 9em;"
+          class="ellipsis"
+          style="width: 8em;"
           standout="bg-info text-white"
           v-model="raciesModel"
           :loading="raceSelectLoadingState"
@@ -20,6 +21,7 @@
 
       <q-card-section class="q-pl-xs">
         <q-select
+          class="ellipsis"
           style="width: 12em;"
           standout="bg-info text-white"
           v-model="clansModel"
