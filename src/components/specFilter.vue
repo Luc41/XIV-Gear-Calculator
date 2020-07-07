@@ -48,8 +48,8 @@
       horizontal
       class="q-mr-sm"
     >
-      <q-card-section>
-        LEVEL
+      <q-card-section class="text-white text-capitalize">
+        level
       </q-card-section>
 
       <q-slider
