@@ -4,7 +4,7 @@
     padding
     style="padding-top: 66px"
   >
-    <div class="row q-gutter-sm">
+    <div class="row justify-center q-gutter-sm">
       <div class="col-auto">
         <div class="column">
           <div class="col q-gutter-sm">
@@ -93,7 +93,7 @@
           </div>
         </div>
       </div>
-      <div class="col animate__animated animate__slideInUp">
+      <div class="col-8 animate__animated animate__slideInUp">
         <q-scroll-area
           style="height: 100%; width: 100%;"
           :delay="1200"
