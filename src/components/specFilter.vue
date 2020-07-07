@@ -19,7 +19,7 @@
         />
       </q-card-section>
 
-      <q-card-section class="q-pl-xs">
+      <q-card-section>
         <q-select
           class="ellipsis"
           style="width: 12em;"
