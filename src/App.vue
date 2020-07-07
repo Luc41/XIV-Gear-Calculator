@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import service from './api'
 import leftDrawer from './components/leftDrawer'
 
 export default {
@@ -79,6 +80,10 @@ export default {
       leftDrawerOpen: false,
       rightDrawerOpen: false
     }
+  },
+
+  mounted () {
+    service.get('/race')
   }
 }
 </script>

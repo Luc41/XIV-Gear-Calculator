@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     job: sessionStorage.getItem('selectedJob'),
-    patch: [],
+    patch: null,
     raciesStorage: null,
     clansStorage: null,
     charStatus: [],

@@ -58,7 +58,7 @@
                   <div
                     class="col"
                     v-for="param in data.slice(2*(i-1), 2*i)"
-                    :key="param"
+                    :key="param.ID"
                   >
                     <q-card
                       bordered
@@ -146,6 +146,7 @@
           <q-badge
             align="top"
             color="green"
+            v-if="$store.state.patch !== null"
           >
             {{ $store.state.patch[0].Name }}
           </q-badge>

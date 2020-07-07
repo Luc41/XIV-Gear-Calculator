@@ -9,11 +9,12 @@ const service = Axios.create({
 // http response interceptor
 service.interceptors.response.use(
   function (response) {
-    if (response.data.code === 0 || response.headers.success === 'true') {
+    console.log(response)
+    if (response.request.status === 200) {
       return response.data
     } else {
       store.commit('changeLoadingState')
-      return Promise.reject(response.data.msg)
+      return Promise.reject(response.request.onloading)
     }
   }, function (error) {
     return Promise.reject(error)
