@@ -93,7 +93,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-8 col-sm">
+      <div class="col-md-6 col-sm">
         <q-scroll-area
           style="height: 100%; width: 100%;"
           :delay="1200"
