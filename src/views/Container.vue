@@ -93,7 +93,7 @@
           </div>
         </div>
       </div>
-      <div class="col-8 animate__animated animate__slideInUp">
+      <div class="col-md-8 col-sm">
         <q-scroll-area
           style="height: 100%; width: 100%;"
           :delay="1200"
@@ -142,7 +142,6 @@
       <q-toolbar>
         <q-toolbar-title>
           {{ $store.state.job }}
-
           <q-badge
             align="top"
             color="green"
@@ -205,11 +204,11 @@ export default {
 
 <style lang="scss" scope>
 .animate__animated.animate__slideInUp {
-  animation-duration: .8s;
+  animation-duration: 0.8s;
 }
 
 .animate__animated.animate__slideInLeft {
-  animation-duration: .8s;
+  animation-duration: 0.8s;
 }
 
 .animate__animated.animate__flipInX {
