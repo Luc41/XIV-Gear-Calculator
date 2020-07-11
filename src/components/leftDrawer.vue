@@ -26,7 +26,7 @@
           clickable
           v-ripple
           :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          @click="$store.commit('updateStorage', job.job)"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -53,7 +53,7 @@
           clickable
           v-ripple
           :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          @click="$store.commit('updateStorage', job.job)"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -80,7 +80,7 @@
           clickable
           v-ripple
           :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          @click="$store.commit('updateStorage', job.job)"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -109,7 +109,7 @@
           clickable
           v-ripple
           :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          @click="$store.commit('updateStorage', job.job)"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -138,7 +138,7 @@
           clickable
           v-ripple
           :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          @click="$store.commit('updateStorage', job.job)"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -170,7 +170,7 @@
           clickable
           v-ripple
           :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          @click="$store.commit('updateStorage', job.job)"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -199,7 +199,7 @@
           clickable
           v-ripple
           :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          @click="$store.commit('updateStorage', job.job)"
           active-class="active-link"
           :to="'/' + job.job"
           dense

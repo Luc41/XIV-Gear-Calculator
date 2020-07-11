@@ -10,15 +10,34 @@ export default new Vuex.Store({
     raciesStorage: null,
     clansStorage: null,
     charStatus: [],
-    loadingState: false
+    errorMessage: {},
+    database: true
   },
   mutations: {
-    changejob (state, value) {
-      sessionStorage.setItem('selectedJob', value)
-      state.job = sessionStorage.getItem('selectedJob')
+    updateStorage (state, val) {
+      switch (typeof val) {
+        case 'string':
+          sessionStorage.setItem('selectedJob', val)
+          state.job = sessionStorage.getItem('selectedJob')
+          break
+
+        case 'object':
+          sessionStorage.setItem('raciesStorage', val.Race)
+          state.raciesStorage = sessionStorage.getItem('raciesStorage')
+
+          sessionStorage.setItem('clansStorage', val.Tribe)
+          state.clansStorage = sessionStorage.getItem('clansStorage')
+          break
+
+        default:
+          break
+      }
     },
-    changeLoadingState (state) {
-      state.loadingState = !state.loadingState
+    errorMessage (state, val) {
+      state.errorMessage = val
+    },
+    swtichDatabase (state) {
+      state.database = !state.database
     }
   },
   actions: {

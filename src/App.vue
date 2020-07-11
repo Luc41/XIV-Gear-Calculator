@@ -55,6 +55,18 @@
         <q-item-label header>
           Essential Links
         </q-item-label>
+        <q-btn-toggle
+          v-model="currentDatabase"
+          spread
+          no-caps
+          toggle-color="purple"
+          color="white"
+          text-color="black"
+          :options="[
+            {label: 'CN', value: true},
+            {label: 'GL', value: false}
+          ]"
+        />
       </q-list>
     </q-drawer>
 
@@ -78,7 +90,14 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
-      rightDrawerOpen: false
+      rightDrawerOpen: false,
+      currentDatabase: this.$store.state.database
+    }
+  },
+
+  watch: {
+    currentDatabase (val) {
+      this.$store.commit('switchDatabase')
     }
   },
 
