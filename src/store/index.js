@@ -9,7 +9,6 @@ export default new Vuex.Store({
     patch: null,
     raciesStorage: null,
     clansStorage: null,
-    charStatus: [],
     errorMessage: {},
     database: true
   },
