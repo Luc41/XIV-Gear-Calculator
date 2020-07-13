@@ -9,7 +9,6 @@ export default new Vuex.Store({
     patch: null,
     raciesStorage: null,
     clansStorage: null,
-    errorMessage: {},
     database: true
   },
   mutations: {
@@ -32,10 +31,10 @@ export default new Vuex.Store({
           break
       }
     },
-    errorMessage (state, val) {
-      state.errorMessage = val
+    updatePatch (state, val) {
+      state.patch = val.reverse()[0]
     },
-    swtichDatabase (state) {
+    switchDatabase (state) {
       state.database = !state.database
     }
   },

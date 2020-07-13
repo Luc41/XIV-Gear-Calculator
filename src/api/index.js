@@ -1,5 +1,4 @@
 import Axios from 'axios'
-import store from '../store'
 
 const service = Axios.create({
   baseURL: 'https://cafemaker.wakingsands.com',
@@ -9,16 +8,14 @@ const service = Axios.create({
 // http response interceptor
 // still need construct
 service.interceptors.response.use(
-  function (response) {
+  response => {
     console.log(response)
     if (response.request.status === 200) {
       return response.data
     } else {
-      const error = 'response error'
-      store.commit('errorMessage', error)
-      return Promise.reject(error)
+      return Promise.reject(response)
     }
-  }, function (error) {
+  }, error => {
     console.log('err' + error)
     return Promise.reject(error)
   })

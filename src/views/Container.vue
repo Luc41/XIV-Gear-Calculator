@@ -145,9 +145,15 @@
           <q-badge
             align="top"
             color="green"
-            v-if="$store.state.patch !== null"
           >
-            {{ $store.state.patch[0].Name }}
+            <template v-if="$store.state.patch === null">
+              <q-spinner-dots
+                color="white"
+              />
+            </template>
+            <template v-else>
+              {{ $store.state.patch.Name }}
+            </template>
           </q-badge>
         </q-toolbar-title>
 
@@ -162,6 +168,7 @@
 </template>
 
 <script>
+import { getPatches } from '../api/api'
 import gearFilter from '../components/gearFilter'
 import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
@@ -193,11 +200,23 @@ export default {
       ]
     }
   },
+  methods: {
+    loadPatches () {
+      getPatches()
+        .then(response => {
+          this.$store.commit('updatePatch', response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  },
+
+  created () {
+    this.loadPatches()
+  },
+
   mounted () {
-    this.$axios
-      .get('https://xivapi.com/patchlist')
-      .then(response => (this.$store.state.patch = response.data.reverse()))
-      .catch(error => console.log(error))
   }
 }
 </script>

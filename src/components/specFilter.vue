@@ -87,6 +87,8 @@
 </template>
 
 <script>
+import { getRacies, getTribes } from '../api/api'
+
 export default {
   name: 'SpecFilter',
   data () {
@@ -101,6 +103,34 @@ export default {
     }
   },
   methods: {
+    loadRacies () {
+      getRacies()
+        .then(response => {
+          this.$store.state.raciesStorage = response.Results
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        .finally(
+          this.raceSelectLoadingState = false
+        )
+    },
+    loadTribes () {
+      getTribes()
+        .then(response => {
+          this.$store.state.clansStorage = response.Results
+        })
+        .catch(error => {
+          console.log(error)
+        })
+        .finally(
+          this.clanSelectLoadingState = false
+        )
+    }
+  },
+  created () {
+    this.loadRacies()
+    this.loadTribes()
   },
   watch: {
     raciesModel (val) {
@@ -122,17 +152,7 @@ export default {
     }
   },
   mounted () {
-    this.$axios
-      .get('https://xivapi.com/Race')
-      .then(response => (this.$store.state.raciesStorage = response.data.Results))
-      .catch(error => console.log(error))
-      .finally(this.raceSelectLoadingState = false)
 
-    this.$axios
-      .get('https://xivapi.com/Tribe')
-      .then(response => (this.$store.state.clansStorage = response.data.Results))
-      .catch(error => console.log(error))
-      .finally(this.clanSelectLoadingState = false)
   }
 }
 </script>

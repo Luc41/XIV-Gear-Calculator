@@ -71,13 +71,12 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view :key="key" />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import service from './api'
 import leftDrawer from './components/leftDrawer'
 
 export default {
@@ -101,8 +100,13 @@ export default {
     }
   },
 
+  computed: {
+    key () {
+      return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
+    }
+  },
+
   mounted () {
-    service.get('/race')
   }
 }
 </script>
