@@ -20,3 +20,11 @@ export const getPatches = () => {
     method: 'get'
   })
 }
+
+export const getItems = (params) => {
+  return service({
+    url: '/search',
+    method: 'get',
+    params: params
+  })
+}

@@ -2,10 +2,10 @@
   <q-page
     class="q-pa-md"
     padding
-    style="padding-top: 66px"
+    style="padding-top: 66px;"
   >
     <div class="row justify-center q-gutter-sm">
-      <div class="col-auto">
+      <div class="col-12 col-md-auto col-sm-auto col-xs-auto">
         <div class="column">
           <div class="col q-gutter-sm">
             <spec-filter class="animate__animated animate__slideInLeft" />
@@ -93,7 +93,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-sm">
+      <div class="col-12 col-md-6 col-sm col-xs">
         <q-scroll-area
           style="height: 100%; width: 100%;"
           :delay="1200"
@@ -207,7 +207,7 @@ export default {
           this.$store.commit('updatePatch', response)
         })
         .catch(error => {
-          console.log(error)
+          console.log('Failed to load patch.' + error)
         })
     }
   },
