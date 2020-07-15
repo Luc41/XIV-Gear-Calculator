@@ -1,22 +1,25 @@
 <template>
   <q-card class="bg-primary">
     <q-card-section
-      class="q-px-xs"
-      horizontal
+      class="q-pa-sm"
     >
-      <q-card-section class="text-white text-capitalize">
+      <div class="text-white text-center text-capitalize">
         item level range
-      </q-card-section>
+      </div>
 
-      <q-space />
-
-      <q-card-actions class="q-gutter-sm">
+      <q-card-actions align="around">
         <q-input
           v-model.number="il_RangeBottom"
           :step="5"
           :min="0"
           :max="il_RangeTop"
+          :rules="[
+            val => !!val || 'Require a number.',
+            val => typeof val === 'number' && Math.floor(val) === val || 'Require int.',
+            val => val.toString().length <= 3 || 'Maxmium 3.'
+          ]"
           type="number"
+          style="width: 9em;"
           standout
           dense
           dark
@@ -27,7 +30,13 @@
           :step="5"
           :min="il_RangeBottom"
           :max="il_PatchMax"
+          :rules="[
+            val => !!val || 'Require a number.',
+            val => typeof val === 'number' && Math.floor(val) === val || 'Require int.',
+            val => val.toString().length <= 3 || 'Maxmium 3.'
+          ]"
           type="number"
+          style="width: 9em;"
           standout
           dense
           dark
@@ -41,22 +50,25 @@
     />
 
     <q-card-section
-      class="q-px-xs"
-      horizontal
+      class="q-pa-sm"
     >
-      <q-card-section class="text-white text-capitalize">
+      <div class="text-white text-center text-capitalize">
         equip level range
-      </q-card-section>
+      </div>
 
-      <q-space />
-
-      <q-card-actions class="q-gutter-sm">
+      <q-card-actions align="around">
         <q-input
           v-model.number="lv_RangeBottom"
           :step="1"
           :min="1"
           :max="lv_RangeTop"
+          :rules="[
+            val => !!val || 'Require a number.',
+            val => typeof val === 'number' && Math.floor(val) === val || 'Require int.',
+            val => val.toString().length <= 3 || 'Maxmium 3.'
+          ]"
           type="number"
+          style="width: 9em;"
           standout
           dense
           dark
@@ -67,7 +79,13 @@
           :step="1"
           :min="lv_RangeBottom"
           :max="lv_PatchMax"
+          :rules="[
+            val => !!val || 'Require a number.',
+            val => typeof val === 'number' && Math.floor(val) === val || 'Require int.',
+            val => val.toString().length <= 3 || 'Maxmium 3.'
+          ]"
           type="number"
+          style="width: 9em;"
           standout
           dense
           dark

@@ -20,10 +20,10 @@ export default new Vuex.Store({
           break
 
         case 'object':
-          sessionStorage.setItem('raciesStorage', val.Race)
+          sessionStorage.setItem('raciesStorage', val)
           state.raciesStorage = sessionStorage.getItem('raciesStorage')
 
-          sessionStorage.setItem('clansStorage', val.Tribe)
+          sessionStorage.setItem('clansStorage', val)
           state.clansStorage = sessionStorage.getItem('clansStorage')
           break
 

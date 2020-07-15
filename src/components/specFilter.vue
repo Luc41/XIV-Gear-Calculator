@@ -7,7 +7,6 @@
           style="width: 8em;"
           standout="bg-info text-white"
           v-model="raciesModel"
-          :loading="raceSelectLoadingState"
           transition-show="jump-up"
           transition-hide="jump-down"
           :options="$store.state.raciesStorage"
@@ -25,7 +24,6 @@
           style="width: 12em;"
           standout="bg-info text-white"
           v-model="clansModel"
-          :loading="clanSelectLoadingState"
           :disable="disableClanSelect"
           transition-show="jump-up"
           transition-hide="jump-down"
@@ -53,13 +51,13 @@
       </q-card-section>
 
       <q-slider
-        class="q-mt-sm q-mr-sm"
+        class="q-mt-xs q-mr-sm"
         v-model="levelSlider"
         :min="1"
         :max="80"
         :step="1"
         snap
-        label-always
+        label
       />
 
       <q-card-actions>
@@ -94,10 +92,8 @@ export default {
   data () {
     return {
       raciesModel: null,
-      raceSelectLoadingState: true,
       clansModel: null,
       cascader: null,
-      clanSelectLoadingState: true,
       disableClanSelect: true,
       levelSlider: 80
     }
@@ -111,9 +107,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-        .finally(
-          this.raceSelectLoadingState = false
-        )
     },
     loadTribes () {
       getTribes()
@@ -123,9 +116,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-        .finally(
-          this.clanSelectLoadingState = false
-        )
     }
   },
   created () {
