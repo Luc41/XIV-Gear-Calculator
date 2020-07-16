@@ -1,6 +1,6 @@
 {
   "name": "equipment_cal_tool",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,6 +11,7 @@
   "dependencies": {
     "@quasar/extras": "^1.8.2",
     "animate.css": "^4.1.0",
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "quasar": "^1.12.8",
     "vue": "^2.6.11",

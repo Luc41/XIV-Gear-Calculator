@@ -12,7 +12,6 @@
     selection="single"
     :selected.sync="selected"
     :loading="loading"
-    virtual-scroll
     :pagination.sync="pagination"
     :rows-per-page-options="[0]"
     no-data-label="Find nothing, may need refresh"
@@ -33,9 +32,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: function () {
-        return 'Unknown'
-      }
+      default: 'Unknown'
     }
   },
   data () {

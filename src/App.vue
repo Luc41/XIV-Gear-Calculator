@@ -55,17 +55,28 @@
         <q-item-label header>
           Essential Links
         </q-item-label>
+        <q-btn-toggle
+          v-model="currentDatabase"
+          spread
+          no-caps
+          toggle-color="purple"
+          color="white"
+          text-color="black"
+          :options="[
+            {label: 'CN', value: true},
+            {label: 'GL', value: false}
+          ]"
+        />
       </q-list>
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view :key="key" />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import service from './api'
 import leftDrawer from './components/leftDrawer'
 
 export default {
@@ -78,12 +89,24 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
-      rightDrawerOpen: false
+      rightDrawerOpen: false,
+      currentDatabase: this.$store.state.database
+    }
+  },
+
+  watch: {
+    currentDatabase (val) {
+      this.$store.commit('switchDatabase')
+    }
+  },
+
+  computed: {
+    key () {
+      return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
     }
   },
 
   mounted () {
-    service.get('/race')
   }
 }
 </script>
@@ -92,7 +115,21 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&display=swap");
 
 html,body {
-  background-image: linear-gradient(#d0021b,#000000);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .q-layout {

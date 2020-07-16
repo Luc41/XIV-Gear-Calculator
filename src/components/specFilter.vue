@@ -1,13 +1,13 @@
 <template>
-  <q-card class="bg-info">
+  <q-card class="bg-grey-2">
     <q-card-section horizontal>
       <q-card-section class="q-pr-none">
         <q-select
           class="ellipsis"
           style="width: 8em;"
-          standout="bg-info text-white"
+          standout="bg-grey-4 text-black"
+          options-selected-class="bg-grey-6 text-white"
           v-model="raciesModel"
-          :loading="raceSelectLoadingState"
           transition-show="jump-up"
           transition-hide="jump-down"
           :options="$store.state.raciesStorage"
@@ -23,9 +23,9 @@
         <q-select
           class="ellipsis"
           style="width: 12em;"
-          standout="bg-info text-white"
+          standout="bg-grey-4 text-black"
+          options-selected-class="bg-grey-6 text-white"
           v-model="clansModel"
-          :loading="clanSelectLoadingState"
           :disable="disableClanSelect"
           transition-show="jump-up"
           transition-hide="jump-down"
@@ -40,7 +40,7 @@
     </q-card-section>
 
     <q-separator
-      color="white"
+      color="black"
       inset
     />
 
@@ -48,34 +48,36 @@
       horizontal
       class="q-mr-sm"
     >
-      <q-card-section class="text-white text-capitalize">
+      <q-card-section class="text-black text-capitalize">
         level
       </q-card-section>
 
       <q-slider
-        class="q-mt-sm q-mr-sm"
+        class="q-mr-sm"
         v-model="levelSlider"
         :min="1"
         :max="80"
         :step="1"
         snap
-        label-always
+        color="grey-6"
+        style="margin-top: 2%;"
+        label
       />
 
       <q-card-actions>
         <q-btn-group flat>
           <q-btn
             icon="remove"
-            color="blue"
-            text-color="white"
+            color="grey-4"
+            text-color="black"
             dense
             @click="levelSlider -= 1"
             :disable="levelSlider <= 1"
           />
           <q-btn
             icon="add"
-            color="blue"
-            text-color="white"
+            color="grey-4"
+            text-color="black"
             dense
             @click="levelSlider += 1"
             :disable="levelSlider >= 80"
@@ -87,20 +89,73 @@
 </template>
 
 <script>
+import { getRacies, getTribes } from '../api/api'
+
 export default {
   name: 'SpecFilter',
   data () {
     return {
       raciesModel: null,
-      raceSelectLoadingState: true,
       clansModel: null,
       cascader: null,
-      clanSelectLoadingState: true,
       disableClanSelect: true,
       levelSlider: 80
     }
   },
   methods: {
+    loadRacies () {
+      getRacies()
+        .then(response => {
+          this.$store.commit('updateSessionStorage', {
+            name: 'raciesStorage',
+            val: JSON.stringify(response.Results)
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    loadTribes () {
+      getTribes()
+        .then(response => {
+          this.$store.commit('updateSessionStorage', {
+            name: 'clansStorage',
+            val: JSON.stringify(response.Results)
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    onSubmit () {
+      const query = {
+        race: {
+          name: 'race',
+          val: this.raciesModel
+        },
+        tribe: {
+          name: 'tribe',
+          val: this.clansModel
+        },
+        level: {
+          name: 'level',
+          val: this.levelSlider
+        }
+      }
+      this.$store.commit('submitQuery', query.race)
+      this.$store.commit('submitQuery', query.tribe)
+      this.$store.commit('submitQuery', query.level)
+    },
+    onReset () {
+      this.raciesModel = null
+      this.clansModel = null
+      this.disableClanSelect = true
+      this.levelSlider = 80
+    }
+  },
+  created () {
+    this.loadRacies()
+    this.loadTribes()
   },
   watch: {
     raciesModel (val) {
@@ -122,17 +177,7 @@ export default {
     }
   },
   mounted () {
-    this.$axios
-      .get('https://xivapi.com/Race')
-      .then(response => (this.$store.state.raciesStorage = response.data.Results))
-      .catch(error => console.log(error))
-      .finally(this.raceSelectLoadingState = false)
 
-    this.$axios
-      .get('https://xivapi.com/Tribe')
-      .then(response => (this.$store.state.clansStorage = response.data.Results))
-      .catch(error => console.log(error))
-      .finally(this.clanSelectLoadingState = false)
   }
 }
 </script>

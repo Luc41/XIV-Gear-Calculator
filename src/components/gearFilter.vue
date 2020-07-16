@@ -1,10 +1,10 @@
 <template>
-  <q-card class="bg-secondary">
+  <q-card class="bg-grey-2">
     <q-card-section
       horizontal
       class="q-px-xs"
     >
-      <q-card-section class="text-white text-capitalize">
+      <q-card-section class="text-black text-capitalize">
         rarity
       </q-card-section>
 
@@ -90,7 +90,7 @@
     </q-card-section>
 
     <q-separator
-      color="white"
+      color="black"
       inset
     />
 
@@ -98,7 +98,7 @@
       horizontal
       class="q-px-xs"
     >
-      <q-card-section class="text-white text-capitalize">
+      <q-card-section class="text-black text-capitalize">
         categories
       </q-card-section>
 
@@ -190,15 +190,61 @@ export default {
       }
     }
   },
+  methods: {
+    onSubmit () {
+      const query = {
+        rarity: {
+          name: 'rarity',
+          val: this.computedRarity
+        },
+        category: {
+          name: 'category',
+          val: this.computedCatgories
+        }
+      }
+      this.$store.commit('submitQuery', query.rarity)
+      this.$store.commit('submitQuery', query.category)
+    },
+    onReset () {
+      this.rarity = {
+        White: true,
+        Green: true,
+        Blue: true,
+        Relic: true,
+        Aetherial: true
+      }
+      this.categories = {
+        General: true,
+        Crafted: true,
+        Pvp: false,
+        Food: true
+      }
+    }
+  },
   computed: {
-    // compute selected options (need modified)
-    selection () {
-      return Object.keys(this.desert)
-        .filter(type => this.desert[type] === true)
-        .join(', ')
+    computedRarity: function () {
+      var hash = ''
+      for (var key in this.rarity) {
+        if (this.rarity[key]) {
+          hash += 1
+        } else {
+          hash += 0
+        }
+      }
+      return hash
+    },
+    computedCatgories: function () {
+      var hash = ''
+      for (var key in this.categories) {
+        if (this.categories[key]) {
+          hash += 1
+        } else {
+          hash += 0
+        }
+      }
+      return hash
     }
   }
-
 }
 </script>
 

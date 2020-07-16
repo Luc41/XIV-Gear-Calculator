@@ -25,8 +25,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -52,8 +52,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -79,8 +79,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -108,8 +108,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -137,8 +137,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -169,8 +169,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -198,8 +198,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('changejob', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -229,18 +229,18 @@ const jobs = {
     { job: 'Ninja', short: 'nin', src: '/images/03_DPS/Job/Ninja.png' }
   ],
   magic: [
-    { job: 'Blackmage', short: 'blm', src: '/images/03_DPS/Job/Blackmage.png' },
+    { job: 'Blackmage', short: 'blm', src: '/images/03_DPS/Job/BlackMage.png' },
     { job: 'Summoner', short: 'smr', src: '/images/03_DPS/Job/Summoner.png' },
-    { job: 'Redmage', short: 'rdm', src: '/images/03_DPS/Job/Redmage.png' }
+    { job: 'Redmage', short: 'rdm', src: '/images/03_DPS/Job/RedMage.png' }
   ],
   tank: [
     { job: 'Paladin', short: 'pld', src: '/images/01_TANK/Job/Paladin.png' },
     { job: 'Warrior', short: 'war', src: '/images/01_TANK/Job/Warrior.png' },
-    { job: 'Darkknight', short: 'drk', src: '/images/01_TANK/Job/Darkknight.png' },
+    { job: 'Darkknight', short: 'drk', src: '/images/01_TANK/Job/DarkKnight.png' },
     { job: 'Gunbreaker', short: 'gnb', src: '/images/01_TANK/Job/Gunbreaker.png' }
   ],
   healer: [
-    { job: 'Whitemage', short: 'whm', src: '/images/02_HEALER/Job/Whitemage.png' },
+    { job: 'Whitemage', short: 'whm', src: '/images/02_HEALER/Job/WhiteMage.png' },
     { job: 'Scholar', short: 'sch', src: '/images/02_HEALER/Job/Scholar.png' },
     { job: 'Astrologian', short: 'ast', src: '/images/02_HEALER/Job/Astrologian.png' }
   ],
@@ -266,7 +266,6 @@ export default {
   },
   data () {
     return {
-      link: '',
       jobs: jobs
     }
   },
@@ -278,6 +277,6 @@ export default {
 <style lang="scss">
 .active-link {
   color: white;
-  background: #f2c037;
+  background-color: rgb(175, 218, 255);
 }
 </style>
