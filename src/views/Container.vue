@@ -7,45 +7,44 @@
     <div class="row justify-center q-gutter-sm">
       <div class="col-12 col-md-auto col-sm-auto col-xs-auto">
         <div class="column">
-          <div class="col q-gutter-sm">
-            <spec-filter class="animate__animated animate__slideInLeft" />
-
-            <level-filter
-              class="animate__animated animate__slideInLeft"
-              style="animation-delay: .1s;"
-            />
-
-            <gear-filter
-              class="animate__animated animate__slideInLeft"
-              style="animation-delay: .2s;"
-            />
-
-            <q-btn-group
-              spread
-              class="animate__animated animate__slideInLeft"
-              style="animation-delay: .3s;"
+          <div class="col q-gutter-y-sm">
+            <q-form
+              @submit="onSubmit"
+              @reset="onReset"
+              class="q-gutter-y-sm"
             >
-              <q-btn
-                label="Apply"
-                color="green"
-                text-color="white"
-                icon="sync"
-              />
+              <spec-filter ref="specFilter" />
 
-              <q-btn
-                label="Reset"
-                color="orange"
-                text-color="white"
-                icon="replay"
-              />
-            </q-btn-group>
+              <level-filter ref="levelFilter" />
 
-            <q-card
-              class="q-pa-xs bg-yellow animate__animated animate__slideInLeft"
-              style="animation-delay: .4s;"
-            >
+              <gear-filter ref="gearFilter" />
+
+              <q-btn-group
+                spread
+              >
+                <q-btn
+                  label="Apply"
+                  color="green"
+                  text-color="white"
+                  icon="sync"
+                  type="submit"
+                />
+
+                <q-btn
+                  label="Reset"
+                  color="orange"
+                  text-color="white"
+                  icon="replay"
+                  type="reset"
+                />
+              </q-btn-group>
+            </q-form>
+
+            <q-card class="bg-yellow">
               <q-card-section class="q-py-none q-px-xs">
-                <span class="text-h5">Overall</span>
+                <div class="text-h5 text-center">
+                  Overall
+                </div>
               </q-card-section>
 
               <q-separator />
@@ -62,7 +61,7 @@
                   >
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-orange animate__animated animate__flipInX"
+                      class="q-ma-xs text-center bg-orange"
                     >
                       <q-chip
                         color="transparent"
@@ -95,7 +94,7 @@
       </div>
       <div class="col-12 col-md-6 col-sm col-xs">
         <q-scroll-area
-          style="height: 100%; width: 100%;"
+          style="height: 100vh;"
           :delay="1200"
         >
           <div class="q-gutter-sm">
@@ -141,7 +140,7 @@
     >
       <q-toolbar>
         <q-toolbar-title>
-          {{ $store.state.job }}
+          {{ $store.state.selectedJob }}
           <q-badge
             align="top"
             color="green"
@@ -209,6 +208,23 @@ export default {
         .catch(error => {
           console.log('Failed to load patch.' + error)
         })
+    },
+    onSubmit () {
+      this.$refs.specFilter.onSubmit()
+      this.$refs.levelFilter.onSubmit()
+      this.$refs.gearFilter.onSubmit()
+    },
+    onReset () {
+      this.$refs.specFilter.onReset()
+      this.$refs.levelFilter.onReset()
+      this.$refs.gearFilter.onReset()
+      this.$q.notify({
+        type: 'positive',
+        position: 'top',
+        progress: true,
+        timeout: 1000,
+        message: 'query reset'
+      })
     }
   },
 
@@ -222,16 +238,4 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.animate__animated.animate__slideInUp {
-  animation-duration: 0.8s;
-}
-
-.animate__animated.animate__slideInLeft {
-  animation-duration: 0.8s;
-}
-
-.animate__animated.animate__flipInX {
-  animation-duration: 1s;
-  animation-delay: 1s;
-}
 </style>

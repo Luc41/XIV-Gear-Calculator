@@ -1,40 +1,42 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { updateSessionStorage, updatePatch, switchDatabase, submitQuery } from './mutations'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    job: sessionStorage.getItem('selectedJob'),
+    selectedJob: sessionStorage.getItem('selectedJob'),
     patch: null,
-    raciesStorage: null,
-    clansStorage: null,
+    submitedQuery: {},
+    raciesStorage: JSON.parse(sessionStorage.getItem('raciesStorage')),
+    clansStorage: JSON.parse(sessionStorage.getItem('clansStorage')),
     database: true
   },
   mutations: {
-    updateStorage (state, val) {
-      switch (typeof val) {
-        case 'string':
-          sessionStorage.setItem('selectedJob', val)
-          state.job = sessionStorage.getItem('selectedJob')
+    [updateSessionStorage] (state, payload) {
+      sessionStorage.setItem(payload.name, payload.val)
+      switch (payload.name) {
+        case 'selectedJob':
+          state[payload.name] = sessionStorage.getItem(payload.name)
           break
 
-        case 'object':
-          sessionStorage.setItem('raciesStorage', val)
-          state.raciesStorage = sessionStorage.getItem('raciesStorage')
-
-          sessionStorage.setItem('clansStorage', val)
-          state.clansStorage = sessionStorage.getItem('clansStorage')
+        case 'raciesStorage':
+        case 'clansStorage':
+          state[payload.name] = JSON.parse(sessionStorage.getItem(payload.name))
           break
 
         default:
           break
       }
     },
-    updatePatch (state, val) {
-      state.patch = val.reverse()[0]
+    [submitQuery] (state, payload) {
+      Vue.set(state.submitedQuery, payload.name, payload.val)
     },
-    switchDatabase (state) {
+    [updatePatch] (state, payload) {
+      state.patch = payload.reverse()[0]
+    },
+    [switchDatabase] (state) {
       state.database = !state.database
     }
   },

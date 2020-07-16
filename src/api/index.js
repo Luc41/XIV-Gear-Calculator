@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 const service = Axios.create({
   baseURL: 'https://cafemaker.wakingsands.com',
-  timeout: 10000
+  timeout: 60000
 })
 
 // http response interceptor

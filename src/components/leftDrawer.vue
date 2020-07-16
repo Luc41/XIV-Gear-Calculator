@@ -25,8 +25,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('updateStorage', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -52,8 +52,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('updateStorage', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -79,8 +79,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('updateStorage', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -108,8 +108,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('updateStorage', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -137,8 +137,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('updateStorage', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -169,8 +169,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('updateStorage', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -198,8 +198,8 @@
         <q-item
           clickable
           v-ripple
-          :active="$store.state.job === job.job"
-          @click="$store.commit('updateStorage', job.job)"
+          :active="$store.state.selectedJob === job.job"
+          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -266,7 +266,6 @@ export default {
   },
   data () {
     return {
-      link: '',
       jobs: jobs
     }
   },
@@ -278,6 +277,6 @@ export default {
 <style lang="scss">
 .active-link {
   color: white;
-  background: #f2c037;
+  background-color: rgb(175, 218, 255);
 }
 </style>
