@@ -49,15 +49,41 @@
 
               <q-separator />
               <q-card-section class="q-pa-none">
+                <div class="row">
+                  <div class="col">
+                    <q-card
+                      bordered
+                      class="q-ma-xs text-center bg-orange"
+                    >
+                      <q-chip
+                        color="transparent"
+                        text-color="white"
+                      >
+                        {{ currentJobStats[0].name }}
+                        :
+                        {{ currentJobStats[0].basevalue }}
+                      </q-chip>
+                      <q-space />
+                      <q-chip
+                        color="green"
+                        text-color="white"
+                        class="q-mt-none"
+                        style="border-radius: 4px;"
+                      >
+                        + {{ currentJobStats[0].bonusvalue }}
+                      </q-chip>
+                    </q-card>
+                  </div>
+                </div>
                 <div
-                  v-for="i in 5"
+                  v-for="i in 3"
                   :key="i"
                   class="row"
                 >
                   <div
                     class="col"
-                    v-for="param in data.slice(2*(i-1), 2*i)"
-                    :key="param.ID"
+                    v-for="stat in currentJobStats.slice(2*i-1, 2*i+1)"
+                    :key="stat.id"
                   >
                     <q-card
                       bordered
@@ -67,9 +93,9 @@
                         color="transparent"
                         text-color="white"
                       >
-                        {{ param.Name }}
+                        {{ stat.name }}
                         :
-                        {{ param.Value }}
+                        {{ stat.basevalue }}
                       </q-chip>
                       <q-space />
                       <q-chip
@@ -78,13 +104,13 @@
                         class="q-mt-none"
                         style="border-radius: 4px;"
                       >
-                        + {{ param.Plus }}
+                        + {{ stat.bonusvalue }}
                       </q-chip>
                     </q-card>
                   </div>
                   <div
                     class="col"
-                    v-if="i === 5"
+                    v-if="i > 3"
                   />
                 </div>
               </q-card-section>
@@ -98,76 +124,22 @@
           :delay="1200"
         >
           <div class="q-gutter-sm">
-            <gear-table
-              title="weapon"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="sub weapon"
-              :columns="columns"
-              v-if="$store.state.job === 'Paladin'"
-            />
-
-            <gear-table
-              title="Head"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="Body"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="Hand"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="Belt"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="Leg"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="Shoe"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="ear"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="necklace"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="wrist"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="ring-l"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="ring-r"
-              :columns="columns"
-            />
-
-            <gear-table
-              title="food"
-              :columns="columns"
-            />
+            <template v-if="$store.state.selectedJob === 'Paladin'">
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory"
+                :key="equipslot.id"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+            </template>
+            <template v-else>
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory"
+                :key="equipslot.id"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+            </template>
           </div>
         </q-scroll-area>
       </div>
@@ -207,7 +179,7 @@
 </template>
 
 <script>
-import { getPatches } from '../api/api'
+import { mapGetters } from 'vuex'
 import gearFilter from '../components/gearFilter'
 import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
@@ -257,15 +229,6 @@ export default {
     }
   },
   methods: {
-    loadPatches () {
-      getPatches()
-        .then(response => {
-          this.$store.commit('updatePatch', response)
-        })
-        .catch(error => {
-          console.log('Failed to load patch.' + error)
-        })
-    },
     onSubmit () {
       this.$refs.specFilter.onSubmit()
       this.$refs.levelFilter.onSubmit()
@@ -284,11 +247,10 @@ export default {
     }
   },
 
-  created () {
-    this.loadPatches()
-  },
-
-  mounted () {
+  computed: {
+    ...mapGetters([
+      'currentJobStats'
+    ])
   }
 }
 </script>

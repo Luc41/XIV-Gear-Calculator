@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import { getPatches, getRacies, getTribes } from './api/api'
 import leftDrawer from './components/leftDrawer'
 
 export default {
@@ -94,6 +95,48 @@ export default {
     }
   },
 
+  methods: {
+    loadPatches () {
+      getPatches()
+        .then(response => {
+          this.$store.commit('updatePatch', response)
+        })
+        .catch(error => {
+          console.log('Failed to load patch.' + error)
+        })
+    },
+    loadRacies () {
+      getRacies()
+        .then(response => {
+          this.$store.commit('updateSessionStorage', {
+            name: 'raciesStorage',
+            val: JSON.stringify(response.Results)
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    loadTribes () {
+      getTribes()
+        .then(response => {
+          this.$store.commit('updateSessionStorage', {
+            name: 'clansStorage',
+            val: JSON.stringify(response.Results)
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  },
+
+  created () {
+    this.loadPatches()
+    this.loadRacies()
+    this.loadTribes()
+  },
+
   watch: {
     currentDatabase (val) {
       this.$store.commit('switchDatabase')
@@ -104,9 +147,6 @@ export default {
     key () {
       return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
     }
-  },
-
-  mounted () {
   }
 }
 </script>

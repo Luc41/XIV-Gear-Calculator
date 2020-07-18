@@ -89,8 +89,6 @@
 </template>
 
 <script>
-import { getRacies, getTribes } from '../api/api'
-
 export default {
   name: 'SpecFilter',
   data () {
@@ -103,30 +101,6 @@ export default {
     }
   },
   methods: {
-    loadRacies () {
-      getRacies()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'raciesStorage',
-            val: JSON.stringify(response.Results)
-          })
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    loadTribes () {
-      getTribes()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'clansStorage',
-            val: JSON.stringify(response.Results)
-          })
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
     onSubmit () {
       const query = {
         race: {
@@ -152,10 +126,6 @@ export default {
       this.disableClanSelect = true
       this.levelSlider = 80
     }
-  },
-  created () {
-    this.loadRacies()
-    this.loadTribes()
   },
   watch: {
     raciesModel (val) {
