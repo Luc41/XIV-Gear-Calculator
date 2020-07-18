@@ -102,23 +102,23 @@ export default {
   },
   methods: {
     onSubmit () {
-      const query = {
-        race: {
+      const query = [
+        {
           name: 'race',
           val: this.raciesModel
         },
-        tribe: {
+        {
           name: 'tribe',
           val: this.clansModel
         },
-        level: {
+        {
           name: 'level',
           val: this.levelSlider
         }
+      ]
+      for (const index in query) {
+        this.$store.commit('submitQuery', query[index])
       }
-      this.$store.commit('submitQuery', query.race)
-      this.$store.commit('submitQuery', query.tribe)
-      this.$store.commit('submitQuery', query.level)
     },
     onReset () {
       this.raciesModel = null

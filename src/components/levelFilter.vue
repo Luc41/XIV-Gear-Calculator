@@ -90,18 +90,19 @@ export default {
   },
   methods: {
     onSubmit () {
-      const query = {
-        levelItem: {
+      const query = [
+        {
           name: 'levelitem',
           val: this.itemLevel.bottom.toString() + ',' + this.itemLevel.top.toString()
         },
-        levelEquip: {
+        {
           name: 'levelequip',
           val: this.equipLevel.bottom.toString() + ',' + this.equipLevel.top.toString()
         }
+      ]
+      for (const index in query) {
+        this.$store.commit('submitQuery', query[index])
       }
-      this.$store.commit('submitQuery', query.levelItem)
-      this.$store.commit('submitQuery', query.levelEquip)
     },
     onReset () {
       this.itemLevel = {

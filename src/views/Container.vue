@@ -40,7 +40,7 @@
               </q-btn-group>
             </q-form>
 
-            <q-card class="bg-yellow">
+            <q-card class="bg-grey-2">
               <q-card-section class="q-py-none q-px-xs">
                 <div class="text-h5 text-center">
                   Overall
@@ -53,7 +53,7 @@
                   <div class="col">
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-orange"
+                      class="q-ma-xs text-center bg-grey-8"
                     >
                       <q-chip
                         color="transparent"
@@ -87,7 +87,7 @@
                   >
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-orange"
+                      class="q-ma-xs text-center bg-grey-8"
                     >
                       <q-chip
                         color="transparent"
