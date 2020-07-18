@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { updateSessionStorage, updatePatch, switchDatabase, submitQuery } from './mutations'
+import {
+  updateSessionStorage,
+  updatePatch,
+  switchDatabase,
+  submitQuery
+} from './mutations'
 
 Vue.use(Vuex)
 
@@ -31,6 +36,7 @@ export default new Vuex.Store({
       }
     },
     [submitQuery] (state, payload) {
+      state.submitedQuery.classjob = sessionStorage.getItem('selectedJob')
       Vue.set(state.submitedQuery, payload.name, payload.val)
     },
     [updatePatch] (state, payload) {

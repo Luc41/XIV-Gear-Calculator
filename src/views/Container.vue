@@ -98,36 +98,76 @@
           :delay="1200"
         >
           <div class="q-gutter-sm">
-            <gear-table title="weapon" />
+            <gear-table
+              title="weapon"
+              :columns="columns"
+            />
 
             <gear-table
               title="sub weapon"
+              :columns="columns"
               v-if="$store.state.job === 'Paladin'"
             />
 
-            <gear-table title="Head" />
+            <gear-table
+              title="Head"
+              :columns="columns"
+            />
 
-            <gear-table title="Body" />
+            <gear-table
+              title="Body"
+              :columns="columns"
+            />
 
-            <gear-table title="Hand" />
+            <gear-table
+              title="Hand"
+              :columns="columns"
+            />
 
-            <gear-table title="Belt" />
+            <gear-table
+              title="Belt"
+              :columns="columns"
+            />
 
-            <gear-table title="Leg" />
+            <gear-table
+              title="Leg"
+              :columns="columns"
+            />
 
-            <gear-table title="Shoe" />
+            <gear-table
+              title="Shoe"
+              :columns="columns"
+            />
 
-            <gear-table title="ear" />
+            <gear-table
+              title="ear"
+              :columns="columns"
+            />
 
-            <gear-table title="necklace" />
+            <gear-table
+              title="necklace"
+              :columns="columns"
+            />
 
-            <gear-table title="wrist" />
+            <gear-table
+              title="wrist"
+              :columns="columns"
+            />
 
-            <gear-table title="ring-l" />
+            <gear-table
+              title="ring-l"
+              :columns="columns"
+            />
 
-            <gear-table title="ring-r" />
+            <gear-table
+              title="ring-r"
+              :columns="columns"
+            />
 
-            <gear-table title="food" />
+            <gear-table
+              title="food"
+              :columns="columns"
+            />
           </div>
         </q-scroll-area>
       </div>
@@ -186,6 +226,23 @@ export default {
       pagination: {
         rowsPerPage: 0
       },
+      columns: [
+        {
+          name: 'desc',
+          required: true,
+          label: 'Name',
+          align: 'left',
+          field: row => row.name,
+          format: val => `${val}`,
+          sortable: true
+        },
+        { name: 'calories', align: 'left', label: 'INT', field: 'int', sortable: true },
+        { name: 'fat', align: 'left', label: 'CTH', field: 'cth', sortable: true },
+        { name: 'carbs', align: 'left', label: 'DTH', field: 'dth', sortable: true },
+        { name: 'protein', align: 'left', label: 'DET', field: 'det', sortable: true },
+        { name: 'sodium', align: 'left', label: 'SS', field: 'ss', sortable: true },
+        { name: 'calcium', align: 'left', label: 'VIT', field: 'vit', sortable: true }
+      ],
       data: [
         { ID: 1, Name: 'HP', Value: 1000000, Plus: 10000 },
         { ID: 2, Name: 'MP', Value: 1000000, Plus: 10000 },
@@ -221,7 +278,6 @@ export default {
       this.$q.notify({
         type: 'positive',
         position: 'top',
-        progress: true,
         timeout: 1000,
         message: 'query reset'
       })
