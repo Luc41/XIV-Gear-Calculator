@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/index'
 import Main from '../views/Main.vue'
 
 Vue.use(VueRouter)
@@ -36,6 +37,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Main') {
+    store.commit('updateSessionStorage', {
+      name: 'selectedJob',
+      val: to.name
+    })
+    next()
+  } else {
+    next()
+  }
 })
 
 export default router

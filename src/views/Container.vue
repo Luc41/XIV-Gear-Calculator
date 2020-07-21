@@ -76,7 +76,7 @@
                   </div>
                 </div>
                 <div
-                  v-for="i in 3"
+                  v-for="i in 4"
                   :key="i"
                   class="row"
                 >
@@ -230,6 +230,7 @@ export default {
   },
   methods: {
     onSubmit () {
+      this.$store.commit('submitQuery', { name: 'classjob', val: sessionStorage.getItem('selectedJob') })
       this.$refs.specFilter.onSubmit()
       this.$refs.levelFilter.onSubmit()
       this.$refs.gearFilter.onSubmit()

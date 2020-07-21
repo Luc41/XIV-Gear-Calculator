@@ -26,7 +26,6 @@
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="clickEvent({ name: 'selectedJob', val: job.job})"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -53,7 +52,6 @@
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="clickEvent({ name: 'selectedJob', val: job.job})"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -80,7 +78,6 @@
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="clickEvent({ name: 'selectedJob', val: job.job})"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -109,7 +106,6 @@
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="clickEvent({ name: 'selectedJob', val: job.job})"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -138,7 +134,6 @@
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="clickEvent({ name: 'selectedJob', val: job.job})"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -170,7 +165,6 @@
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="clickEvent({ name: 'selectedJob', val: job.job})"
           active-class="active-link"
           :to="'/' + job.job"
           dense
@@ -199,7 +193,6 @@
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="clickEvent({ name: 'selectedJob', val: job.job})"
           active-class="active-link"
           :to="'/' + job.job"
           dense
