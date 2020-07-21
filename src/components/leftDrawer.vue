@@ -22,14 +22,13 @@
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
-          class="text-right"
+          class="text-right job-list"
           v-for="job in jobs.rangedps"
           :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
           active-class="text-white bg-blue shadow-2"
-          style="border-radius: 5px;"
           :to="'/' + job.job"
           dense
         >
@@ -52,7 +51,7 @@
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
-          class="text-right"
+          class="text-right job-list"
           v-for="job in jobs.meleedps"
           :key="job.short"
           clickable
@@ -81,7 +80,7 @@
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
-          class="text-right"
+          class="text-right job-list"
           v-for="job in jobs.magic"
           :key="job.short"
           clickable
@@ -100,21 +99,25 @@
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/TankRole.png"
       label="Tank"
       caption
     >
-      <q-list class="text-blue">
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
+      >
         <q-item
+          class="text-right job-list"
           v-for="job in jobs.tank"
           :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="text-white bg-grey"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -123,25 +126,29 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-list>
+      </q-banner>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/HealerRole.png"
       label="Healer"
       caption
     >
-      <q-list class="text-blue">
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
+      >
         <q-item
+          class="text-right job-list"
           v-for="job in jobs.healer"
           :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="text-white bg-grey"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -150,28 +157,32 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-list>
+      </q-banner>
     </q-expansion-item>
 
     <q-toolbar class="bg-secondary text-white no-shadow">
       <q-toolbar-title>生活</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="mail"
       label="Crafter"
       caption
     >
-      <q-list class="text-blue">
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
+      >
         <q-item
+          class="text-right job-list"
           v-for="job in jobs.crafter"
           :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="text-white bg-grey"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -180,25 +191,29 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-list>
+      </q-banner>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="mail"
       label="Gatherer"
       caption
     >
-      <q-list class="text-blue">
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
+      >
         <q-item
+          class="text-right job-list"
           v-for="job in jobs.gatherer"
           :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="text-white bg-grey"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -207,7 +222,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-list>
+      </q-banner>
     </q-expansion-item>
   </q-scroll-area>
 </template>
@@ -279,5 +294,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.job-list {
+  border-radius: 5px;
+}
 </style>
