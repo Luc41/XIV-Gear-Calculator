@@ -32,7 +32,7 @@
 
                 <q-btn
                   label="Reset"
-                  color="orange"
+                  color="grey-6"
                   text-color="white"
                   icon="replay"
                   type="reset"
@@ -83,7 +83,7 @@
                   <div
                     class="col"
                     v-for="stat in currentJobStats.slice(2*i-1, 2*i+1)"
-                    :key="stat.id"
+                    :key="stat.index"
                   >
                     <q-card
                       bordered

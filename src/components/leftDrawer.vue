@@ -4,7 +4,7 @@
       <q-toolbar-title>战斗</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/DPSRole.png"
@@ -13,20 +13,25 @@
     >
       <q-banner
         dense
-        class="bg-info text-white shadow-2"
+        class="bg-grey-2 text-center q-pa-xs"
       >
-        物理远程
-      </q-banner>
+        <q-chip
+          text-color="white"
+          color="black"
+          square
+        >
+          物理远程
+        </q-chip>
 
-      <div
-        v-for="job in jobs.rangedps"
-        :key="job.short"
-      >
         <q-item
+          class="text-left"
+          v-for="job in jobs.rangedps"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="active-link"
+          active-class="text-white bg-blue shadow-2"
+          style="border-radius: 5px;"
           :to="'/' + job.job"
           dense
         >
@@ -35,7 +40,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-banner>
 
       <q-banner
         dense
@@ -44,24 +49,21 @@
         物理近战
       </q-banner>
 
-      <div
+      <q-item
         v-for="job in jobs.meleedps"
         :key="job.short"
+        clickable
+        v-ripple
+        :active="$store.state.selectedJob === job.job"
+        active-class="text-white bg-grey"
+        :to="'/' + job.job"
+        dense
       >
-        <q-item
-          clickable
-          v-ripple
-          :active="$store.state.selectedJob === job.job"
-          active-class="active-link"
-          :to="'/' + job.job"
-          dense
-        >
-          <q-item-section avatar>
-            <q-icon :name="'img:' + job.src" />
-          </q-item-section>
-          <q-item-section>{{ job.job }}</q-item-section>
-        </q-item>
-      </div>
+        <q-item-section avatar>
+          <q-icon :name="'img:' + job.src" />
+        </q-item-section>
+        <q-item-section>{{ job.job }}</q-item-section>
+      </q-item>
 
       <q-banner
         dense
@@ -70,24 +72,21 @@
         魔法
       </q-banner>
 
-      <div
+      <q-item
         v-for="job in jobs.magic"
         :key="job.short"
+        clickable
+        v-ripple
+        :active="$store.state.selectedJob === job.job"
+        active-class="text-white bg-grey"
+        :to="'/' + job.job"
+        dense
       >
-        <q-item
-          clickable
-          v-ripple
-          :active="$store.state.selectedJob === job.job"
-          active-class="active-link"
-          :to="'/' + job.job"
-          dense
-        >
-          <q-item-section avatar>
-            <q-icon :name="'img:' + job.src" />
-          </q-item-section>
-          <q-item-section>{{ job.job }}</q-item-section>
-        </q-item>
-      </div>
+        <q-item-section avatar>
+          <q-icon :name="'img:' + job.src" />
+        </q-item-section>
+        <q-item-section>{{ job.job }}</q-item-section>
+      </q-item>
     </q-expansion-item>
 
     <q-expansion-item
@@ -98,15 +97,14 @@
       label="Tank"
       caption
     >
-      <div
-        v-for="job in jobs.tank"
-        :key="job.short"
-      >
+      <q-list class="text-blue">
         <q-item
+          v-for="job in jobs.tank"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="active-link"
+          active-class="text-white bg-grey"
           :to="'/' + job.job"
           dense
         >
@@ -115,7 +113,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -126,15 +124,14 @@
       label="Healer"
       caption
     >
-      <div
-        v-for="job in jobs.healer"
-        :key="job.short"
-      >
+      <q-list class="text-blue">
         <q-item
+          v-for="job in jobs.healer"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="active-link"
+          active-class="text-white bg-grey"
           :to="'/' + job.job"
           dense
         >
@@ -143,7 +140,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-list>
     </q-expansion-item>
 
     <q-toolbar class="bg-secondary text-white no-shadow">
@@ -157,15 +154,14 @@
       label="Crafter"
       caption
     >
-      <div
-        v-for="job in jobs.crafter"
-        :key="job.short"
-      >
+      <q-list class="text-blue">
         <q-item
+          v-for="job in jobs.crafter"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="active-link"
+          active-class="text-white bg-grey"
           :to="'/' + job.job"
           dense
         >
@@ -174,7 +170,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -185,15 +181,14 @@
       label="Gatherer"
       caption
     >
-      <div
-        v-for="job in jobs.gatherer"
-        :key="job.short"
-      >
+      <q-list class="text-blue">
         <q-item
+          v-for="job in jobs.gatherer"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          active-class="active-link"
+          active-class="text-white bg-grey"
           :to="'/' + job.job"
           dense
         >
@@ -202,7 +197,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-list>
     </q-expansion-item>
   </q-scroll-area>
 </template>
@@ -274,8 +269,5 @@ export default {
 </script>
 
 <style lang="scss">
-.active-link {
-  color: white;
-  background-color: rgb(175, 218, 255);
-}
+
 </style>
