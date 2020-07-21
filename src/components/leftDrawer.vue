@@ -13,18 +13,16 @@
     >
       <q-banner
         dense
+        class="bg-grey-4 text-center"
+      >
+        物理远程
+      </q-banner>
+      <q-banner
+        dense
         class="bg-grey-2 text-center q-pa-xs"
       >
-        <q-chip
-          text-color="white"
-          color="black"
-          square
-        >
-          物理远程
-        </q-chip>
-
         <q-item
-          class="text-left"
+          class="text-right"
           v-for="job in jobs.rangedps"
           :key="job.short"
           clickable
@@ -44,49 +42,61 @@
 
       <q-banner
         dense
-        class="bg-info text-white shadow-2"
+        class="bg-grey-4 text-center"
       >
         物理近战
       </q-banner>
 
-      <q-item
-        v-for="job in jobs.meleedps"
-        :key="job.short"
-        clickable
-        v-ripple
-        :active="$store.state.selectedJob === job.job"
-        active-class="text-white bg-grey"
-        :to="'/' + job.job"
+      <q-banner
         dense
+        class="bg-grey-2 text-center q-pa-xs"
       >
-        <q-item-section avatar>
-          <q-icon :name="'img:' + job.src" />
-        </q-item-section>
-        <q-item-section>{{ job.job }}</q-item-section>
-      </q-item>
+        <q-item
+          class="text-right"
+          v-for="job in jobs.meleedps"
+          :key="job.short"
+          clickable
+          v-ripple
+          :active="$store.state.selectedJob === job.job"
+          active-class="text-white bg-blue shadow-2"
+          :to="'/' + job.job"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
+      </q-banner>
 
       <q-banner
         dense
-        class="bg-info text-white shadow-2"
+        class="bg-grey-4 text-center"
       >
         魔法
       </q-banner>
 
-      <q-item
-        v-for="job in jobs.magic"
-        :key="job.short"
-        clickable
-        v-ripple
-        :active="$store.state.selectedJob === job.job"
-        active-class="text-white bg-grey"
-        :to="'/' + job.job"
+      <q-banner
         dense
+        class="bg-grey-2 text-center q-pa-xs"
       >
-        <q-item-section avatar>
-          <q-icon :name="'img:' + job.src" />
-        </q-item-section>
-        <q-item-section>{{ job.job }}</q-item-section>
-      </q-item>
+        <q-item
+          class="text-right"
+          v-for="job in jobs.magic"
+          :key="job.short"
+          clickable
+          v-ripple
+          :active="$store.state.selectedJob === job.job"
+          active-class="text-white bg-blue shadow-2"
+          :to="'/' + job.job"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
+      </q-banner>
     </q-expansion-item>
 
     <q-expansion-item
