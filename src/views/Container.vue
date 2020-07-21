@@ -32,7 +32,7 @@
 
                 <q-btn
                   label="Reset"
-                  color="orange"
+                  color="grey-6"
                   text-color="white"
                   icon="replay"
                   type="reset"
@@ -40,7 +40,7 @@
               </q-btn-group>
             </q-form>
 
-            <q-card class="bg-yellow">
+            <q-card class="bg-grey-2">
               <q-card-section class="q-py-none q-px-xs">
                 <div class="text-h5 text-center">
                   Overall
@@ -49,27 +49,19 @@
 
               <q-separator />
               <q-card-section class="q-pa-none">
-                <div
-                  v-for="i in 5"
-                  :key="i"
-                  class="row"
-                >
-                  <div
-                    class="col"
-                    v-for="param in data.slice(2*(i-1), 2*i)"
-                    :key="param.ID"
-                  >
+                <div class="row">
+                  <div class="col">
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-orange"
+                      class="q-ma-xs text-center bg-grey-8"
                     >
                       <q-chip
                         color="transparent"
                         text-color="white"
                       >
-                        {{ param.Name }}
+                        {{ currentJobStats[0].name }}
                         :
-                        {{ param.Value }}
+                        {{ currentJobStats[0].basevalue }}
                       </q-chip>
                       <q-space />
                       <q-chip
@@ -78,13 +70,47 @@
                         class="q-mt-none"
                         style="border-radius: 4px;"
                       >
-                        + {{ param.Plus }}
+                        + {{ currentJobStats[0].bonusvalue }}
+                      </q-chip>
+                    </q-card>
+                  </div>
+                </div>
+                <div
+                  v-for="i in 4"
+                  :key="i"
+                  class="row"
+                >
+                  <div
+                    class="col"
+                    v-for="stat in currentJobStats.slice(2*i-1, 2*i+1)"
+                    :key="stat.index"
+                  >
+                    <q-card
+                      bordered
+                      class="q-ma-xs text-center bg-grey-8"
+                    >
+                      <q-chip
+                        color="transparent"
+                        text-color="white"
+                      >
+                        {{ stat.name }}
+                        :
+                        {{ stat.basevalue }}
+                      </q-chip>
+                      <q-space />
+                      <q-chip
+                        color="green"
+                        text-color="white"
+                        class="q-mt-none"
+                        style="border-radius: 4px;"
+                      >
+                        + {{ stat.bonusvalue }}
                       </q-chip>
                     </q-card>
                   </div>
                   <div
                     class="col"
-                    v-if="i === 5"
+                    v-if="i > 3"
                   />
                 </div>
               </q-card-section>
@@ -98,36 +124,51 @@
           :delay="1200"
         >
           <div class="q-gutter-sm">
-            <gear-table title="weapon" />
+            <template v-if="$store.state.selectedJob === 'Paladin'">
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory.primary"
+                :key="equipslot.index"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory.secondary"
+                :key="equipslot.index"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+            </template>
+
+            <template v-else>
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory.primary"
+                :key="equipslot.index"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+            </template>
 
             <gear-table
-              title="sub weapon"
-              v-if="$store.state.job === 'Paladin'"
+              v-for="equipslot in $store.state.equipSlotCategory.armor"
+              :key="equipslot.index"
+              :title="equipslot.name"
+              :columns="columns"
+            />
+            <gear-table
+              v-for="equipslot in $store.state.equipSlotCategory.accessories"
+              :key="equipslot.index"
+              :title="equipslot.name"
+              :columns="columns"
             />
 
-            <gear-table title="Head" />
-
-            <gear-table title="Body" />
-
-            <gear-table title="Hand" />
-
-            <gear-table title="Belt" />
-
-            <gear-table title="Leg" />
-
-            <gear-table title="Shoe" />
-
-            <gear-table title="ear" />
-
-            <gear-table title="necklace" />
-
-            <gear-table title="wrist" />
-
-            <gear-table title="ring-l" />
-
-            <gear-table title="ring-r" />
-
-            <gear-table title="food" />
+            <template v-if="showFood">
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory.food"
+                :key="equipslot.index"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+            </template>
           </div>
         </q-scroll-area>
       </div>
@@ -167,7 +208,7 @@
 </template>
 
 <script>
-import { getPatches } from '../api/api'
+import { mapGetters } from 'vuex'
 import gearFilter from '../components/gearFilter'
 import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
@@ -186,30 +227,29 @@ export default {
       pagination: {
         rowsPerPage: 0
       },
-      data: [
-        { ID: 1, Name: 'HP', Value: 1000000, Plus: 10000 },
-        { ID: 2, Name: 'MP', Value: 1000000, Plus: 10000 },
-        { ID: 3, Name: 'STR', Value: 100000, Plus: 1000 },
-        { ID: 4, Name: 'CTH', Value: 100001, Plus: 1001 },
-        { ID: 5, Name: 'DTH', Value: 100002, Plus: 1002 },
-        { ID: 6, Name: 'DET', Value: 100003, Plus: 1003 },
-        { ID: 7, Name: 'SS', Value: 100004, Plus: 1004 },
-        { ID: 8, Name: 'VIT', Value: 100005, Plus: 1005 },
-        { ID: 8, Name: 'PTY', Value: 100006, Plus: 1006 }
-      ]
+      columns: [
+        {
+          name: 'desc',
+          required: true,
+          label: 'Name',
+          align: 'left',
+          field: row => row.name,
+          format: val => `${val}`,
+          sortable: true
+        },
+        { name: 'calories', align: 'left', label: 'INT', field: 'int', sortable: true },
+        { name: 'fat', align: 'left', label: 'CTH', field: 'cth', sortable: true },
+        { name: 'carbs', align: 'left', label: 'DTH', field: 'dth', sortable: true },
+        { name: 'protein', align: 'left', label: 'DET', field: 'det', sortable: true },
+        { name: 'sodium', align: 'left', label: 'SS', field: 'ss', sortable: true },
+        { name: 'calcium', align: 'left', label: 'VIT', field: 'vit', sortable: true }
+      ],
+      showFood: true
     }
   },
   methods: {
-    loadPatches () {
-      getPatches()
-        .then(response => {
-          this.$store.commit('updatePatch', response)
-        })
-        .catch(error => {
-          console.log('Failed to load patch.' + error)
-        })
-    },
     onSubmit () {
+      this.$store.commit('submitQuery', { name: 'classjob', val: sessionStorage.getItem('selectedJob') })
       this.$refs.specFilter.onSubmit()
       this.$refs.levelFilter.onSubmit()
       this.$refs.gearFilter.onSubmit()
@@ -221,18 +261,16 @@ export default {
       this.$q.notify({
         type: 'positive',
         position: 'top',
-        progress: true,
         timeout: 1000,
         message: 'query reset'
       })
     }
   },
 
-  created () {
-    this.loadPatches()
-  },
-
-  mounted () {
+  computed: {
+    ...mapGetters([
+      'currentJobStats'
+    ])
   }
 }
 </script>

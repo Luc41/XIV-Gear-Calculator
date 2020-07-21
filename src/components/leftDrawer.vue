@@ -4,7 +4,7 @@
       <q-toolbar-title>战斗</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/DPSRole.png"
@@ -13,21 +13,22 @@
     >
       <q-banner
         dense
-        class="bg-info text-white shadow-2"
+        class="bg-grey-4 text-center"
       >
-        物理远程
+        Range
       </q-banner>
-
-      <div
-        v-for="job in jobs.rangedps"
-        :key="job.short"
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
+          class="text-right job-list"
+          v-for="job in jobs.rangedps"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
-          active-class="active-link"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -36,52 +37,27 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-banner>
 
       <q-banner
         dense
-        class="bg-info text-white shadow-2"
+        class="bg-grey-4 text-center"
       >
-        物理近战
+        Melee
       </q-banner>
-
-      <div
-        v-for="job in jobs.meleedps"
-        :key="job.short"
-      >
-        <q-item
-          clickable
-          v-ripple
-          :active="$store.state.selectedJob === job.job"
-          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
-          active-class="active-link"
-          :to="'/' + job.job"
-          dense
-        >
-          <q-item-section avatar>
-            <q-icon :name="'img:' + job.src" />
-          </q-item-section>
-          <q-item-section>{{ job.job }}</q-item-section>
-        </q-item>
-      </div>
 
       <q-banner
         dense
-        class="bg-info text-white shadow-2"
-      >
-        魔法
-      </q-banner>
-
-      <div
-        v-for="job in jobs.magic"
-        :key="job.short"
+        class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
+          class="text-right job-list"
+          v-for="job in jobs.meleedps"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
-          active-class="active-link"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -90,27 +66,58 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-banner>
+
+      <q-banner
+        dense
+        class="bg-grey-4 text-center"
+      >
+        Magic
+      </q-banner>
+
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
+      >
+        <q-item
+          class="text-right job-list"
+          v-for="job in jobs.magic"
+          :key="job.short"
+          clickable
+          v-ripple
+          :active="$store.state.selectedJob === job.job"
+          active-class="text-white bg-blue shadow-2"
+          :to="'/' + job.job"
+          dense
+        >
+          <q-item-section avatar>
+            <q-icon :name="'img:' + job.src" />
+          </q-item-section>
+          <q-item-section>{{ job.job }}</q-item-section>
+        </q-item>
+      </q-banner>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/TankRole.png"
       label="Tank"
       caption
     >
-      <div
-        v-for="job in jobs.tank"
-        :key="job.short"
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
+          class="text-right job-list"
+          v-for="job in jobs.tank"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
-          active-class="active-link"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -119,27 +126,29 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-banner>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="img:/images/00_ROLE/HealerRole.png"
       label="Healer"
       caption
     >
-      <div
-        v-for="job in jobs.healer"
-        :key="job.short"
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
+          class="text-right job-list"
+          v-for="job in jobs.healer"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
-          active-class="active-link"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -148,30 +157,32 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-banner>
     </q-expansion-item>
 
     <q-toolbar class="bg-secondary text-white no-shadow">
       <q-toolbar-title>生活</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="mail"
       label="Crafter"
       caption
     >
-      <div
-        v-for="job in jobs.crafter"
-        :key="job.short"
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
+          class="text-right job-list"
+          v-for="job in jobs.crafter"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
-          active-class="active-link"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -180,27 +191,29 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-banner>
     </q-expansion-item>
 
     <q-expansion-item
-      :content-inset-level=".2"
+      :content-inset-level=".0"
       group="selectGroup"
       expand-separator
       icon="mail"
       label="Gatherer"
       caption
     >
-      <div
-        v-for="job in jobs.gatherer"
-        :key="job.short"
+      <q-banner
+        dense
+        class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
+          class="text-right job-list"
+          v-for="job in jobs.gatherer"
+          :key="job.short"
           clickable
           v-ripple
           :active="$store.state.selectedJob === job.job"
-          @click="$store.commit('updateSessionStorage', payload = { name: 'selectedJob', val: job.job })"
-          active-class="active-link"
+          active-class="text-white bg-blue shadow-2"
           :to="'/' + job.job"
           dense
         >
@@ -209,7 +222,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </div>
+      </q-banner>
     </q-expansion-item>
   </q-scroll-area>
 </template>
@@ -270,13 +283,18 @@ export default {
     }
   },
   methods: {
+    /** deprecated */
+    /*
+    clickEvent (param) {
+      this.$store.commit('updateSessionStorage', param)
+    }
+    */
   }
 }
 </script>
 
 <style lang="scss">
-.active-link {
-  color: white;
-  background-color: rgb(175, 218, 255);
+.job-list {
+  border-radius: 5px;
 }
 </style>

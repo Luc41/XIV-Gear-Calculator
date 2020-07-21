@@ -192,18 +192,19 @@ export default {
   },
   methods: {
     onSubmit () {
-      const query = {
-        rarity: {
+      const query = [
+        {
           name: 'rarity',
           val: this.computedRarity
         },
-        category: {
+        {
           name: 'category',
           val: this.computedCatgories
         }
+      ]
+      for (const index in query) {
+        this.$store.commit('submitQuery', query[index])
       }
-      this.$store.commit('submitQuery', query.rarity)
-      this.$store.commit('submitQuery', query.category)
     },
     onReset () {
       this.rarity = {

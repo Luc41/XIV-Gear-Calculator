@@ -5,8 +5,9 @@ const service = Axios.create({
   timeout: 60000
 })
 
-// http response interceptor
-// still need construct
+/** http response interceptor
+ * still need construct
+ */
 service.interceptors.response.use(
   response => {
     console.log(response)

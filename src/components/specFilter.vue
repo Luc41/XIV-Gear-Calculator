@@ -89,8 +89,6 @@
 </template>
 
 <script>
-import { getRacies, getTribes } from '../api/api'
-
 export default {
   name: 'SpecFilter',
   data () {
@@ -103,48 +101,24 @@ export default {
     }
   },
   methods: {
-    loadRacies () {
-      getRacies()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'raciesStorage',
-            val: JSON.stringify(response.Results)
-          })
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    loadTribes () {
-      getTribes()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'clansStorage',
-            val: JSON.stringify(response.Results)
-          })
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
     onSubmit () {
-      const query = {
-        race: {
+      const query = [
+        {
           name: 'race',
           val: this.raciesModel
         },
-        tribe: {
+        {
           name: 'tribe',
           val: this.clansModel
         },
-        level: {
+        {
           name: 'level',
           val: this.levelSlider
         }
+      ]
+      for (const index in query) {
+        this.$store.commit('submitQuery', query[index])
       }
-      this.$store.commit('submitQuery', query.race)
-      this.$store.commit('submitQuery', query.tribe)
-      this.$store.commit('submitQuery', query.level)
     },
     onReset () {
       this.raciesModel = null
@@ -152,10 +126,6 @@ export default {
       this.disableClanSelect = true
       this.levelSlider = 80
     }
-  },
-  created () {
-    this.loadRacies()
-    this.loadTribes()
   },
   watch: {
     raciesModel (val) {
