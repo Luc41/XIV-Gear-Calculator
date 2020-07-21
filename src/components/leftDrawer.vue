@@ -15,7 +15,7 @@
         dense
         class="bg-grey-4 text-center"
       >
-        物理远程
+        Range
       </q-banner>
       <q-banner
         dense
@@ -43,7 +43,7 @@
         dense
         class="bg-grey-4 text-center"
       >
-        物理近战
+        Melee
       </q-banner>
 
       <q-banner
@@ -72,7 +72,7 @@
         dense
         class="bg-grey-4 text-center"
       >
-        魔法
+        Magic
       </q-banner>
 
       <q-banner
