@@ -126,16 +126,45 @@
           <div class="q-gutter-sm">
             <template v-if="$store.state.selectedJob === 'Paladin'">
               <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory"
-                :key="equipslot.id"
+                v-for="equipslot in $store.state.equipSlotCategory.primary"
+                :key="equipslot.index"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory.secondary"
+                :key="equipslot.index"
                 :title="equipslot.name"
                 :columns="columns"
               />
             </template>
+
             <template v-else>
               <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory"
-                :key="equipslot.id"
+                v-for="equipslot in $store.state.equipSlotCategory.primary"
+                :key="equipslot.index"
+                :title="equipslot.name"
+                :columns="columns"
+              />
+            </template>
+
+            <gear-table
+              v-for="equipslot in $store.state.equipSlotCategory.armor"
+              :key="equipslot.index"
+              :title="equipslot.name"
+              :columns="columns"
+            />
+            <gear-table
+              v-for="equipslot in $store.state.equipSlotCategory.accessories"
+              :key="equipslot.index"
+              :title="equipslot.name"
+              :columns="columns"
+            />
+
+            <template v-if="showFood">
+              <gear-table
+                v-for="equipslot in $store.state.equipSlotCategory.food"
+                :key="equipslot.index"
                 :title="equipslot.name"
                 :columns="columns"
               />
@@ -215,17 +244,7 @@ export default {
         { name: 'sodium', align: 'left', label: 'SS', field: 'ss', sortable: true },
         { name: 'calcium', align: 'left', label: 'VIT', field: 'vit', sortable: true }
       ],
-      data: [
-        { ID: 1, Name: 'HP', Value: 1000000, Plus: 10000 },
-        { ID: 2, Name: 'MP', Value: 1000000, Plus: 10000 },
-        { ID: 3, Name: 'STR', Value: 100000, Plus: 1000 },
-        { ID: 4, Name: 'CTH', Value: 100001, Plus: 1001 },
-        { ID: 5, Name: 'DTH', Value: 100002, Plus: 1002 },
-        { ID: 6, Name: 'DET', Value: 100003, Plus: 1003 },
-        { ID: 7, Name: 'SS', Value: 100004, Plus: 1004 },
-        { ID: 8, Name: 'VIT', Value: 100005, Plus: 1005 },
-        { ID: 8, Name: 'PTY', Value: 100006, Plus: 1006 }
-      ]
+      showFood: true
     }
   },
   methods: {

@@ -263,9 +263,12 @@ export default {
     }
   },
   methods: {
+    /** deprecated */
+    /*
     clickEvent (param) {
       this.$store.commit('updateSessionStorage', param)
     }
+    */
   }
 }
 </script>
