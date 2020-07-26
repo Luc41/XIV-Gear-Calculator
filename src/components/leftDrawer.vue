@@ -17,8 +17,7 @@
       >
         Range
       </q-banner>
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -37,7 +36,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
 
       <q-banner
         dense
@@ -46,8 +45,7 @@
         Melee
       </q-banner>
 
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -66,7 +64,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
 
       <q-banner
         dense
@@ -75,8 +73,7 @@
         Magic
       </q-banner>
 
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -95,7 +92,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -106,8 +103,7 @@
       label="Tank"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -126,7 +122,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -137,8 +133,7 @@
       label="Healer"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -157,7 +152,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-toolbar class="bg-secondary text-white no-shadow">
@@ -171,8 +166,7 @@
       label="Crafter"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -191,7 +185,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -202,8 +196,7 @@
       label="Gatherer"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -222,7 +215,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
   </q-scroll-area>
 </template>

@@ -3,28 +3,43 @@ import service from './index'
 export const getRacies = () => {
   return service({
     url: '/race',
-    method: 'get'
+    method: 'GET'
   })
 }
 
 export const getTribes = () => {
   return service({
     url: '/tribe',
-    method: 'get'
+    method: 'GET'
   })
 }
 
 export const getPatches = () => {
   return service({
     url: '/patchlist',
-    method: 'get'
+    method: 'GET'
   })
 }
 
+/**
+ * get items from XIVAPI
+ * @param {object} params AdvanceDSL search params payload.
+ */
 export const getItems = (params) => {
   return service({
     url: '/search',
-    method: 'get',
+    method: 'GET',
     params: params
+  })
+}
+
+/**
+ * get icons from XIVAPI
+ * @param {string} param Path of the icon.
+ */
+export const getIcon = (param) => {
+  return service({
+    url: param,
+    method: 'GET'
   })
 }

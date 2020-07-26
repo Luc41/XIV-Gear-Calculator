@@ -10,7 +10,7 @@ const service = Axios.create({
  */
 service.interceptors.response.use(
   response => {
-    console.log(response)
+    console.log(response.config, response.status, response.data)
     if (response.request.status === 200) {
       return response.data
     } else {
