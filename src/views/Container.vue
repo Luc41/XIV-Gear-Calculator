@@ -214,6 +214,8 @@ import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
 import gearTable from '../components/gearTable'
 
+import { queryObject } from '../utils/data'
+
 export default {
   name: 'Container',
   components: {
@@ -247,12 +249,14 @@ export default {
       showFood: true
     }
   },
+
   methods: {
     onSubmit () {
       this.$store.commit('submitQuery', { name: 'classjob', val: sessionStorage.getItem('selectedJob') })
       this.$refs.specFilter.onSubmit()
       this.$refs.levelFilter.onSubmit()
       this.$refs.gearFilter.onSubmit()
+      queryObject()
     },
     onReset () {
       this.$refs.specFilter.onReset()

@@ -23,7 +23,7 @@ export const getPatches = () => {
 
 /**
  * get items from XIVAPI
- * @param {object} params AdvanceDSL search params payload.
+ * @param {Object} params AdvanceDSL search params payload.
  */
 export const getItems = (params) => {
   return service({
@@ -35,7 +35,7 @@ export const getItems = (params) => {
 
 /**
  * get icons from XIVAPI
- * @param {string} param Path of the icon.
+ * @param {String} param Path of the icon.
  */
 export const getIcon = (param) => {
   return service({
