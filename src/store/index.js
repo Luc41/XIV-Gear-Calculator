@@ -11,11 +11,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    selectedJob: sessionStorage.getItem('selectedJob'),
     patch: null,
     submitedQuery: {},
-    raciesStorage: JSON.parse(sessionStorage.getItem('raciesStorage')),
-    clansStorage: JSON.parse(sessionStorage.getItem('clansStorage')),
     database: true,
     equipSlotCategory: {
       primary: [

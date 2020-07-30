@@ -103,6 +103,8 @@ const getShort = (param) => {
         short = param[index][i].short
         // console.log(short)
         return short.toUpperCase()
+      } else {
+        break
       }
     }
   }

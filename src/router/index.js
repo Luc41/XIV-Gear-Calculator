@@ -42,6 +42,12 @@ const router = new VueRouter({
 /* router.addRoutes() */
 
 router.beforeEach((to, from, next) => {
+  if (from.name !== 'Main') {
+    store.commit('updateSessionStorage', {
+      name: 'itemsStorage',
+      val: null
+    })
+  }
   if (to.name !== 'Main') {
     store.commit('updateSessionStorage', {
       name: 'selectedJob',
