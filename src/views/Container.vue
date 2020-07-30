@@ -237,7 +237,7 @@ export default {
           required: true,
           label: 'Name',
           align: 'left',
-          field: 'Name',
+          field: 'LevelItem',
           format: val => `${val}`,
           sortable: true
         },
