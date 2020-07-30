@@ -135,19 +135,19 @@ export const queryObject = () => {
   // construct body object
   var levelEquipRange = store.state.submitedQuery.levelequip
   levelEquipRange = levelEquipRange.split(',')
-  var LevelEquip = {
+  const LevelEquip = {
     gte: levelEquipRange[0],
     lte: levelEquipRange[1]
   }
 
   var levelItemRange = store.state.submitedQuery.levelitem
   levelItemRange = levelItemRange.split(',')
-  var LevelItem = {
+  const LevelItem = {
     gte: levelItemRange[0],
     lte: levelItemRange[1]
   }
 
-  var short = getShort(classJobCategory)
+  const short = getShort(classJobCategory)
   var key = 'ClassJobCategory'
   key = key.concat('.', short)
 
@@ -155,7 +155,9 @@ export const queryObject = () => {
   body.query.bool.filter.push({ range: { LevelItem } })
   body.query.bool.filter.push({ term: { [key]: 1 } })
 
+  const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recips,BaseParamValue0,BaseParam0TargetID,BaseParamValue1,BaseParam1TargetID'
   query.body = body
+  query = { ...query, columns }
   // console.log(query)
 
   return query

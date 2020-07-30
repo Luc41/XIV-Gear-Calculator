@@ -241,12 +241,12 @@ export default {
           format: val => `${val}`,
           sortable: true
         },
-        { name: 'Dexterity', align: 'left', label: 'Dexterity', field: 'ID', sortable: true },
-        { name: 'Critical Hit', align: 'left', label: 'Critical Hit', field: 'Icon', sortable: true },
-        { name: 'Direct Hit Rate', align: 'left', label: 'Direct Hit Rate', field: 'Url', sortable: true },
-        { name: 'Determination', align: 'left', label: 'Determination', field: 'UrlType', sortable: true },
-        { name: 'Skill Speed', align: 'left', label: 'Skill Speed', field: 'UrlType', sortable: true },
-        { name: 'Vitality', align: 'left', label: 'Vitality', field: 'UrlType', sortable: true }
+        { name: 3, align: 'left', label: 'Vitality', field: 'UrlType', sortable: true },
+        { name: 2, align: 'left', label: 'Dexterity', field: 'ID', sortable: true },
+        { name: 27, align: 'center', label: 'Critical Hit', field: 'Icon', sortable: true },
+        { name: 22, align: 'center', label: 'Direct Hit Rate', field: 'Url', sortable: true },
+        { name: 44, align: 'center', label: 'Determination', field: 'UrlType', sortable: true },
+        { name: 45, align: 'center', label: 'Skill Speed', field: 'UrlType', sortable: true }
       ],
       showFood: true
     }
