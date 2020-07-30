@@ -53,11 +53,11 @@
                   <div class="col">
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-grey-8"
+                      class="q-ma-xs text-center bg-grey-5"
                     >
                       <q-chip
                         color="transparent"
-                        text-color="white"
+                        text-color="black"
                       >
                         {{ currentJobStats[0].name }}
                         :
@@ -87,11 +87,11 @@
                   >
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-grey-8"
+                      class="q-ma-xs text-center bg-grey-5"
                     >
                       <q-chip
                         color="transparent"
-                        text-color="white"
+                        text-color="black"
                       >
                         {{ stat.name }}
                         :

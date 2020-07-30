@@ -3,9 +3,9 @@
     :title="title"
     dense
     hide-bottom
-    card-class="bg-grey-6 text-white"
-    table-header-class="bg-grey-9"
-    table-class="text-white"
+    card-class="bg-grey-2 text-black"
+    table-header-class="bg-grey-4"
+    table-class="text-black"
     :data="data"
     :columns="columns"
     row-key="Name"
