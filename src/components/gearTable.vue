@@ -8,7 +8,7 @@
     table-class="text-white"
     :data="data"
     :columns="columns"
-    row-key="name"
+    row-key="Name"
     selection="single"
     :selected.sync="selected"
     :loading="loading"
@@ -23,12 +23,25 @@
         color="grey-7"
       />
     </template>
+    <template v-slot:top>
+      <q-btn
+        label="submit"
+        @click="onSubmit()"
+      />
+    </template>
+    <template v-slot:body-cell-Name="props">
+      <q-td :props="props">
+        <q-icon
+          :name="'img:https://xivapi.com' + props.row.Icon"
+          size="sm"
+        />
+        {{ props.row.Name }}
+      </q-td>
+    </template>
   </q-table>
 </template>
 
 <script>
-import { getItems } from '../api/api'
-
 export default {
   name: 'GearTable',
   props: {
@@ -51,16 +64,15 @@ export default {
       }
     }
   },
-  onSubmit () {
-    getItems()
-      .then(response => {
-        this.data = response.Results
-      })
-      .catch(error => {
-        return Promise.reject(error)
-      })
-  }
+  methods: {
+    onSubmit () {
+      this.data = this.$store.state.itemsStorage.slice(0, 5)
+      console.log(this.data[0].Icon)
+    }
+  },
+  computed: {
 
+  }
 }
 </script>
 

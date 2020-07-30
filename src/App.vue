@@ -126,7 +126,7 @@ export default {
           })
         })
         .catch(error => {
-          console.log(error)
+          console.log('Failed to load tribes.' + error)
         })
     }
   },

@@ -87,6 +87,7 @@ export default new Vuex.Store({
 
         case 'raciesStorage':
         case 'clansStorage':
+        case 'itemsStorage':
           state[payload.name] = JSON.parse(sessionStorage.getItem(payload.name))
           break
 

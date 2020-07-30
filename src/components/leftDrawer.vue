@@ -1,7 +1,7 @@
 <template>
   <q-scroll-area class="fit">
     <q-toolbar class="bg-secondary text-white no-shadow">
-      <q-toolbar-title>战斗</q-toolbar-title>
+      <q-toolbar-title>Disciples of War & Magic</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
       :content-inset-level=".0"
@@ -156,7 +156,7 @@
     </q-expansion-item>
 
     <q-toolbar class="bg-secondary text-white no-shadow">
-      <q-toolbar-title>生活</q-toolbar-title>
+      <q-toolbar-title>Disciples of Hand & Land</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
       :content-inset-level=".0"

@@ -118,7 +118,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-sm col-xs">
+      <div class="col-12 col-md-8 col-sm col-xs">
         <q-scroll-area
           style="height: 100vh;"
           :delay="1200"
@@ -209,12 +209,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 import gearFilter from '../components/gearFilter'
 import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
 import gearTable from '../components/gearTable'
 
 import { queryObject } from '../utils/data'
+import { getItems } from '../api/api'
 
 export default {
   name: 'Container',
@@ -231,20 +233,20 @@ export default {
       },
       columns: [
         {
-          name: 'desc',
+          name: 'Name',
           required: true,
           label: 'Name',
           align: 'left',
-          field: row => row.name,
+          field: 'Name',
           format: val => `${val}`,
           sortable: true
         },
-        { name: 'calories', align: 'left', label: 'INT', field: 'int', sortable: true },
-        { name: 'fat', align: 'left', label: 'CTH', field: 'cth', sortable: true },
-        { name: 'carbs', align: 'left', label: 'DTH', field: 'dth', sortable: true },
-        { name: 'protein', align: 'left', label: 'DET', field: 'det', sortable: true },
-        { name: 'sodium', align: 'left', label: 'SS', field: 'ss', sortable: true },
-        { name: 'calcium', align: 'left', label: 'VIT', field: 'vit', sortable: true }
+        { name: 'Dexterity', align: 'left', label: 'Dexterity', field: 'ID', sortable: true },
+        { name: 'Critical Hit', align: 'left', label: 'Critical Hit', field: 'Icon', sortable: true },
+        { name: 'Direct Hit Rate', align: 'left', label: 'Direct Hit Rate', field: 'Url', sortable: true },
+        { name: 'Determination', align: 'left', label: 'Determination', field: 'UrlType', sortable: true },
+        { name: 'Skill Speed', align: 'left', label: 'Skill Speed', field: 'UrlType', sortable: true },
+        { name: 'Vitality', align: 'left', label: 'Vitality', field: 'UrlType', sortable: true }
       ],
       showFood: true
     }
@@ -252,11 +254,14 @@ export default {
 
   methods: {
     onSubmit () {
-      this.$store.commit('submitQuery', { name: 'classjob', val: sessionStorage.getItem('selectedJob') })
+      this.$store.commit('submitQuery', {
+        name: 'classjob',
+        val: sessionStorage.getItem('selectedJob')
+      })
       this.$refs.specFilter.onSubmit()
       this.$refs.levelFilter.onSubmit()
       this.$refs.gearFilter.onSubmit()
-      queryObject()
+      this.loadItems()
     },
     onReset () {
       this.$refs.specFilter.onReset()
@@ -266,8 +271,27 @@ export default {
         type: 'positive',
         position: 'top',
         timeout: 1000,
-        message: 'query reset'
+        message: 'Query has reset.'
       })
+    },
+    loadItems () {
+      const data = queryObject()
+      getItems(data)
+        .then(response => {
+          this.$store.commit('updateSessionStorage', {
+            name: 'itemsStorage',
+            val: JSON.stringify(response.Results)
+          })
+        })
+        .catch(error => {
+          console.log('Failed to load items.' + error)
+          this.$q.notify({
+            type: 'negative',
+            position: 'top',
+            timeout: 1000,
+            message: 'Load data error.'
+          })
+        })
     }
   },
 

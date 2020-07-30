@@ -111,7 +111,7 @@ const getShort = (param) => {
 export const queryObject = () => {
   try {
     if (store.state.submitedQuery === {}) {
-      throw new Error('Submited query is empty')
+      throw new Error('Submited query is empty.')
     }
   } catch (err) {
     console.log(err)
@@ -129,7 +129,7 @@ export const queryObject = () => {
   }
   // request query
   var query = {
-    indexes: 'Item',
+    indexes: 'item',
     body: {}
   }
   // construct body object
@@ -156,7 +156,9 @@ export const queryObject = () => {
   body.query.bool.filter.push({ term: { [key]: 1 } })
 
   query.body = body
-  console.log(query)
+  // console.log(query)
+
+  return query
 }
 
 /**

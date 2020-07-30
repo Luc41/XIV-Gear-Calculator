@@ -25,11 +25,11 @@ export const getPatches = () => {
  * get items from XIVAPI
  * @param {Object} params AdvanceDSL search params payload.
  */
-export const getItems = (params) => {
+export const getItems = (data) => {
   return service({
     url: '/search',
-    method: 'GET',
-    params: params
+    method: 'POST',
+    data: data
   })
 }
 
