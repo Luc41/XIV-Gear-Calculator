@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store/index'
 import Main from '../views/Main.vue'
+import { loadColumns } from '../utils/data'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/Paladin',
     name: 'Paladin',
     component: () => import('../views/Container.vue')
+  },
+  {
+    path: '/Blackmage',
+    name: 'Blackmage',
+    component: () => import('../views/Container.vue')
   }
 ]
 
@@ -42,16 +48,22 @@ const router = new VueRouter({
 /* router.addRoutes() */
 
 router.beforeEach((to, from, next) => {
-  if (from.name !== 'Main') {
-    store.commit('updateSessionStorage', {
-      name: 'itemsStorage',
-      val: null
-    })
-  }
+  // clear itemsStorage before goto next
+  store.commit('updateSessionStorage', {
+    name: 'itemsStorage',
+    val: null
+  })
+  // load job from route name
   if (to.name !== 'Main') {
     store.commit('updateSessionStorage', {
       name: 'selectedJob',
       val: to.name
+    })
+    // load columns before goto next
+    var columns = loadColumns()
+    store.commit('updateSessionStorage', {
+      name: 'columns',
+      val: JSON.stringify(columns)
     })
     next()
   } else {

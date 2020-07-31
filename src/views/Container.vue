@@ -59,9 +59,9 @@
                         color="transparent"
                         text-color="black"
                       >
-                        {{ currentJobStats[0].name }}
+                        {{ baseParams[0].Name }}
                         :
-                        {{ currentJobStats[0].basevalue }}
+                        {{ baseParams[0].BaseValue }}
                       </q-chip>
                       <q-space />
                       <q-chip
@@ -70,7 +70,7 @@
                         class="q-mt-none"
                         style="border-radius: 4px;"
                       >
-                        + {{ currentJobStats[0].bonusvalue }}
+                        + {{ baseParams[0].BonusValue }}
                       </q-chip>
                     </q-card>
                   </div>
@@ -82,7 +82,7 @@
                 >
                   <div
                     class="col"
-                    v-for="stat in currentJobStats.slice(2*i-1, 2*i+1)"
+                    v-for="stat in baseParams.slice(2*i-1, 2*i+1)"
                     :key="stat.index"
                   >
                     <q-card
@@ -93,9 +93,9 @@
                         color="transparent"
                         text-color="black"
                       >
-                        {{ stat.name }}
+                        {{ stat.Name }}
                         :
-                        {{ stat.basevalue }}
+                        {{ stat.BaseValue }}
                       </q-chip>
                       <q-space />
                       <q-chip
@@ -104,7 +104,7 @@
                         class="q-mt-none"
                         style="border-radius: 4px;"
                       >
-                        + {{ stat.bonusvalue }}
+                        + {{ stat.BonusValue }}
                       </q-chip>
                     </q-card>
                   </div>
@@ -129,13 +129,11 @@
                 v-for="equipslot in $store.state.equipSlotCategory.primary"
                 :key="equipslot.index"
                 :title="equipslot.name"
-                :columns="columns"
               />
               <gear-table
                 v-for="equipslot in $store.state.equipSlotCategory.secondary"
                 :key="equipslot.index"
                 :title="equipslot.name"
-                :columns="columns"
               />
             </template>
 
@@ -144,7 +142,6 @@
                 v-for="equipslot in $store.state.equipSlotCategory.primary"
                 :key="equipslot.index"
                 :title="equipslot.name"
-                :columns="columns"
               />
             </template>
 
@@ -152,13 +149,11 @@
               v-for="equipslot in $store.state.equipSlotCategory.armor"
               :key="equipslot.index"
               :title="equipslot.name"
-              :columns="columns"
             />
             <gear-table
               v-for="equipslot in $store.state.equipSlotCategory.accessories"
               :key="equipslot.index"
               :title="equipslot.name"
-              :columns="columns"
             />
 
             <template v-if="showFood">
@@ -166,7 +161,6 @@
                 v-for="equipslot in $store.state.equipSlotCategory.food"
                 :key="equipslot.index"
                 :title="equipslot.name"
-                :columns="columns"
               />
             </template>
           </div>
@@ -177,7 +171,7 @@
     <q-page-sticky
       position="top"
       expand
-      class="bg-accent text-white"
+      class="bg-blue-grey-4 text-white"
     >
       <q-toolbar>
         <q-toolbar-title>
@@ -185,6 +179,7 @@
           <q-badge
             align="top"
             color="green"
+            class="shadow-1"
           >
             <template v-if="$store.state.patch === null">
               <q-spinner-dots
@@ -208,14 +203,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 import gearFilter from '../components/gearFilter'
 import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
 import gearTable from '../components/gearTable'
 
-import { queryObject } from '../utils/data'
+import { queryObject, baseParamsFilter } from '../utils/data'
 import { getItems } from '../api/api'
 
 export default {
@@ -228,26 +221,10 @@ export default {
   },
   data () {
     return {
+      baseParams: baseParamsFilter(),
       pagination: {
         rowsPerPage: 0
       },
-      columns: [
-        {
-          name: 'Name',
-          required: true,
-          label: 'Name',
-          align: 'left',
-          field: 'LevelItem',
-          format: val => `${val}`,
-          sortable: true
-        },
-        { name: 3, align: 'left', label: 'Vitality', field: 'UrlType', sortable: true },
-        { name: 2, align: 'left', label: 'Dexterity', field: 'ID', sortable: true },
-        { name: 27, align: 'center', label: 'Critical Hit', field: 'Icon', sortable: true },
-        { name: 22, align: 'center', label: 'Direct Hit Rate', field: 'Url', sortable: true },
-        { name: 44, align: 'center', label: 'Determination', field: 'UrlType', sortable: true },
-        { name: 45, align: 'center', label: 'Skill Speed', field: 'UrlType', sortable: true }
-      ],
       showFood: true
     }
   },
@@ -293,12 +270,6 @@ export default {
           })
         })
     }
-  },
-
-  computed: {
-    ...mapGetters([
-      'currentJobStats'
-    ])
   }
 }
 </script>

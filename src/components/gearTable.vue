@@ -7,7 +7,7 @@
     table-header-class="bg-grey-4"
     table-class="text-black"
     :data="data"
-    :columns="columns"
+    :columns="$store.state.columns"
     row-key="Name"
     selection="single"
     :selected.sync="selected"
@@ -26,6 +26,8 @@
 
     <template #top-right>
       <q-btn
+        outline
+        color="red"
         label="submit"
         @click="onSubmit()"
       />
@@ -49,10 +51,10 @@
       </q-td>
     </template>
 
-    <template #body-cell-3="props">
+    <template #body-cell-1="props">
       <q-td :props="props">
         <q-badge class="text-caption">
-          {{ props.row.BaseParamValue1 }}
+          {{ props.row.BaseParamValue0 }}
         </q-badge>
       </q-td>
     </template>
@@ -63,22 +65,51 @@
         </q-badge>
       </q-td>
     </template>
-    <template #body-cell-27="props">
+    <template #body-cell-3="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.CriticalHit !== undefined">
+        <q-badge class="text-caption">
+          {{ props.row.BaseParamValue1 }}
+        </q-badge>
+      </q-td>
+    </template>
+    <template #body-cell-4="props">
+      <q-td :props="props">
+        <q-badge class="text-caption">
+          {{ props.row.BaseParamValue0 }}
+        </q-badge>
+      </q-td>
+    </template>
+    <template #body-cell-5="props">
+      <q-td :props="props">
+        <q-badge class="text-caption">
+          {{ props.row.BaseParamValue0 }}
+        </q-badge>
+      </q-td>
+    </template>
+    <template #body-cell-6="props">
+      <q-td :props="props">
+        <q-badge class="text-caption">
+          {{ props.row.BaseParamValue0 }}
+        </q-badge>
+      </q-td>
+    </template>
+
+    <template #body-cell-19="props">
+      <q-td :props="props">
+        <div v-if="props.row.Stats.Tenacity !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
             class="text-caption"
           >
-            {{ props.row.Stats.CriticalHit.NQ }}
+            {{ props.row.Stats.Tenacity.NQ }}
           </q-badge>
           <q-badge
             color="green"
             v-else
             class="text-caption"
           >
-            {{ props.row.Stats.CriticalHit.HQ }}
+            {{ props.row.Stats.Tenacity.HQ }}
           </q-badge>
         </div>
         <q-badge
@@ -106,6 +137,33 @@
             class="text-caption"
           >
             {{ props.row.Stats.DirectHitRate.HQ }}
+          </q-badge>
+        </div>
+        <q-badge
+          v-else
+          color="green"
+          class="text-caption"
+        >
+          0
+        </q-badge>
+      </q-td>
+    </template>
+    <template #body-cell-27="props">
+      <q-td :props="props">
+        <div v-if="props.row.Stats.CriticalHit !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.CriticalHit.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.CriticalHit.HQ }}
           </q-badge>
         </div>
         <q-badge
@@ -171,6 +229,33 @@
         </q-badge>
       </q-td>
     </template>
+    <template #body-cell-46="props">
+      <q-td :props="props">
+        <div v-if="props.row.Stats.SpellSpeed !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.SpellSpeed.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.SpellSpeed.HQ }}
+          </q-badge>
+        </div>
+        <q-badge
+          v-else
+          color="green"
+          class="text-caption"
+        >
+          0
+        </q-badge>
+      </q-td>
+    </template>
   </q-table>
 </template>
 
@@ -181,10 +266,6 @@ export default {
     title: {
       type: String,
       default: 'Unknown'
-    },
-    columns: {
-      type: Array,
-      default: undefined
     }
   },
   data () {
@@ -193,7 +274,7 @@ export default {
       loading: false,
       data: [],
       pagination: {
-        rowsPerPage: 0
+        rowsPerPage: 20
       }
     }
   },
@@ -209,8 +290,6 @@ export default {
       console.log(data)
       this.data = data
     }
-  },
-  computed: {
   }
 }
 </script>

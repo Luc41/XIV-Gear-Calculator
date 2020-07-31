@@ -93,6 +93,110 @@ export const classJobCategory = {
   ]
 }
 
+const baseParamsModifier = [
+  {
+    jobs: ['Bard', 'Machinist', 'Dancer', 'Ninja'],
+    currentParams: [2, 27, 22, 44, 45]
+  },
+  {
+    jobs: ['Monk', 'Dragoon', 'Samurai'],
+    currentParams: [1, 27, 22, 44, 45]
+  },
+  {
+    jobs: ['Blackmage', 'Summoner', 'Redmage'],
+    currentParams: [4, 27, 22, 44, 46]
+  },
+  {
+    jobs: ['Paladin', 'Warrior', 'Darkknight', 'Gunbreaker'],
+    currentParams: [1, 19, 27, 22, 44, 45]
+  },
+  {
+    jobs: ['Whitemage', 'Scholar', 'Astrologian'],
+    currentParams: [5, 6, 27, 22, 44, 46]
+  }
+]
+
+const baseParams = [
+  { ID: 1, Name: 'Strength', BaseValue: 0, BonusValue: 0 },
+  { ID: 2, Name: 'Dexterity', BaseValue: 0, BonusValue: 0 },
+  { ID: 3, Name: 'Vitality', BaseValue: 0, BonusValue: 0 },
+  { ID: 4, Name: 'Intelligence', BaseValue: 0, BonusValue: 0 },
+  { ID: 5, Name: 'Mind', BaseValue: 0, BonusValue: 0 },
+  { ID: 6, Name: 'Piety', BaseValue: 0, BonusValue: 0 },
+  { ID: 19, Name: 'Tenacity', BaseValue: 0, BonusValue: 0 },
+  { ID: 22, Name: 'Direct Hit Rate', BaseValue: 0, BonusValue: 0 },
+  { ID: 27, Name: 'Critical Hit', BaseValue: 0, BonusValue: 0 },
+  { ID: 44, Name: 'Determination', BaseValue: 0, BonusValue: 0 },
+  { ID: 45, Name: 'Skill Speed', BaseValue: 0, BonusValue: 0 },
+  { ID: 46, Name: 'Spell Speed', BaseValue: 0, BonusValue: 0 }
+]
+
+/**
+ * load data table columns as array
+ */
+export const loadColumns = () => {
+  var columns = [
+    {
+      name: 'Name',
+      required: true,
+      label: 'Name',
+      align: 'left',
+      field: 'LevelItem',
+      sortable: true
+    },
+    { name: 3, align: 'left', label: 'Vitality' }
+  ]
+  // console.log('selectedjob: ', store.state.selectedJob)
+  for (var index in baseParamsModifier) {
+    // console.log('index: ', index)
+    var columnIDs = []
+    if (baseParamsModifier[index].jobs.includes(store.state.selectedJob)) {
+      columnIDs = baseParamsModifier[index].currentParams
+      // console.log('columnIDs: ', columnIDs)
+      for (var i in baseParams) {
+        if (columnIDs.includes(baseParams[i].ID)) {
+          columns.push({
+            name: baseParams[i].ID,
+            align: baseParams[i].ID > 10 ? 'center' : 'left',
+            label: baseParams[i].Name
+          })
+          // console.log('columns: ', columns)
+        }
+      }
+      return columns
+    }
+  }
+}
+
+/**
+ * construct baseparam value array
+ */
+export const baseParamsFilter = () => {
+  var arr = [
+    { ID: 0, Name: 'HP', BaseValue: 0, BonusValue: 0 },
+    { ID: 3, Name: 'Vitality', BaseValue: 0, BonusValue: 0 }
+  ]
+  for (var index in baseParamsModifier) {
+    if (baseParamsModifier[index].jobs.includes(store.state.selectedJob)) {
+      var filter = baseParamsModifier[index].currentParams
+    } else {
+      continue
+    }
+    for (var i in filter) {
+      var tmp = baseParams.filter((item) => {
+        return item.ID === filter[i]
+      })
+      arr.push(tmp[0])
+      // console.log(arr)
+    }
+    return arr
+  }
+}
+
+/**
+ * extract the short name of the job,use in the queryObject()
+ * @param {Object} param the object contains all classjob info
+ */
 const getShort = (param) => {
   var short = ''
   for (var index in param) {
@@ -110,6 +214,10 @@ const getShort = (param) => {
   }
 }
 
+/**
+ * construct the query object based on ElasticSearch
+ * check document: https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl.html
+ */
 export const queryObject = () => {
   try {
     if (store.state.submitedQuery === {}) {
@@ -157,6 +265,7 @@ export const queryObject = () => {
   body.query.bool.filter.push({ range: { LevelItem } })
   body.query.bool.filter.push({ term: { [key]: 1 } })
 
+  // construct query object
   const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recips,BaseParamValue0,BaseParam0TargetID,BaseParamValue1,BaseParam1TargetID'
   query.body = body
   query = { ...query, columns }
