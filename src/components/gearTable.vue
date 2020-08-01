@@ -25,9 +25,8 @@
 
     <template #top-right>
       <q-btn
-        outline
+        flat
         color="red"
-        label="submit"
         @click="onSubmit()"
       />
     </template>
@@ -62,6 +61,7 @@
       <q-td :props="props">
         <q-btn
           flat
+          :ripple="false"
           padding="xs"
         >
           <q-icon
@@ -79,7 +79,7 @@
             />
           </template>
           <q-popup-proxy>
-            test message
+            <pop-materia-melding />
           </q-popup-proxy>
         </q-btn>
       </q-td>
@@ -334,8 +334,13 @@
 </template>
 
 <script>
+import popMateriaMelding from './materiaMeling'
+
 export default {
   name: 'GearTable',
+  components: {
+    popMateriaMelding
+  },
   props: {
     title: {
       type: String,
@@ -367,6 +372,7 @@ export default {
     }
   },
   computed: {
+    /*
     bodyCells () {
       const columns = this.$store.state.columns
       var bodyCells = []
@@ -376,6 +382,7 @@ export default {
       }
       return bodyCells
     }
+    */
   }
 }
 </script>
@@ -386,6 +393,11 @@ export default {
   display: inline-block;
   height: 15px;
   width: 15px;
+/*
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+*/
 }
 
 .advanceSlot {
@@ -393,6 +405,11 @@ export default {
   display: inline-block;
   height: 15px;
   width: 15px;
+/*
+  border-style: solid;
+  border-color: red;
+  border-width: 1px
+*/
 }
 
 #slot1,#slot2,#slot3,#slot4,#slot5 {
@@ -401,7 +418,7 @@ export default {
 }
 
 #advanceSlot1,#advanceSlot2,#advanceSlot3 {
-  background-position: -4px -29px;
+  background-position: -5px -29px;
   background-size: 9em;
 }
 </style>
