@@ -36,6 +36,11 @@ const routes = [
     path: '/Blackmage',
     name: 'Blackmage',
     component: () => import('../views/Container.vue')
+  },
+  {
+    path: '/Whitemage',
+    name: 'Whitemage',
+    component: () => import('../views/Container.vue')
   }
 ]
 

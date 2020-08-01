@@ -144,6 +144,12 @@ export const loadColumns = () => {
       field: 'LevelItem',
       sortable: true
     },
+    {
+      name: 'Materia',
+      required: true,
+      label: 'Materia',
+      align: 'left'
+    },
     { name: 3, align: 'left', label: 'Vitality' }
   ]
   // console.log('selectedjob: ', store.state.selectedJob)
@@ -157,7 +163,7 @@ export const loadColumns = () => {
         if (columnIDs.includes(baseParams[i].ID)) {
           columns.push({
             name: baseParams[i].ID,
-            align: baseParams[i].ID > 10 ? 'center' : 'left',
+            align: baseParams[i].ID > 5 ? 'center' : 'left',
             label: baseParams[i].Name
           })
           // console.log('columns: ', columns)
@@ -266,7 +272,7 @@ export const queryObject = () => {
   body.query.bool.filter.push({ term: { [key]: 1 } })
 
   // construct query object
-  const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recips,BaseParamValue0,BaseParam0TargetID,BaseParamValue1,BaseParam1TargetID'
+  const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recips,MateriaSlotCount,IsAdvancedMeldingPermitted'
   query.body = body
   query = { ...query, columns }
   // console.log(query)
