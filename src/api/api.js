@@ -43,3 +43,10 @@ export const getIcon = (param) => {
     method: 'GET'
   })
 }
+
+export const getMateria = () => {
+  return service({
+    url: '/materia',
+    method: 'GET'
+  })
+}

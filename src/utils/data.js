@@ -272,7 +272,7 @@ export const queryObject = () => {
   body.query.bool.filter.push({ term: { [key]: 1 } })
 
   // construct query object
-  const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recips,MateriaSlotCount,IsAdvancedMeldingPermitted'
+  const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recipes,MateriaSlotCount,IsAdvancedMeldingPermitted'
   query.body = body
   query = { ...query, columns }
   // console.log(query)

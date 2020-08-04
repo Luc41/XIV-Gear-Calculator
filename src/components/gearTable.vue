@@ -48,12 +48,11 @@
           class="text-caption text-weight-thin"
         />
         {{ props.row.Name }}
-        <!-- hq image
         <q-icon
-          :name="'img:https://cdn.ariyala.com/ffxiv/images/hq.png'"
+          :name="'img:/images/hq-dark.png'"
           v-if="props.row.CanBeHq === 1"
+          class="q-ma-none"
         />
-        -->
       </q-td>
     </template>
 
@@ -72,14 +71,14 @@
           />
           <template v-if="props.row.IsAdvancedMeldingPermitted === 1">
             <q-icon
-              v-for="advanceslot in 3"
+              v-for="advanceslot in props.row.MateriaSlotCount === 2 ? 3 : 4"
               :key="'advanceslot' + advanceslot"
               class="advanceSlot q-pr-xs"
               :id="'advanceSlot' + advanceslot"
             />
           </template>
           <q-popup-proxy>
-            <pop-materia-melding />
+            <pop-materia-melding :data="props.row" />
           </q-popup-proxy>
         </q-btn>
       </q-td>
@@ -87,7 +86,7 @@
 
     <template #body-cell-1="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Strength !== undefined">
+        <template v-if="props.row.Stats.Strength !== undefined">
           <q-badge
             color="blue"
             v-if="props.row.CanBeHq === 0"
@@ -102,12 +101,12 @@
           >
             {{ props.row.Stats.Strength.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-2="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Dexterity !== undefined">
+        <template v-if="props.row.Stats.Dexterity !== undefined">
           <q-badge
             color="blue"
             v-if="props.row.CanBeHq === 0"
@@ -122,12 +121,12 @@
           >
             {{ props.row.Stats.Dexterity.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-3="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Vitality !== undefined">
+        <template v-if="props.row.Stats.Vitality !== undefined">
           <q-badge
             color="blue"
             v-if="props.row.CanBeHq === 0"
@@ -142,12 +141,12 @@
           >
             {{ props.row.Stats.Vitality.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-4="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Intelligence !== undefined">
+        <template v-if="props.row.Stats.Intelligence !== undefined">
           <q-badge
             color="blue"
             v-if="props.row.CanBeHq === 0"
@@ -162,12 +161,12 @@
           >
             {{ props.row.Stats.Intelligence.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-5="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Mind !== undefined">
+        <template v-if="props.row.Stats.Mind !== undefined">
           <q-badge
             color="blue"
             v-if="props.row.CanBeHq === 0"
@@ -182,13 +181,13 @@
           >
             {{ props.row.Stats.Mind.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
 
     <template #body-cell-6="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Piety !== undefined">
+        <template v-if="props.row.Stats.Piety !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
@@ -203,12 +202,12 @@
           >
             {{ props.row.Stats.Piety.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-19="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Tenacity !== undefined">
+        <template v-if="props.row.Stats.Tenacity !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
@@ -223,12 +222,12 @@
           >
             {{ props.row.Stats.Tenacity.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-22="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.DirectHitRate !== undefined">
+        <template v-if="props.row.Stats.DirectHitRate !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
@@ -243,12 +242,12 @@
           >
             {{ props.row.Stats.DirectHitRate.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-27="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.CriticalHit !== undefined">
+        <template v-if="props.row.Stats.CriticalHit !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
@@ -263,12 +262,12 @@
           >
             {{ props.row.Stats.CriticalHit.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-44="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.Determination !== undefined">
+        <template v-if="props.row.Stats.Determination !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
@@ -283,12 +282,12 @@
           >
             {{ props.row.Stats.Determination.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-45="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.SkillSpeed !== undefined">
+        <template v-if="props.row.Stats.SkillSpeed !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
@@ -303,12 +302,12 @@
           >
             {{ props.row.Stats.SkillSpeed.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
     <template #body-cell-46="props">
       <q-td :props="props">
-        <div v-if="props.row.Stats.SpellSpeed !== undefined">
+        <template v-if="props.row.Stats.SpellSpeed !== undefined">
           <q-badge
             color="green"
             v-if="props.row.CanBeHq === 0"
@@ -323,7 +322,7 @@
           >
             {{ props.row.Stats.SpellSpeed.HQ }}
           </q-badge>
-        </div>
+        </template>
       </q-td>
     </template>
 
@@ -334,7 +333,7 @@
 </template>
 
 <script>
-import popMateriaMelding from './materiaMeling'
+import popMateriaMelding from './materiaMelding'
 
 export default {
   name: 'GearTable',
@@ -417,7 +416,7 @@ export default {
   background-size: 9em;
 }
 
-#advanceSlot1,#advanceSlot2,#advanceSlot3 {
+#advanceSlot1,#advanceSlot2,#advanceSlot3,#advanceSlot4 {
   background-position: -5px -29px;
   background-size: 9em;
 }

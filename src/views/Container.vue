@@ -124,41 +124,33 @@
           :delay="1200"
         >
           <div class="q-gutter-sm">
+            <gear-table
+              v-for="equipslot in equipSlotCategory.primary"
+              :key="equipslot.index"
+              :title="equipslot.name"
+            />
             <template v-if="$store.state.selectedJob === 'Paladin'">
               <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.primary"
-                :key="equipslot.index"
-                :title="equipslot.name"
-              />
-              <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.secondary"
-                :key="equipslot.index"
-                :title="equipslot.name"
-              />
-            </template>
-
-            <template v-else>
-              <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.primary"
+                v-for="equipslot in equipSlotCategory.secondary"
                 :key="equipslot.index"
                 :title="equipslot.name"
               />
             </template>
 
             <gear-table
-              v-for="equipslot in $store.state.equipSlotCategory.armor"
+              v-for="equipslot in equipSlotCategory.armor"
               :key="equipslot.index"
               :title="equipslot.name"
             />
             <gear-table
-              v-for="equipslot in $store.state.equipSlotCategory.accessories"
+              v-for="equipslot in equipSlotCategory.accessories"
               :key="equipslot.index"
               :title="equipslot.name"
             />
 
             <template v-if="showFood">
               <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.food"
+                v-for="equipslot in equipSlotCategory.food"
                 :key="equipslot.index"
                 :title="equipslot.name"
               />
@@ -221,6 +213,32 @@ export default {
   },
   data () {
     return {
+      equipSlotCategory: {
+        primary: [
+          { id: 1, name: 'MainHand' }
+        ],
+        secondary: [
+          { id: 2, name: 'OffHand' }
+        ],
+        armor: [
+          { id: 3, name: 'Head' },
+          { id: 4, name: 'Body' },
+          { id: 5, name: 'Gloves' },
+          { id: 6, name: 'Waist' },
+          { id: 7, name: 'Legs' },
+          { id: 8, name: 'Feet' }
+        ],
+        accessories: [
+          { id: 9, name: 'Ears' },
+          { id: 10, name: 'Neck' },
+          { id: 11, name: 'Wrists' },
+          { id: 12, name: 'FingerL' },
+          { id: 13, name: 'FingerR' }
+        ],
+        food: [
+          { id: 14, name: 'Food' }
+        ]
+      },
       baseParams: baseParamsFilter(),
       pagination: {
         rowsPerPage: 0
