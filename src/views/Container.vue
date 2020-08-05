@@ -270,7 +270,12 @@ export default {
       })
     },
     loadItems () {
-      const data = queryObject()
+      const baseInfo = ['ID', 'Name', 'Icon', 'LevelItem']
+      const baseStats = ['Stats', 'MateriaSlotCount']
+      const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
+      const equipSlotCategory = ['EquipSlotCategory']
+      const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
+      const data = queryObject(columns)
       getItems(data)
         .then(response => {
           this.$store.commit('updateSessionStorage', {

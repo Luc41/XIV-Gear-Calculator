@@ -224,7 +224,7 @@ const getShort = (param) => {
  * construct the query object based on ElasticSearch
  * check document: https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl.html
  */
-export const queryObject = () => {
+export const queryObject = (columns) => {
   try {
     if (store.state.submitedQuery === {}) {
       throw new Error('Submited query is empty.')
@@ -271,8 +271,8 @@ export const queryObject = () => {
   body.query.bool.filter.push({ range: { LevelItem } })
   body.query.bool.filter.push({ term: { [key]: 1 } })
 
-  // construct query object
-  const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recipes,MateriaSlotCount,IsAdvancedMeldingPermitted'
+  // add columns array to query
+  // const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recipes,MateriaSlotCount,IsAdvancedMeldingPermitted'
   query.body = body
   query = { ...query, columns }
   // console.log(query)

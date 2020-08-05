@@ -165,6 +165,10 @@
                 dense
                 outlined
                 style="width: 10rem"
+                :options="materia"
+                option-value="ID"
+                option-label="Url"
+                v-model="slots[slot]"
               />
               <span>100%</span>
             </div>
@@ -182,6 +186,8 @@
                   outlined
                   style="width: 10rem"
                   :disable="data.IsAdvancedMeldingPermitted === 0 ? true : false"
+                  :options="materia"
+                  v-model="advanceSlots[advanceSlot]"
                 />
                 <span>10%</span>
               </div>
@@ -221,6 +227,14 @@
 </template>
 
 <script>
+import {
+  getMateria,
+  getMateriaJoinRate,
+  getExtraColumns
+  // getGameContent
+  // getItemLevelModifier
+} from '../api/api'
+
 export default {
   name: 'MateriaMelding',
   props: {
@@ -232,24 +246,47 @@ export default {
   data () {
     return {
       columns: [{ name: 'stats', align: 'right', required: true, label: 'Stats' }],
-      stats: [{ name: 'Current Value' }, { name: 'to cap' }]
+      stats: [{ name: 'Current Value' }, { name: 'to cap' }],
+      materia: [],
+      materiaJoinRate: [],
+      slots: [],
+      advanceSlots: []
     }
   },
   created () {
-    this.doColumns()
-    this.doData()
+    this.getColumns()
+    this.getData()
+    this.getStatsCap()
+  },
+  beforeMount () {
+    getMateria()
+      .then(response => {
+        this.materia = response.Results
+        // console.log(this.materia)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    getMateriaJoinRate()
+      .then(response => {
+        this.materiaJoinRate = response.Results
+        // console.log(this.materiaJoinRate)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   },
   methods: {
-    doColumns () {
+    getColumns () {
       const basic = this.$store.state.columns
       for (var index in basic) {
         if (basic[index].name > 5) {
           this.columns.push(basic[index])
         }
       }
-      console.log('columns: ', this.columns)
+      // console.log('columns: ', this.columns)
     },
-    doData () {
+    getData () {
       for (var index in this.data.Stats) {
         if (this.data.Stats[index].ID > 5) {
           this.stats[0] = {
@@ -257,11 +294,21 @@ export default {
             [this.data.Stats[index].ID]:
               this.data.CanBeHq === 0 ? this.data.Stats[index].NQ : this.data.Stats[index].HQ
           }
-          console.log('stats: ', this.stats)
+          // console.log('stats: ', this.stats)
         } else {
           continue
         }
       }
+    },
+    getStatsCap () {
+      const columns = ['BaseParamModifier']
+      // var modifierRole = {}
+      const baseParamModifier = getExtraColumns(this.data.ID, columns.join(',')).then(response => {
+        return Promise.resolve(response.BaseParamModifier)
+      })
+      baseParamModifier.then(value => {
+        console.log(value)
+      })
     }
   },
   computed: {

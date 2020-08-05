@@ -21,6 +21,27 @@ export const getPatches = () => {
   })
 }
 
+export const getMateria = () => {
+  return service({
+    url: '/materia',
+    method: 'GET'
+  })
+}
+
+export const getMateriaJoinRate = () => {
+  return service({
+    url: '/materiajoinrate',
+    method: 'GET'
+  })
+}
+
+export const getGameContent = (index, id) => {
+  return service({
+    url: `/${index}/${id}`,
+    method: 'GET'
+  })
+}
+
 /**
  * get items from XIVAPI
  * @param {Object} params AdvanceDSL search params payload.
@@ -34,19 +55,24 @@ export const getItems = (data) => {
 }
 
 /**
- * get icons from XIVAPI
- * @param {String} param Path of the icon.
+ * get extra columns from an item base on it's url
+ * @param {String} itemid path of the item.
+ * @param {String} param payload within the wanted columns of item.
  */
-export const getIcon = (param) => {
+export const getExtraColumns = (itemid, param) => {
   return service({
-    url: param,
+    url: `/item/${itemid}?columns=${param}`,
     method: 'GET'
   })
 }
 
-export const getMateria = () => {
+/**
+ * get base value of current item
+ * @param {Number} itemlevel itemlevel of current item
+ */
+export const getItemLevelModifier = (itemlevel) => {
   return service({
-    url: '/materia',
+    url: `/itemlevel/${itemlevel}`,
     method: 'GET'
   })
 }
