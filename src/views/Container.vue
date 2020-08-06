@@ -129,6 +129,7 @@
               :key="equipslot.index"
               :title="equipslot.name"
             />
+
             <template v-if="$store.state.selectedJob === 'Paladin'">
               <gear-table
                 v-for="equipslot in equipSlotCategory.secondary"

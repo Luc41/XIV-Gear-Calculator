@@ -368,6 +368,12 @@ export default {
       }
       // console.log(data)
       this.data = data
+    },
+    getStatsCap () {
+      // const baseValue = null
+      // const slotModifier = null
+      // const roleModifier = null
+      return 0
     }
   },
   computed: {

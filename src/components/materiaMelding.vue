@@ -9,6 +9,7 @@
         flat
         bordered
         wrap-cells
+        table-header-class="bg-blue text-white"
         separator="cell"
         :data="stats"
         :columns="columns"
@@ -227,14 +228,6 @@
 </template>
 
 <script>
-import {
-  getMateria,
-  getMateriaJoinRate,
-  getExtraColumns
-  // getGameContent
-  // getItemLevelModifier
-} from '../api/api'
-
 export default {
   name: 'MateriaMelding',
   props: {
@@ -245,7 +238,13 @@ export default {
   },
   data () {
     return {
-      columns: [{ name: 'stats', align: 'right', required: true, label: 'Stats' }],
+      columns: [{
+        name: 'stats',
+        align: 'right',
+        classes: 'bg-grey-2 ellipsis',
+        required: true,
+        label: 'Stats'
+      }],
       stats: [{ name: 'Current Value' }, { name: 'to cap' }],
       materia: [],
       materiaJoinRate: [],
@@ -256,25 +255,7 @@ export default {
   created () {
     this.getColumns()
     this.getData()
-    this.getStatsCap()
-  },
-  beforeMount () {
-    getMateria()
-      .then(response => {
-        this.materia = response.Results
-        // console.log(this.materia)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    getMateriaJoinRate()
-      .then(response => {
-        this.materiaJoinRate = response.Results
-        // console.log(this.materiaJoinRate)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    // this.getStatsCap()
   },
   methods: {
     getColumns () {
@@ -299,17 +280,16 @@ export default {
           continue
         }
       }
-    },
+    }
+    /*
     getStatsCap () {
       const columns = ['BaseParamModifier']
       // var modifierRole = {}
       const baseParamModifier = getExtraColumns(this.data.ID, columns.join(',')).then(response => {
         return Promise.resolve(response.BaseParamModifier)
       })
-      baseParamModifier.then(value => {
-        console.log(value)
-      })
     }
+    */
   },
   computed: {
   }
