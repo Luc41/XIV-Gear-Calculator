@@ -21,20 +21,11 @@ export const getPatches = () => {
   })
 }
 
-export const getMateria = () => {
-  return service({
-    url: '/materia',
-    method: 'GET'
-  })
-}
-
-export const getMateriaJoinRate = () => {
-  return service({
-    url: '/materiajoinrate',
-    method: 'GET'
-  })
-}
-
+/**
+ * get game content by id
+ * @param {String} index game content name.
+ * @param {Number} id game content id
+ */
 export const getGameContent = (index, id) => {
   return service({
     url: `/${index}/${id}`,

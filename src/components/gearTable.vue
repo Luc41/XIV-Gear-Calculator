@@ -376,6 +376,15 @@ export default {
       return 0
     }
   },
+  watch: {
+    data (val) {
+      for (var index in val) {
+        for (var i in val[index].Stats) {
+          console.log(i)
+        }
+      }
+    }
+  },
   computed: {
     /*
     bodyCells () {
