@@ -2,68 +2,437 @@
   <q-table
     :title="title"
     dense
-    hide-bottom
-    card-class="bg-grey-6 text-white"
-    table-header-class="bg-grey-9"
-    table-class="text-white"
+    card-class="bg-grey-2 text-black"
+    table-header-class="bg-grey-4"
+    table-class="text-black"
     :data="data"
-    :columns="columns"
-    row-key="name"
+    :columns="$store.state.columns"
+    row-key="Name"
     selection="single"
     :selected.sync="selected"
     :loading="loading"
     :pagination.sync="pagination"
     :rows-per-page-options="[0]"
-    no-data-label="Find nothing, may need refresh"
+    no-data-label="Found nothing, please refresh"
     loading-label="Loading data"
   >
-    <template v-slot:loading>
+    <template #loading>
       <q-inner-loading
         showing
         color="grey-7"
       />
     </template>
+
+    <template #top-right>
+      <q-btn
+        flat
+        color="red"
+        @click="onSubmit()"
+      />
+    </template>
+
+    <template #body-cell-Name="props">
+      <q-td
+        :props="props"
+        class="q-gutter-x-xs text-weight-bold text-grey-9"
+        @mouseover="itemInfo = true"
+        @mouseout="itemInfo = false"
+      >
+        <q-icon
+          :name="'img:https://xivapi.com' + props.row.Icon"
+          size="sm"
+        />
+        <q-badge
+          color="grey-8"
+          :label="'iLv ' + props.row.LevelItem"
+          class="text-caption text-weight-thin"
+        />
+        {{ props.row.Name }}
+        <q-icon
+          :name="'img:/images/hq-dark.png'"
+          v-if="props.row.CanBeHq === 1"
+          class="q-ma-none"
+        />
+      </q-td>
+    </template>
+
+    <template #body-cell-Materia="props">
+      <q-td :props="props">
+        <q-btn
+          flat
+          :ripple="false"
+          padding="xs"
+        >
+          <q-icon
+            v-for="slot in props.row.MateriaSlotCount"
+            :key="'slot' + slot"
+            class="slot q-pr-xs"
+            :id="'slot' + slot"
+          />
+          <template v-if="props.row.IsAdvancedMeldingPermitted === 1">
+            <q-icon
+              v-for="advanceslot in props.row.MateriaSlotCount === 2 ? 3 : 4"
+              :key="'advanceslot' + advanceslot"
+              class="advanceSlot q-pr-xs"
+              :id="'advanceSlot' + advanceslot"
+            />
+          </template>
+          <q-popup-proxy>
+            <pop-materia-melding :data="props.row" />
+          </q-popup-proxy>
+        </q-btn>
+      </q-td>
+    </template>
+
+    <template #body-cell-1="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Strength !== undefined">
+          <q-badge
+            color="blue"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Strength.NQ }}
+          </q-badge>
+          <q-badge
+            color="blue"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Strength.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-2="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Dexterity !== undefined">
+          <q-badge
+            color="blue"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Dexterity.NQ }}
+          </q-badge>
+          <q-badge
+            color="blue"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Dexterity.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-3="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Vitality !== undefined">
+          <q-badge
+            color="blue"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Vitality.NQ }}
+          </q-badge>
+          <q-badge
+            color="blue"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Vitality.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-4="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Intelligence !== undefined">
+          <q-badge
+            color="blue"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Intelligence.NQ }}
+          </q-badge>
+          <q-badge
+            color="blue"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Intelligence.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-5="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Mind !== undefined">
+          <q-badge
+            color="blue"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Mind.NQ }}
+          </q-badge>
+          <q-badge
+            color="blue"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Mind.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+
+    <template #body-cell-6="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Piety !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Piety.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Piety.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-19="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Tenacity !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Tenacity.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Tenacity.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-22="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.DirectHitRate !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.DirectHitRate.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.DirectHitRate.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-27="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.CriticalHit !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.CriticalHit.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.CriticalHit.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-44="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.Determination !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.Determination.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.Determination.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-45="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.SkillSpeed !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.SkillSpeed.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.SkillSpeed.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+    <template #body-cell-46="props">
+      <q-td :props="props">
+        <template v-if="props.row.Stats.SpellSpeed !== undefined">
+          <q-badge
+            color="green"
+            v-if="props.row.CanBeHq === 0"
+            class="text-caption"
+          >
+            {{ props.row.Stats.SpellSpeed.NQ }}
+          </q-badge>
+          <q-badge
+            color="green"
+            v-else
+            class="text-caption"
+          >
+            {{ props.row.Stats.SpellSpeed.HQ }}
+          </q-badge>
+        </template>
+      </q-td>
+    </template>
+
+    <template #bottom>
+      {{ JSON.stringify(selected) }}
+    </template>
   </q-table>
 </template>
 
 <script>
-import { getItems } from '../api/api'
+import popMateriaMelding from './materiaMelding'
 
 export default {
   name: 'GearTable',
+  components: {
+    popMateriaMelding
+  },
   props: {
     title: {
       type: String,
       default: 'Unknown'
-    },
-    columns: {
-      type: Array,
-      default: undefined
     }
   },
   data () {
     return {
       selected: [],
       loading: false,
+      itemInfo: false,
       data: [],
       pagination: {
-        rowsPerPage: 0
+        rowsPerPage: 20
       }
     }
   },
-  onSubmit () {
-    getItems()
-      .then(response => {
-        this.data = response.Results
-      })
-      .catch(error => {
-        return Promise.reject(error)
-      })
+  methods: {
+    onSubmit () {
+      const rawdata = this.$store.state.itemsStorage
+      var data = []
+      for (var item in rawdata) {
+        if (rawdata[item].EquipSlotCategory[this.title] === 1) {
+          data.push(rawdata[item])
+        }
+      }
+      // console.log(data)
+      this.data = data
+    },
+    getStatsCap () {
+      // const baseValue = null
+      // const slotModifier = null
+      // const roleModifier = null
+      return 0
+    }
+  },
+  watch: {
+    data (val) {
+      for (var index in val) {
+        for (var i in val[index].Stats) {
+          console.log(i)
+        }
+      }
+    }
+  },
+  computed: {
+    /*
+    bodyCells () {
+      const columns = this.$store.state.columns
+      var bodyCells = []
+      for (var index in columns) {
+        var bodyCell = 'body-cell-' + columns[index]
+        bodyCells.push(bodyCell)
+      }
+      return bodyCells
+    }
+    */
   }
-
 }
 </script>
 
 <style>
+.slot {
+  background: url(../../public/images/materia.png);
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+/*
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+*/
+}
 
+.advanceSlot {
+  background: url(../../public/images/materia.png);
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+/*
+  border-style: solid;
+  border-color: red;
+  border-width: 1px
+*/
+}
+
+#slot1,#slot2,#slot3,#slot4,#slot5 {
+  background-position: -4px -4.5px;
+  background-size: 9em;
+}
+
+#advanceSlot1,#advanceSlot2,#advanceSlot3,#advanceSlot4 {
+  background-position: -5px -29px;
+  background-size: 9em;
+}
 </style>

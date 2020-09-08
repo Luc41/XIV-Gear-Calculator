@@ -1,7 +1,7 @@
 <template>
   <q-scroll-area class="fit">
     <q-toolbar class="bg-secondary text-white no-shadow">
-      <q-toolbar-title>战斗</q-toolbar-title>
+      <q-toolbar-title>Disciples of War & Magic</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
       :content-inset-level=".0"
@@ -17,8 +17,7 @@
       >
         Range
       </q-banner>
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -37,7 +36,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
 
       <q-banner
         dense
@@ -46,8 +45,7 @@
         Melee
       </q-banner>
 
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -66,7 +64,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
 
       <q-banner
         dense
@@ -75,8 +73,7 @@
         Magic
       </q-banner>
 
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -95,7 +92,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -106,8 +103,7 @@
       label="Tank"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -126,7 +122,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -137,8 +133,7 @@
       label="Healer"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -157,11 +152,11 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-toolbar class="bg-secondary text-white no-shadow">
-      <q-toolbar-title>生活</q-toolbar-title>
+      <q-toolbar-title>Disciples of Hand & Land</q-toolbar-title>
     </q-toolbar>
     <q-expansion-item
       :content-inset-level=".0"
@@ -171,8 +166,7 @@
       label="Crafter"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -191,7 +185,7 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
 
     <q-expansion-item
@@ -202,8 +196,7 @@
       label="Gatherer"
       caption
     >
-      <q-banner
-        dense
+      <q-list
         class="bg-grey-2 text-center q-pa-xs"
       >
         <q-item
@@ -222,56 +215,13 @@
           </q-item-section>
           <q-item-section>{{ job.job }}</q-item-section>
         </q-item>
-      </q-banner>
+      </q-list>
     </q-expansion-item>
   </q-scroll-area>
 </template>
 
 <script>
-
-const jobs = {
-  rangedps: [
-    { job: 'Bard', short: 'brd', src: '/images/03_DPS/Job/Bard.png' },
-    { job: 'Machinist', short: 'mch', src: '/images/03_DPS/Job/Machinist.png' },
-    { job: 'Dancer', short: 'dnc', src: '/images/03_DPS/Job/Dancer.png' }
-  ],
-  meleedps: [
-    { job: 'Dragoon', short: 'drg', src: '/images/03_DPS/Job/Dragoon.png' },
-    { job: 'Monk', short: 'mnk', src: '/images/03_DPS/Job/Monk.png' },
-    { job: 'Samurai', short: 'sam', src: '/images/03_DPS/Job/Samurai.png' },
-    { job: 'Ninja', short: 'nin', src: '/images/03_DPS/Job/Ninja.png' }
-  ],
-  magic: [
-    { job: 'Blackmage', short: 'blm', src: '/images/03_DPS/Job/BlackMage.png' },
-    { job: 'Summoner', short: 'smr', src: '/images/03_DPS/Job/Summoner.png' },
-    { job: 'Redmage', short: 'rdm', src: '/images/03_DPS/Job/RedMage.png' }
-  ],
-  tank: [
-    { job: 'Paladin', short: 'pld', src: '/images/01_TANK/Job/Paladin.png' },
-    { job: 'Warrior', short: 'war', src: '/images/01_TANK/Job/Warrior.png' },
-    { job: 'Darkknight', short: 'drk', src: '/images/01_TANK/Job/DarkKnight.png' },
-    { job: 'Gunbreaker', short: 'gnb', src: '/images/01_TANK/Job/Gunbreaker.png' }
-  ],
-  healer: [
-    { job: 'Whitemage', short: 'whm', src: '/images/02_HEALER/Job/WhiteMage.png' },
-    { job: 'Scholar', short: 'sch', src: '/images/02_HEALER/Job/Scholar.png' },
-    { job: 'Astrologian', short: 'ast', src: '/images/02_HEALER/Job/Astrologian.png' }
-  ],
-  crafter: [
-    { job: 'Alchemist', short: 'alc', src: '/images/04_CRAFTER/Alchemist.png' },
-    { job: 'Armorer', short: 'arm', src: '/images/04_CRAFTER/Armorer.png' },
-    { job: 'Blacksmith', short: 'bsm', src: '/images/04_CRAFTER/Blacksmith.png' },
-    { job: 'Carpenter', short: 'crp', src: '/images/04_CRAFTER/Carpenter.png' },
-    { job: 'Culinarian', short: 'cul', src: '/images/04_CRAFTER/Culinarian.png' },
-    { job: 'Goldsmith', short: 'gsm', src: '/images/04_CRAFTER/Goldsmith.png' },
-    { job: 'Leatherworker', short: 'ltw', src: '/images/04_CRAFTER/Leatherworker.png' }
-  ],
-  gatherer: [
-    { job: 'Botanist', short: 'btn', src: '/images/05_GATHERER/Botanist.png' },
-    { job: 'Miner', short: 'min', src: '/images/05_GATHERER/Miner.png' },
-    { job: 'Fisher', short: 'fsh', src: '/images/05_GATHERER/Fisher.png' }
-  ]
-}
+import { classJobCategory } from '../utils/data'
 
 export default {
   name: 'LeftDrawer',
@@ -279,7 +229,7 @@ export default {
   },
   data () {
     return {
-      jobs: jobs
+      jobs: classJobCategory
     }
   },
   methods: {

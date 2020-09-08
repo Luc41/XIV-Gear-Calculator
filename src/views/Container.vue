@@ -53,15 +53,15 @@
                   <div class="col">
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-grey-8"
+                      class="q-ma-xs text-center bg-grey-5"
                     >
                       <q-chip
                         color="transparent"
-                        text-color="white"
+                        text-color="black"
                       >
-                        {{ currentJobStats[0].name }}
+                        {{ baseParams[0].Name }}
                         :
-                        {{ currentJobStats[0].basevalue }}
+                        {{ baseParams[0].BaseValue }}
                       </q-chip>
                       <q-space />
                       <q-chip
@@ -70,7 +70,7 @@
                         class="q-mt-none"
                         style="border-radius: 4px;"
                       >
-                        + {{ currentJobStats[0].bonusvalue }}
+                        + {{ baseParams[0].BonusValue }}
                       </q-chip>
                     </q-card>
                   </div>
@@ -82,20 +82,20 @@
                 >
                   <div
                     class="col"
-                    v-for="stat in currentJobStats.slice(2*i-1, 2*i+1)"
+                    v-for="stat in baseParams.slice(2*i-1, 2*i+1)"
                     :key="stat.index"
                   >
                     <q-card
                       bordered
-                      class="q-ma-xs text-center bg-grey-8"
+                      class="q-ma-xs text-center bg-grey-5"
                     >
                       <q-chip
                         color="transparent"
-                        text-color="white"
+                        text-color="black"
                       >
-                        {{ stat.name }}
+                        {{ stat.Name }}
                         :
-                        {{ stat.basevalue }}
+                        {{ stat.BaseValue }}
                       </q-chip>
                       <q-space />
                       <q-chip
@@ -104,7 +104,7 @@
                         class="q-mt-none"
                         style="border-radius: 4px;"
                       >
-                        + {{ stat.bonusvalue }}
+                        + {{ stat.BonusValue }}
                       </q-chip>
                     </q-card>
                   </div>
@@ -118,55 +118,42 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-sm col-xs">
+      <div class="col-12 col-md-8 col-sm col-xs">
         <q-scroll-area
           style="height: 100vh;"
           :delay="1200"
         >
           <div class="q-gutter-sm">
+            <gear-table
+              v-for="equipslot in equipSlotCategory.primary"
+              :key="equipslot.index"
+              :title="equipslot.name"
+            />
+
             <template v-if="$store.state.selectedJob === 'Paladin'">
               <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.primary"
+                v-for="equipslot in equipSlotCategory.secondary"
                 :key="equipslot.index"
                 :title="equipslot.name"
-                :columns="columns"
-              />
-              <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.secondary"
-                :key="equipslot.index"
-                :title="equipslot.name"
-                :columns="columns"
-              />
-            </template>
-
-            <template v-else>
-              <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.primary"
-                :key="equipslot.index"
-                :title="equipslot.name"
-                :columns="columns"
               />
             </template>
 
             <gear-table
-              v-for="equipslot in $store.state.equipSlotCategory.armor"
+              v-for="equipslot in equipSlotCategory.armor"
               :key="equipslot.index"
               :title="equipslot.name"
-              :columns="columns"
             />
             <gear-table
-              v-for="equipslot in $store.state.equipSlotCategory.accessories"
+              v-for="equipslot in equipSlotCategory.accessories"
               :key="equipslot.index"
               :title="equipslot.name"
-              :columns="columns"
             />
 
             <template v-if="showFood">
               <gear-table
-                v-for="equipslot in $store.state.equipSlotCategory.food"
+                v-for="equipslot in equipSlotCategory.food"
                 :key="equipslot.index"
                 :title="equipslot.name"
-                :columns="columns"
               />
             </template>
           </div>
@@ -177,7 +164,7 @@
     <q-page-sticky
       position="top"
       expand
-      class="bg-accent text-white"
+      class="bg-blue-grey-4 text-white"
     >
       <q-toolbar>
         <q-toolbar-title>
@@ -185,6 +172,7 @@
           <q-badge
             align="top"
             color="green"
+            class="shadow-1"
           >
             <template v-if="$store.state.patch === null">
               <q-spinner-dots
@@ -208,11 +196,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import gearFilter from '../components/gearFilter'
 import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
 import gearTable from '../components/gearTable'
+
+import { queryObject, baseParamsFilter } from '../utils/data'
+import { getItems } from '../api/api'
 
 export default {
   name: 'Container',
@@ -224,35 +214,50 @@ export default {
   },
   data () {
     return {
+      equipSlotCategory: {
+        primary: [
+          { id: 1, name: 'MainHand' }
+        ],
+        secondary: [
+          { id: 2, name: 'OffHand' }
+        ],
+        armor: [
+          { id: 3, name: 'Head' },
+          { id: 4, name: 'Body' },
+          { id: 5, name: 'Gloves' },
+          { id: 6, name: 'Waist' },
+          { id: 7, name: 'Legs' },
+          { id: 8, name: 'Feet' }
+        ],
+        accessories: [
+          { id: 9, name: 'Ears' },
+          { id: 10, name: 'Neck' },
+          { id: 11, name: 'Wrists' },
+          { id: 12, name: 'FingerL' },
+          { id: 13, name: 'FingerR' }
+        ],
+        food: [
+          { id: 14, name: 'Food' }
+        ]
+      },
+      baseParams: baseParamsFilter(),
       pagination: {
         rowsPerPage: 0
       },
-      columns: [
-        {
-          name: 'desc',
-          required: true,
-          label: 'Name',
-          align: 'left',
-          field: row => row.name,
-          format: val => `${val}`,
-          sortable: true
-        },
-        { name: 'calories', align: 'left', label: 'INT', field: 'int', sortable: true },
-        { name: 'fat', align: 'left', label: 'CTH', field: 'cth', sortable: true },
-        { name: 'carbs', align: 'left', label: 'DTH', field: 'dth', sortable: true },
-        { name: 'protein', align: 'left', label: 'DET', field: 'det', sortable: true },
-        { name: 'sodium', align: 'left', label: 'SS', field: 'ss', sortable: true },
-        { name: 'calcium', align: 'left', label: 'VIT', field: 'vit', sortable: true }
-      ],
       showFood: true
     }
   },
+
   methods: {
     onSubmit () {
-      this.$store.commit('submitQuery', { name: 'classjob', val: sessionStorage.getItem('selectedJob') })
+      this.$store.commit('submitQuery', {
+        name: 'classjob',
+        val: sessionStorage.getItem('selectedJob')
+      })
       this.$refs.specFilter.onSubmit()
       this.$refs.levelFilter.onSubmit()
       this.$refs.gearFilter.onSubmit()
+      this.loadItems()
     },
     onReset () {
       this.$refs.specFilter.onReset()
@@ -262,15 +267,33 @@ export default {
         type: 'positive',
         position: 'top',
         timeout: 1000,
-        message: 'query reset'
+        message: 'Query has reset.'
       })
+    },
+    loadItems () {
+      const baseInfo = ['ID', 'Name', 'Icon', 'LevelItem']
+      const baseStats = ['Stats', 'MateriaSlotCount']
+      const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
+      const equipSlotCategory = ['EquipSlotCategory']
+      const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
+      const data = queryObject(columns)
+      getItems(data)
+        .then(response => {
+          this.$store.commit('updateSessionStorage', {
+            name: 'itemsStorage',
+            val: JSON.stringify(response.Results)
+          })
+        })
+        .catch(error => {
+          console.log('Failed to load items.' + error)
+          this.$q.notify({
+            type: 'negative',
+            position: 'top',
+            timeout: 1000,
+            message: 'Load data error.'
+          })
+        })
     }
-  },
-
-  computed: {
-    ...mapGetters([
-      'currentJobStats'
-    ])
   }
 }
 </script>
