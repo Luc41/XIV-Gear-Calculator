@@ -270,29 +270,45 @@ export default {
         message: 'Query has reset.'
       })
     },
-    loadItems () {
-      const baseInfo = ['ID', 'Name', 'Icon', 'LevelItem']
-      const baseStats = ['Stats', 'MateriaSlotCount']
-      const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
-      const equipSlotCategory = ['EquipSlotCategory']
-      const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
-      const data = queryObject(columns)
-      getItems(data)
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'itemsStorage',
-            val: JSON.stringify(response.Results)
-          })
+    async loadItems () {
+      try {
+        const baseInfo = ['ID', 'Name', 'Icon', 'LevelItem']
+        const baseStats = ['Stats', 'MateriaSlotCount']
+        const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
+        const equipSlotCategory = ['EquipSlotCategory']
+        const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
+        const data = queryObject(columns)
+
+        const items = await getItems(data)
+
+        this.$store.commit('updateSessionStorage', {
+          name: 'itemsStorage',
+          val: JSON.stringify(items.Results)
         })
-        .catch(error => {
-          console.log('Failed to load items.' + error)
-          this.$q.notify({
-            type: 'negative',
-            position: 'top',
-            timeout: 1000,
-            message: 'Load data error.'
-          })
+      } catch (error) {
+        console.log('Failed to load items.' + error)
+        this.$q.notify({
+          type: 'negative',
+          position: 'top',
+          timeout: 1000,
+          message: 'Load data error.'
         })
+      }
+      // .then(response => {
+      //   this.$store.commit('updateSessionStorage', {
+      //     name: 'itemsStorage',
+      //     val: JSON.stringify(response.Results)
+      //   })
+      // })
+      // .catch(error => {
+      //   console.log('Failed to load items.' + error)
+      //   this.$q.notify({
+      //     type: 'negative',
+      //     position: 'top',
+      //     timeout: 1000,
+      //     message: 'Load data error.'
+      //   })
+      // })
     }
   }
 }

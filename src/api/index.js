@@ -10,7 +10,7 @@ const service = Axios.create({
 service.interceptors.request.use(
   config => {
     config.data = JSON.stringify(config.data)
-    return config
+    return Promise.resolve(config)
   }, error => {
     console.log('Request error' + error)
     return Promise.reject(error)
