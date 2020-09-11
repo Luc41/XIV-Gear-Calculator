@@ -96,45 +96,65 @@ export default {
   },
 
   methods: {
-    loadPatches () {
-      getPatches()
-        .then(response => {
-          this.$store.commit('updatePatch', response)
+    async loadData () {
+      try {
+        const patches = await getPatches()
+        const racies = await getRacies()
+        const tribes = await getTribes()
+
+        this.$store.commit('updatePatch', patches)
+        this.$store.commit('updateSessionStorage', {
+          name: 'raciesStorage',
+          val: JSON.stringify(racies.Results)
         })
-        .catch(error => {
-          console.log('Failed to load patch.' + error)
+        this.$store.commit('updateSessionStorage', {
+          name: 'clansStorage',
+          val: JSON.stringify(tribes.Results)
         })
-    },
-    loadRacies () {
-      getRacies()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'raciesStorage',
-            val: JSON.stringify(response.Results)
-          })
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    loadTribes () {
-      getTribes()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'clansStorage',
-            val: JSON.stringify(response.Results)
-          })
-        })
-        .catch(error => {
-          console.log('Failed to load tribes.' + error)
-        })
+      } catch (error) {
+        console.log(error, 'can not load data')
+      }
     }
+    // loadPatches () {
+    //   getPatches()
+    //     .then(response => {
+    //       this.$store.commit('updatePatch', response)
+    //     })
+    //     .catch(error => {
+    //       console.log('Failed to load patch.' + error)
+    //     })
+    // },
+    // loadRacies () {
+    //   getRacies()
+    //     .then(response => {
+    //       this.$store.commit('updateSessionStorage', {
+    //         name: 'raciesStorage',
+    //         val: JSON.stringify(response.Results)
+    //       })
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // },
+    // loadTribes () {
+    //   getTribes()
+    //     .then(response => {
+    //       this.$store.commit('updateSessionStorage', {
+    //         name: 'clansStorage',
+    //         val: JSON.stringify(response.Results)
+    //       })
+    //     })
+    //     .catch(error => {
+    //       console.log('Failed to load tribes.' + error)
+    //     })
+    // }
   },
 
   created () {
-    this.loadPatches()
-    this.loadRacies()
-    this.loadTribes()
+    // this.loadPatches()
+    // this.loadRacies()
+    // this.loadTribes()
+    this.loadData()
   },
 
   watch: {

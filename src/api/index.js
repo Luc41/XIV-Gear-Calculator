@@ -24,9 +24,9 @@ service.interceptors.response.use(
   response => {
     console.log(response)
     if (response.request.status === 200) {
-      return response.data
+      return Promise.resolve(response.data)
     } else {
-      return Promise.reject(response)
+      return Promise.reject(response.data)
     }
   }, error => {
     console.log('err' + error)
