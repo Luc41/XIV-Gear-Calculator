@@ -98,6 +98,9 @@ export default {
   methods: {
     async loadData () {
       try {
+        this.$q.loading.show({
+          message: 'Fetching data.'
+        })
         const patches = await getPatches()
         const racies = await getRacies()
         const tribes = await getTribes()
@@ -111,8 +114,16 @@ export default {
           name: 'clansStorage',
           val: JSON.stringify(tribes.Results)
         })
+        return Promise.resolve(true)
       } catch (error) {
-        console.log(error, 'can not load data')
+        console.log(error)
+        this.$q.notify({
+          type: 'negative',
+          position: 'top',
+          timeout: 1000,
+          message: 'Can not fetch data from XIVAPI.'
+        })
+        return Promise.reject(error)
       }
     }
     // loadPatches () {
@@ -150,11 +161,12 @@ export default {
     // }
   },
 
-  created () {
+  async created () {
     // this.loadPatches()
     // this.loadRacies()
     // this.loadTribes()
-    this.loadData()
+    await this.loadData()
+    this.$q.loading.hide()
   },
 
   watch: {
