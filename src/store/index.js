@@ -35,8 +35,10 @@ export default new Vuex.Store({
       }
     },
     [submitQuery] (state, payload) {
-      state.submitedQuery.classjob = sessionStorage.getItem('selectedJob')
-      Vue.set(state.submitedQuery, payload.name, payload.val)
+      // state.submitedQuery.classjob = sessionStorage.getItem('selectedJob')
+      payload.forEach(index => {
+        Vue.set(state.submitedQuery, index.name, index.val)
+      })
     },
     [updatePatch] (state, payload) {
       state.patch = payload.reverse()[0]

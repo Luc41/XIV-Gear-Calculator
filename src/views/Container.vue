@@ -250,13 +250,36 @@ export default {
 
   methods: {
     onSubmit () {
-      this.$store.commit('submitQuery', {
+      var arr = []
+      arr.push({
         name: 'classjob',
         val: sessionStorage.getItem('selectedJob')
       })
-      this.$refs.specFilter.onSubmit()
-      this.$refs.levelFilter.onSubmit()
-      this.$refs.gearFilter.onSubmit()
+      const childrenData = [
+        {
+          name: 'race',
+          val: this.$refs.specFilter.raciesModel
+        },
+        {
+          name: 'tribe',
+          val: this.$refs.specFilter.clansModel
+        },
+        {
+          name: 'level',
+          val: this.$refs.specFilter.levelSlider
+        },
+        {
+          name: 'levelitem',
+          val: this.$refs.levelFilter.itemLevel.bottom.toString() + ',' + this.$refs.levelFilter.itemLevel.top.toString()
+        },
+        {
+          name: 'levelequip',
+          val: this.$refs.levelFilter.equipLevel.bottom.toString() + ',' + this.$refs.levelFilter.equipLevel.top.toString()
+        }
+      ]
+      arr = arr.concat(childrenData)
+      // console.log(arr)
+      this.$store.commit('submitQuery', arr)
       this.loadItems()
     },
     onReset () {
@@ -277,9 +300,18 @@ export default {
         const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
         const equipSlotCategory = ['EquipSlotCategory']
         const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
-        const data = queryObject(columns)
+        var data = queryObject(columns)
 
-        const items = await getItems(data)
+        var items = await getItems(data)
+
+        for (var index = 1; index < items.Pagination.PageTotal; index++) {
+          data.page = index + 1
+          data.body.from += 100
+          data.limit = items.Pagination.ResultsTotal - items.Pagination.Results
+          const itemsInNextPage = await getItems(data)
+          console.log(itemsInNextPage)
+          items.Results = items.Results.concat(itemsInNextPage.Results)
+        }
 
         this.$store.commit('updateSessionStorage', {
           name: 'itemsStorage',

@@ -200,7 +200,7 @@ export const baseParamsFilter = () => {
 }
 
 /**
- * extract the short name of the job,use in the queryObject()
+ * extract the short name of the job,used in the queryObject()
  * @param {Object} param the object contains all classjob info
  */
 const getShort = (param) => {
@@ -282,10 +282,8 @@ export const queryObject = (columns) => {
 
 /**
  * Calculate the total HP of character.
- * Formula for test:
- * ⌊HPModifier * ClassJob.ModifierHP/100⌋ + ⌊⌊|(BaseVIT * ClassJob.ModifierVIT/100 - BaseDEX * ClassJob.ModifierDEX/100)| * (Level - 1)⌋ - (BaseVIT - 340) * ClassJob.ModifierVIT * (Level - 2)⌋
- * + ⌊(TotalVIT - BaseVIT) * 31.5⌋
- * Weight 31.5 for tank & 22.1 for other jobs.
+ * Based on How to be a Math Wizard - Third Edition:
+ * https://docs.google.com/document/d/1OpfKYmf31FpES3IHOrl3H8phU4Np8FChH4B4lP1ZE08/edit#heading=h.j3uztojf6dpv
  * @param {Number} level Character level.
  * @param {Number} vit Total vitality of the character.
  */
