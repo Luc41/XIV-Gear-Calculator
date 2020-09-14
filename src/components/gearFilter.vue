@@ -191,21 +191,21 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      const query = [
-        {
-          name: 'rarity',
-          val: this.computedRarity
-        },
-        {
-          name: 'category',
-          val: this.computedCatgories
-        }
-      ]
-      for (const index in query) {
-        this.$store.commit('submitQuery', query[index])
-      }
-    },
+    // onSubmit () {
+    //   const query = [
+    //     {
+    //       name: 'rarity',
+    //       val: this.computedRarity
+    //     },
+    //     {
+    //       name: 'category',
+    //       val: this.computedCatgories
+    //     }
+    //   ]
+    //   for (const index in query) {
+    //     this.$store.commit('submitQuery', query[index])
+    //   }
+    // },
     onReset () {
       this.rarity = {
         White: true,
