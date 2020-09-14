@@ -165,8 +165,12 @@ export default {
     // this.loadPatches()
     // this.loadRacies()
     // this.loadTribes()
-    await this.loadData()
-    this.$q.loading.hide()
+    const loadStatus = await this.loadData()
+    if (loadStatus) {
+      this.$q.loading.hide()
+    } else {
+      console.log(loadStatus)
+    }
   },
 
   watch: {
