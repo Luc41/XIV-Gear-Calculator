@@ -249,6 +249,7 @@ export default {
   },
 
   methods: {
+    // submit search filters
     onSubmit () {
       var arr = []
       arr.push({
@@ -281,6 +282,7 @@ export default {
       this.$store.commit('submitQuery', arr)
       this.loadItems()
     },
+    // reset search filters
     onReset () {
       this.$refs.specFilter.onReset()
       this.$refs.levelFilter.onReset()
@@ -294,27 +296,28 @@ export default {
     },
     async loadItems () {
       try {
+        // columns of item data
         const baseInfo = ['ID', 'Name', 'Icon', 'LevelItem']
         const baseStats = ['Stats', 'MateriaSlotCount']
         const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
         const equipSlotCategory = ['EquipSlotCategory']
         const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
         var data = queryObject(columns)
+        // get itemsdata from XIVAPI
+        const items = await getItems(data)
 
-        var items = await getItems(data)
-
+        var itemsData = items.Results
+        // when get results > 100, request next page(100 results per page)
         for (var index = 1; index < items.Pagination.PageTotal; index++) {
           data.page = index + 1
           data.body.from += 100
-          // data.limit = items.Pagination.ResultsTotal - items.Pagination.Results
           const itemsInNextPage = await getItems(data)
-          // console.log(itemsInNextPage)
-          items.Results = items.Results.concat(itemsInNextPage.Results)
+          itemsData = itemsData.concat(itemsInNextPage.Results)
         }
-
+        // commit itemsdata to session storage
         this.$store.commit('updateSessionStorage', {
           name: 'itemsStorage',
-          val: JSON.stringify(items.Results)
+          val: JSON.stringify(itemsData)
         })
       } catch (error) {
         console.log('Failed to load items.' + error)
@@ -325,21 +328,6 @@ export default {
           message: 'Load data error.'
         })
       }
-      // .then(response => {
-      //   this.$store.commit('updateSessionStorage', {
-      //     name: 'itemsStorage',
-      //     val: JSON.stringify(response.Results)
-      //   })
-      // })
-      // .catch(error => {
-      //   console.log('Failed to load items.' + error)
-      //   this.$q.notify({
-      //     type: 'negative',
-      //     position: 'top',
-      //     timeout: 1000,
-      //     message: 'Load data error.'
-      //   })
-      // })
     }
   }
 }
