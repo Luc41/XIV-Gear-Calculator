@@ -307,9 +307,9 @@ export default {
         for (var index = 1; index < items.Pagination.PageTotal; index++) {
           data.page = index + 1
           data.body.from += 100
-          data.limit = items.Pagination.ResultsTotal - items.Pagination.Results
+          // data.limit = items.Pagination.ResultsTotal - items.Pagination.Results
           const itemsInNextPage = await getItems(data)
-          console.log(itemsInNextPage)
+          // console.log(itemsInNextPage)
           items.Results = items.Results.concat(itemsInNextPage.Results)
         }
 
