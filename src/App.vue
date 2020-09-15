@@ -126,45 +126,9 @@ export default {
         return Promise.reject(error)
       }
     }
-    // loadPatches () {
-    //   getPatches()
-    //     .then(response => {
-    //       this.$store.commit('updatePatch', response)
-    //     })
-    //     .catch(error => {
-    //       console.log('Failed to load patch.' + error)
-    //     })
-    // },
-    // loadRacies () {
-    //   getRacies()
-    //     .then(response => {
-    //       this.$store.commit('updateSessionStorage', {
-    //         name: 'raciesStorage',
-    //         val: JSON.stringify(response.Results)
-    //       })
-    //     })
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
-    // },
-    // loadTribes () {
-    //   getTribes()
-    //     .then(response => {
-    //       this.$store.commit('updateSessionStorage', {
-    //         name: 'clansStorage',
-    //         val: JSON.stringify(response.Results)
-    //       })
-    //     })
-    //     .catch(error => {
-    //       console.log('Failed to load tribes.' + error)
-    //     })
-    // }
   },
 
   async created () {
-    // this.loadPatches()
-    // this.loadRacies()
-    // this.loadTribes()
     const loadStatus = await this.loadData()
     if (loadStatus) {
       this.$q.loading.hide()

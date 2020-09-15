@@ -101,25 +101,6 @@ export default {
     }
   },
   methods: {
-    // onSubmit () {
-    //   const query = [
-    //     {
-    //       name: 'race',
-    //       val: this.raciesModel
-    //     },
-    //     {
-    //       name: 'tribe',
-    //       val: this.clansModel
-    //     },
-    //     {
-    //       name: 'level',
-    //       val: this.levelSlider
-    //     }
-    //   ]
-    //   for (const index in query) {
-    //     this.$store.commit('submitQuery', query[index])
-    //   }
-    // },
     onReset () {
       this.raciesModel = null
       this.clansModel = null

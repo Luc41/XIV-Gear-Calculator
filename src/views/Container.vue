@@ -278,7 +278,6 @@ export default {
         }
       ]
       arr = arr.concat(childrenData)
-      // console.log(arr)
       this.$store.commit('submitQuery', arr)
       this.loadItems()
     },

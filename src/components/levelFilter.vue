@@ -89,21 +89,6 @@ export default {
     }
   },
   methods: {
-    // onSubmit () {
-    //   const query = [
-    //     {
-    //       name: 'levelitem',
-    //       val: this.itemLevel.bottom.toString() + ',' + this.itemLevel.top.toString()
-    //     },
-    //     {
-    //       name: 'levelequip',
-    //       val: this.equipLevel.bottom.toString() + ',' + this.equipLevel.top.toString()
-    //     }
-    //   ]
-    //   for (const index in query) {
-    //     this.$store.commit('submitQuery', query[index])
-    //   }
-    // },
     onReset () {
       this.itemLevel = {
         bottom: 470,

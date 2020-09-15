@@ -152,13 +152,10 @@ export const loadColumns = () => {
     },
     { name: 3, align: 'left', label: 'Vitality' }
   ]
-  // console.log('selectedjob: ', store.state.selectedJob)
   for (var index in baseParamsModifier) {
-    // console.log('index: ', index)
     var columnIDs = []
     if (baseParamsModifier[index].jobs.includes(store.state.selectedJob)) {
       columnIDs = baseParamsModifier[index].currentParams
-      // console.log('columnIDs: ', columnIDs)
       for (var i in baseParams) {
         if (columnIDs.includes(baseParams[i].ID)) {
           columns.push({
@@ -166,7 +163,6 @@ export const loadColumns = () => {
             align: baseParams[i].ID > 5 ? 'center' : 'left',
             label: baseParams[i].Name
           })
-          // console.log('columns: ', columns)
         }
       }
       return columns
@@ -193,7 +189,6 @@ export const baseParamsFilter = () => {
         return item.ID === filter[i]
       })
       arr.push(tmp[0])
-      // console.log(arr)
     }
     return arr
   }
@@ -206,12 +201,9 @@ export const baseParamsFilter = () => {
 const getShort = (param) => {
   var short = ''
   for (var index in param) {
-    // console.log(index)
     for (var i in index) {
-      // console.log(i)
       if (store.state.submitedQuery.classjob === param[index][i].job) {
         short = param[index][i].short
-        // console.log(short)
         return short.toUpperCase()
       } else {
         break
@@ -272,10 +264,8 @@ export const queryObject = (columns) => {
   body.query.bool.filter.push({ term: { [key]: 1 } })
 
   // add columns array to query
-  // const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recipes,MateriaSlotCount,IsAdvancedMeldingPermitted'
   query.body = body
   query = { ...query, columns }
-  // console.log(query)
 
   return query
 }
