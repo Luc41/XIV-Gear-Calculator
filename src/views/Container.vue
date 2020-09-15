@@ -128,13 +128,17 @@
               v-for="equipslot in equipSlotCategory.primary"
               :key="equipslot.index"
               :title="equipslot.name"
+              :loading="showTableLoading"
+              :ref="equipslot.name"
             />
 
-            <template v-if="$store.state.selectedJob === 'Paladin'">
+            <template v-if="showOffhand">
               <gear-table
                 v-for="equipslot in equipSlotCategory.secondary"
                 :key="equipslot.index"
                 :title="equipslot.name"
+                :loading="showTableLoading"
+                :ref="equipslot.name"
               />
             </template>
 
@@ -142,11 +146,15 @@
               v-for="equipslot in equipSlotCategory.armor"
               :key="equipslot.index"
               :title="equipslot.name"
+              :loading="showTableLoading"
+              :ref="equipslot.name"
             />
             <gear-table
               v-for="equipslot in equipSlotCategory.accessories"
               :key="equipslot.index"
               :title="equipslot.name"
+              :loading="showTableLoading"
+              :ref="equipslot.name"
             />
 
             <template v-if="showFood">
@@ -154,6 +162,8 @@
                 v-for="equipslot in equipSlotCategory.food"
                 :key="equipslot.index"
                 :title="equipslot.name"
+                :loading="showTableLoading"
+                :ref="equipslot.name"
               />
             </template>
           </div>
@@ -244,13 +254,34 @@ export default {
       pagination: {
         rowsPerPage: 0
       },
-      showFood: true
+      showFood: true,
+      showTableLoading: false
     }
   },
 
   methods: {
     // submit search filters
-    onSubmit () {
+    async onSubmit () {
+      this.showTableLoading = true
+      this.submitQuery()
+      const state = await this.loadItems()
+      this.refreshTable(state)
+    },
+
+    // reset search filters
+    onReset () {
+      this.$refs.specFilter.onReset()
+      this.$refs.levelFilter.onReset()
+      this.$refs.gearFilter.onReset()
+      this.$q.notify({
+        type: 'positive',
+        position: 'top',
+        timeout: 1000,
+        message: 'Query has reset.'
+      })
+    },
+
+    submitQuery () {
       var arr = []
       arr.push({
         name: 'classjob',
@@ -280,20 +311,8 @@ export default {
       ]
       arr = arr.concat(childrenData)
       this.$store.commit('submitQuery', arr)
-      this.loadItems()
     },
-    // reset search filters
-    onReset () {
-      this.$refs.specFilter.onReset()
-      this.$refs.levelFilter.onReset()
-      this.$refs.gearFilter.onReset()
-      this.$q.notify({
-        type: 'positive',
-        position: 'top',
-        timeout: 1000,
-        message: 'Query has reset.'
-      })
-    },
+
     async loadItems () {
       try {
         // columns of item data
@@ -319,6 +338,7 @@ export default {
           name: 'itemsStorage',
           val: JSON.stringify(itemsData)
         })
+        return Promise.resolve(true)
       } catch (error) {
         console.log('Failed to load items.' + error)
         this.$q.notify({
@@ -327,7 +347,36 @@ export default {
           timeout: 1000,
           message: 'Load data error.'
         })
+        return Promise.reject(error)
       }
+    },
+
+    refreshTable (state) {
+      if (state) {
+        for (var index in this.equipSlotCategory) {
+          for (var i in this.equipSlotCategory[index]) {
+            const refs = this.equipSlotCategory[index][i].name
+            if (refs === 'OffHand') {
+              if (this.showOffhand) {
+                this.$refs[refs][0].refreshTable()
+              }
+              continue
+            }
+            this.$refs[refs][0].refreshTable()
+          }
+        }
+        this.showTableLoading = false
+      } else {
+        this.onSubmit()
+      }
+    }
+  },
+  computed: {
+    showOffhand () {
+      if (this.$store.state.selectedJob === 'Paladin') {
+        return true
+      }
+      return false
     }
   }
 }

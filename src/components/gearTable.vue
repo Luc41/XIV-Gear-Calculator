@@ -5,8 +5,8 @@
     card-class="bg-grey-2 text-black"
     table-header-class="bg-grey-4"
     table-class="text-black"
-    :data="data"
-    :columns="$store.state.columns"
+    :data="itemsShow"
+    :columns="columns"
     row-key="Name"
     selection="single"
     :selected.sync="selected"
@@ -16,20 +16,20 @@
     no-data-label="Found nothing, please refresh"
     loading-label="Loading data"
   >
-    <template #loading>
+    <!-- <template #loading>
       <q-inner-loading
         showing
         color="grey-7"
       />
-    </template>
+    </template> -->
 
-    <template #top-right>
+    <!-- <template #top-right>
       <q-btn
         flat
         color="red"
         @click="onSubmit()"
       />
-    </template>
+    </template> -->
 
     <template #body-cell-Name="props">
       <q-td
@@ -333,6 +333,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import popMateriaMelding from './materiaMelding'
 
 export default {
@@ -344,30 +346,35 @@ export default {
     title: {
       type: String,
       default: 'Unknown'
+    },
+    loading: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
     }
   },
   data () {
     return {
+      itemsShow: [],
       selected: [],
-      loading: false,
       itemInfo: false,
-      data: [],
       pagination: {
         rowsPerPage: 20
       }
     }
   },
   methods: {
-    onSubmit () {
+    refreshTable () {
+      // clear itemsShow
+      this.itemsShow.splice(0, this.itemsShow.length)
+
       const rawdata = this.$store.state.itemsStorage
-      var data = []
       for (var item in rawdata) {
         if (rawdata[item].EquipSlotCategory[this.title] === 1) {
-          data.push(rawdata[item])
+          this.itemsShow.push(rawdata[item])
         }
       }
-      // console.log(data)
-      this.data = data
     },
     getStatsCap () {
       // const baseValue = null
@@ -377,26 +384,21 @@ export default {
     }
   },
   watch: {
-    // data (val) {
-    //   for (var index in val) {
-    //     for (var i in val[index].Stats) {
-    //       console.log(i)
-    //     }
-    //   }
-    // }
   },
   computed: {
-    /*
-    bodyCells () {
-      const columns = this.$store.state.columns
-      var bodyCells = []
-      for (var index in columns) {
-        var bodyCell = 'body-cell-' + columns[index]
-        bodyCells.push(bodyCell)
-      }
-      return bodyCells
-    }
-    */
+    ...mapState([
+      'columns'
+    ])
+    // data () {
+    //   const rawdata = this.$store.state.itemsStorage
+    //   var tmp = []
+    //   for (var item in rawdata) {
+    //     if (rawdata[item].EquipSlotCategory[this.title] === 1) {
+    //       tmp.push(rawdata[item])
+    //     }
+    //   }
+    //   return tmp
+    // }
   }
 }
 </script>
