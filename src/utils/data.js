@@ -93,30 +93,33 @@ export const classJobCategory = {
   ]
 }
 
-const baseParamsModifier = [
+// keep data,rewrite function.
+// now it cause data table shows extra columns.
+export const baseParamsModifier = [
   {
     jobs: ['Bard', 'Machinist', 'Dancer', 'Ninja'],
-    currentParams: [2, 27, 22, 44, 45]
+    currentParams: [0, 2, 3, 27, 22, 44, 45]
   },
   {
     jobs: ['Monk', 'Dragoon', 'Samurai'],
-    currentParams: [1, 27, 22, 44, 45]
+    currentParams: [0, 1, 3, 27, 22, 44, 45]
   },
   {
     jobs: ['Blackmage', 'Summoner', 'Redmage'],
-    currentParams: [4, 27, 22, 44, 46]
+    currentParams: [0, 3, 4, 27, 22, 44, 46]
   },
   {
     jobs: ['Paladin', 'Warrior', 'Darkknight', 'Gunbreaker'],
-    currentParams: [1, 19, 27, 22, 44, 45]
+    currentParams: [0, 1, 3, 19, 27, 22, 44, 45]
   },
   {
     jobs: ['Whitemage', 'Scholar', 'Astrologian'],
-    currentParams: [5, 6, 27, 22, 44, 46]
+    currentParams: [0, 3, 5, 6, 27, 22, 44, 46]
   }
 ]
 
-const baseParams = [
+export const baseParams = [
+  { ID: 0, Name: 'HP', BaseValue: 0, BonusValue: 0 },
   { ID: 1, Name: 'Strength', BaseValue: 0, BonusValue: 0 },
   { ID: 2, Name: 'Dexterity', BaseValue: 0, BonusValue: 0 },
   { ID: 3, Name: 'Vitality', BaseValue: 0, BonusValue: 0 },
@@ -134,6 +137,7 @@ const baseParams = [
 /**
  * load data table columns as array
  */
+// need rewrite
 export const loadColumns = () => {
   var columns = [
     {
@@ -173,6 +177,7 @@ export const loadColumns = () => {
 /**
  * construct baseparam value array
  */
+// need rewrite
 export const baseParamsFilter = () => {
   var arr = [
     { ID: 0, Name: 'HP', BaseValue: 0, BonusValue: 0 },
