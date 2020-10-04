@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store/index'
 import Main from '../views/Main.vue'
-import { loadColumns } from '../utils/data'
+import { loadColumns } from '../utils/common'
 
 Vue.use(VueRouter)
 

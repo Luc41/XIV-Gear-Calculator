@@ -211,7 +211,7 @@ import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
 import gearTable from '../components/gearTable'
 
-import { queryObject, baseParamsFilter } from '../utils/data'
+import { queryObject, baseParamsFilter } from '../utils/common'
 import { getItems } from '../api/api'
 
 export default {
