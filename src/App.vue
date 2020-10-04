@@ -96,45 +96,45 @@ export default {
   },
 
   methods: {
-    loadPatches () {
-      getPatches()
-        .then(response => {
-          this.$store.commit('updatePatch', response)
+    async loadData () {
+      try {
+        this.$q.loading.show({
+          message: 'Fetching data.'
         })
-        .catch(error => {
-          console.log('Failed to load patch.' + error)
+        const patches = await getPatches()
+        const racies = await getRacies()
+        const tribes = await getTribes()
+
+        this.$store.commit('updatePatch', patches)
+        this.$store.commit('updateSessionStorage', {
+          name: 'raciesStorage',
+          val: JSON.stringify(racies.Results)
         })
-    },
-    loadRacies () {
-      getRacies()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'raciesStorage',
-            val: JSON.stringify(response.Results)
-          })
+        this.$store.commit('updateSessionStorage', {
+          name: 'clansStorage',
+          val: JSON.stringify(tribes.Results)
         })
-        .catch(error => {
-          console.log(error)
+        return Promise.resolve(true)
+      } catch (error) {
+        console.log(error)
+        this.$q.notify({
+          type: 'negative',
+          position: 'top',
+          timeout: 1000,
+          message: 'Can not fetch data from XIVAPI.'
         })
-    },
-    loadTribes () {
-      getTribes()
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'clansStorage',
-            val: JSON.stringify(response.Results)
-          })
-        })
-        .catch(error => {
-          console.log('Failed to load tribes.' + error)
-        })
+        return Promise.reject(error)
+      }
     }
   },
 
-  created () {
-    this.loadPatches()
-    this.loadRacies()
-    this.loadTribes()
+  async created () {
+    const loadStatus = await this.loadData()
+    if (loadStatus) {
+      this.$q.loading.hide()
+    } else {
+      console.log(loadStatus)
+    }
   },
 
   watch: {

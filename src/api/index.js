@@ -10,7 +10,7 @@ const service = Axios.create({
 service.interceptors.request.use(
   config => {
     config.data = JSON.stringify(config.data)
-    return config
+    return Promise.resolve(config)
   }, error => {
     console.log('Request error' + error)
     return Promise.reject(error)
@@ -24,9 +24,9 @@ service.interceptors.response.use(
   response => {
     console.log(response)
     if (response.request.status === 200) {
-      return response.data
+      return Promise.resolve(response.data)
     } else {
-      return Promise.reject(response)
+      return Promise.reject(response.data)
     }
   }, error => {
     console.log('err' + error)

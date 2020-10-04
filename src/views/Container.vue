@@ -128,13 +128,17 @@
               v-for="equipslot in equipSlotCategory.primary"
               :key="equipslot.index"
               :title="equipslot.name"
+              :loading="showTableLoading"
+              :ref="equipslot.name"
             />
 
-            <template v-if="$store.state.selectedJob === 'Paladin'">
+            <template v-if="showOffhand">
               <gear-table
                 v-for="equipslot in equipSlotCategory.secondary"
                 :key="equipslot.index"
                 :title="equipslot.name"
+                :loading="showTableLoading"
+                :ref="equipslot.name"
               />
             </template>
 
@@ -142,11 +146,15 @@
               v-for="equipslot in equipSlotCategory.armor"
               :key="equipslot.index"
               :title="equipslot.name"
+              :loading="showTableLoading"
+              :ref="equipslot.name"
             />
             <gear-table
               v-for="equipslot in equipSlotCategory.accessories"
               :key="equipslot.index"
               :title="equipslot.name"
+              :loading="showTableLoading"
+              :ref="equipslot.name"
             />
 
             <template v-if="showFood">
@@ -154,6 +162,8 @@
                 v-for="equipslot in equipSlotCategory.food"
                 :key="equipslot.index"
                 :title="equipslot.name"
+                :loading="showTableLoading"
+                :ref="equipslot.name"
               />
             </template>
           </div>
@@ -201,7 +211,7 @@ import levelFilter from '../components/levelFilter'
 import specFilter from '../components/specFilter'
 import gearTable from '../components/gearTable'
 
-import { queryObject, baseParamsFilter } from '../utils/data'
+import { queryObject, baseParamsFilter } from '../utils/common'
 import { getItems } from '../api/api'
 
 export default {
@@ -244,21 +254,21 @@ export default {
       pagination: {
         rowsPerPage: 0
       },
-      showFood: true
+      showFood: true,
+      showTableLoading: false
     }
   },
 
   methods: {
-    onSubmit () {
-      this.$store.commit('submitQuery', {
-        name: 'classjob',
-        val: sessionStorage.getItem('selectedJob')
-      })
-      this.$refs.specFilter.onSubmit()
-      this.$refs.levelFilter.onSubmit()
-      this.$refs.gearFilter.onSubmit()
-      this.loadItems()
+    // submit search filters
+    async onSubmit () {
+      this.showTableLoading = true
+      this.submitQuery()
+      const state = await this.loadItems()
+      this.refreshTable(state)
     },
+
+    // reset search filters
     onReset () {
       this.$refs.specFilter.onReset()
       this.$refs.levelFilter.onReset()
@@ -270,29 +280,103 @@ export default {
         message: 'Query has reset.'
       })
     },
-    loadItems () {
-      const baseInfo = ['ID', 'Name', 'Icon', 'LevelItem']
-      const baseStats = ['Stats', 'MateriaSlotCount']
-      const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
-      const equipSlotCategory = ['EquipSlotCategory']
-      const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
-      const data = queryObject(columns)
-      getItems(data)
-        .then(response => {
-          this.$store.commit('updateSessionStorage', {
-            name: 'itemsStorage',
-            val: JSON.stringify(response.Results)
-          })
+
+    submitQuery () {
+      var arr = []
+      arr.push({
+        name: 'classjob',
+        val: sessionStorage.getItem('selectedJob')
+      })
+      const childrenData = [
+        {
+          name: 'race',
+          val: this.$refs.specFilter.raciesModel
+        },
+        {
+          name: 'tribe',
+          val: this.$refs.specFilter.clansModel
+        },
+        {
+          name: 'level',
+          val: this.$refs.specFilter.levelSlider
+        },
+        {
+          name: 'levelitem',
+          val: this.$refs.levelFilter.itemLevel.bottom.toString() + ',' + this.$refs.levelFilter.itemLevel.top.toString()
+        },
+        {
+          name: 'levelequip',
+          val: this.$refs.levelFilter.equipLevel.bottom.toString() + ',' + this.$refs.levelFilter.equipLevel.top.toString()
+        }
+      ]
+      arr = arr.concat(childrenData)
+      this.$store.commit('submitQuery', arr)
+    },
+
+    async loadItems () {
+      try {
+        // columns of item data
+        const baseInfo = ['ID', 'Name', 'Icon', 'LevelItem']
+        const baseStats = ['Stats', 'MateriaSlotCount']
+        const baseModifier = ['CanBeHq', 'Rarity', 'Recipes', 'IsAdvancedMeldingPermitted']
+        const equipSlotCategory = ['EquipSlotCategory']
+        const columns = baseInfo.concat(baseStats).concat(baseModifier).concat(equipSlotCategory).join(',')
+        var data = queryObject(columns)
+        // get itemsdata from XIVAPI
+        const items = await getItems(data)
+
+        var itemsData = items.Results
+        // when get results > 100, request next page(100 results per page)
+        for (var index = 1; index < items.Pagination.PageTotal; index++) {
+          data.page = index + 1
+          data.body.from += 100
+          const itemsInNextPage = await getItems(data)
+          itemsData = itemsData.concat(itemsInNextPage.Results)
+        }
+        // commit itemsdata to session storage
+        this.$store.commit('updateSessionStorage', {
+          name: 'itemsStorage',
+          val: JSON.stringify(itemsData)
         })
-        .catch(error => {
-          console.log('Failed to load items.' + error)
-          this.$q.notify({
-            type: 'negative',
-            position: 'top',
-            timeout: 1000,
-            message: 'Load data error.'
-          })
+        return Promise.resolve(true)
+      } catch (error) {
+        console.log('Failed to load items.' + error)
+        this.$q.notify({
+          type: 'negative',
+          position: 'top',
+          timeout: 1000,
+          message: 'Load data error.'
         })
+        return Promise.reject(error)
+      }
+    },
+
+    refreshTable (state) {
+      if (state) {
+        for (var index in this.equipSlotCategory) {
+          for (var i in this.equipSlotCategory[index]) {
+            const refs = this.equipSlotCategory[index][i].name
+            if (refs === 'OffHand') {
+              if (this.showOffhand) {
+                this.$refs[refs][0].refreshTable()
+              }
+              continue
+            }
+            this.$refs[refs][0].refreshTable()
+          }
+        }
+        this.showTableLoading = false
+      } else {
+        this.onSubmit()
+      }
+    }
+  },
+  computed: {
+    showOffhand () {
+      if (this.$store.state.selectedJob === 'Paladin') {
+        return true
+      }
+      return false
     }
   }
 }

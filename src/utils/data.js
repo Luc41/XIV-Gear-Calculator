@@ -1,7 +1,3 @@
-// import qs from 'qs'
-import store from '../store/index'
-import { Notify } from 'quasar'
-
 /**
  * sample body structure
  * {
@@ -93,30 +89,33 @@ export const classJobCategory = {
   ]
 }
 
-const baseParamsModifier = [
+// keep data,rewrite function.
+// now it cause data table shows extra columns.
+export const baseParamsModifier = [
   {
     jobs: ['Bard', 'Machinist', 'Dancer', 'Ninja'],
-    currentParams: [2, 27, 22, 44, 45]
+    currentParams: [2, 3, 27, 22, 44, 45]
   },
   {
     jobs: ['Monk', 'Dragoon', 'Samurai'],
-    currentParams: [1, 27, 22, 44, 45]
+    currentParams: [1, 3, 27, 22, 44, 45]
   },
   {
     jobs: ['Blackmage', 'Summoner', 'Redmage'],
-    currentParams: [4, 27, 22, 44, 46]
+    currentParams: [3, 4, 27, 22, 44, 46]
   },
   {
     jobs: ['Paladin', 'Warrior', 'Darkknight', 'Gunbreaker'],
-    currentParams: [1, 19, 27, 22, 44, 45]
+    currentParams: [1, 3, 19, 27, 22, 44, 45]
   },
   {
     jobs: ['Whitemage', 'Scholar', 'Astrologian'],
-    currentParams: [5, 6, 27, 22, 44, 46]
+    currentParams: [3, 5, 6, 27, 22, 44, 46]
   }
 ]
 
-const baseParams = [
+export const baseParams = [
+  { ID: 0, Name: 'HP', BaseValue: 0, BonusValue: 0 },
   { ID: 1, Name: 'Strength', BaseValue: 0, BonusValue: 0 },
   { ID: 2, Name: 'Dexterity', BaseValue: 0, BonusValue: 0 },
   { ID: 3, Name: 'Vitality', BaseValue: 0, BonusValue: 0 },
@@ -130,165 +129,3 @@ const baseParams = [
   { ID: 45, Name: 'Skill Speed', BaseValue: 0, BonusValue: 0 },
   { ID: 46, Name: 'Spell Speed', BaseValue: 0, BonusValue: 0 }
 ]
-
-/**
- * load data table columns as array
- */
-export const loadColumns = () => {
-  var columns = [
-    {
-      name: 'Name',
-      required: true,
-      label: 'Name',
-      align: 'left',
-      field: 'LevelItem',
-      sortable: true
-    },
-    {
-      name: 'Materia',
-      required: true,
-      label: 'Materia',
-      align: 'left'
-    },
-    { name: 3, align: 'left', label: 'Vitality' }
-  ]
-  // console.log('selectedjob: ', store.state.selectedJob)
-  for (var index in baseParamsModifier) {
-    // console.log('index: ', index)
-    var columnIDs = []
-    if (baseParamsModifier[index].jobs.includes(store.state.selectedJob)) {
-      columnIDs = baseParamsModifier[index].currentParams
-      // console.log('columnIDs: ', columnIDs)
-      for (var i in baseParams) {
-        if (columnIDs.includes(baseParams[i].ID)) {
-          columns.push({
-            name: baseParams[i].ID,
-            align: baseParams[i].ID > 5 ? 'center' : 'left',
-            label: baseParams[i].Name
-          })
-          // console.log('columns: ', columns)
-        }
-      }
-      return columns
-    }
-  }
-}
-
-/**
- * construct baseparam value array
- */
-export const baseParamsFilter = () => {
-  var arr = [
-    { ID: 0, Name: 'HP', BaseValue: 0, BonusValue: 0 },
-    { ID: 3, Name: 'Vitality', BaseValue: 0, BonusValue: 0 }
-  ]
-  for (var index in baseParamsModifier) {
-    if (baseParamsModifier[index].jobs.includes(store.state.selectedJob)) {
-      var filter = baseParamsModifier[index].currentParams
-    } else {
-      continue
-    }
-    for (var i in filter) {
-      var tmp = baseParams.filter((item) => {
-        return item.ID === filter[i]
-      })
-      arr.push(tmp[0])
-      // console.log(arr)
-    }
-    return arr
-  }
-}
-
-/**
- * extract the short name of the job,use in the queryObject()
- * @param {Object} param the object contains all classjob info
- */
-const getShort = (param) => {
-  var short = ''
-  for (var index in param) {
-    // console.log(index)
-    for (var i in index) {
-      // console.log(i)
-      if (store.state.submitedQuery.classjob === param[index][i].job) {
-        short = param[index][i].short
-        // console.log(short)
-        return short.toUpperCase()
-      } else {
-        break
-      }
-    }
-  }
-}
-
-/**
- * construct the query object based on ElasticSearch
- * check document: https://www.elastic.co/guide/en/elasticsearch/reference/6.8/query-dsl.html
- */
-export const queryObject = (columns) => {
-  try {
-    if (store.state.submitedQuery === {}) {
-      throw new Error('Submited query is empty.')
-    }
-  } catch (err) {
-    console.log(err)
-    Notify.create(err)
-  }
-  // request query body
-  var body = {
-    query: {
-      bool: {
-        filter: []
-      }
-    },
-    from: 0,
-    size: 100
-  }
-  // request query
-  var query = {
-    indexes: 'item',
-    body: {}
-  }
-  // construct body object
-  var levelEquipRange = store.state.submitedQuery.levelequip
-  levelEquipRange = levelEquipRange.split(',')
-  const LevelEquip = {
-    gte: levelEquipRange[0],
-    lte: levelEquipRange[1]
-  }
-
-  var levelItemRange = store.state.submitedQuery.levelitem
-  levelItemRange = levelItemRange.split(',')
-  const LevelItem = {
-    gte: levelItemRange[0],
-    lte: levelItemRange[1]
-  }
-
-  const short = getShort(classJobCategory)
-  var key = 'ClassJobCategory'
-  key = key.concat('.', short)
-
-  body.query.bool.filter.push({ range: { LevelEquip } })
-  body.query.bool.filter.push({ range: { LevelItem } })
-  body.query.bool.filter.push({ term: { [key]: 1 } })
-
-  // add columns array to query
-  // const columns = 'Name,Icon,Stats,LevelItem,CanBeHq,EquipSlotCategory,Rarity,Recipes,MateriaSlotCount,IsAdvancedMeldingPermitted'
-  query.body = body
-  query = { ...query, columns }
-  // console.log(query)
-
-  return query
-}
-
-/**
- * Calculate the total HP of character.
- * Formula for test:
- * ⌊HPModifier * ClassJob.ModifierHP/100⌋ + ⌊⌊|(BaseVIT * ClassJob.ModifierVIT/100 - BaseDEX * ClassJob.ModifierDEX/100)| * (Level - 1)⌋ - (BaseVIT - 340) * ClassJob.ModifierVIT * (Level - 2)⌋
- * + ⌊(TotalVIT - BaseVIT) * 31.5⌋
- * Weight 31.5 for tank & 22.1 for other jobs.
- * @param {Number} level Character level.
- * @param {Number} vit Total vitality of the character.
- */
-export const calculateHP = (level, vit) => {
-  return Math.floor(vit)
-}
