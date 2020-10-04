@@ -15,7 +15,16 @@
           icon="menu"
         />
 
-        <q-toolbar-title>Gear Calculator</q-toolbar-title>
+        <q-toolbar-title>
+          Gear Calculator
+          <q-btn
+            flat
+            dense
+            round
+            to="/"
+            icon="home"
+          />
+        </q-toolbar-title>
 
         <q-btn
           outline
