@@ -383,4 +383,8 @@ export default {
 </script>
 
 <style lang="scss" scope>
+body {
+  background-image: url('../assets/demoMain.jpg');
+  background-position: inherit;
+}
 </style>
