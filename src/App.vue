@@ -26,7 +26,9 @@
           />
         </q-toolbar-title>
 
+        <!-- temp disabled -->
         <q-btn
+          v-show="false"
           outline
           dense
           round

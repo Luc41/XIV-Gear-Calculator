@@ -6,7 +6,6 @@ import { baseParams, baseParamsModifier, classJobCategory } from './data'
 /**
  * load data table columns as array
  */
-// need rewrite
 export const loadColumns = () => {
   var columns = [
     {

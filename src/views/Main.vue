@@ -5,7 +5,11 @@
       src="../assets/demoMain.jpg"
       alt="logo"
     >
-    <span class="absolute-center text-h1 text-orange">test title</span>
+    <div class="absolute-center">
+      <span class="text-h1 text-orange text-weight-bold">test title</span>
+      <br>
+      <span class="text-h3 text-orange-5">test subtitle</span>
+    </div>
   </q-page>
 </template>
 

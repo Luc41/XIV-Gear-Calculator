@@ -1,5 +1,5 @@
 /**
- * sample body structure
+ * sample request body structure
  * {
     "query": {
         "bool": {
