@@ -1,10 +1,5 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      class="fixed-full"
-      src="../assets/demoMain.jpg"
-      alt="logo"
-    >
     <div class="absolute-center">
       <span class="text-h1 text-orange text-weight-bold">test title</span>
       <br>
@@ -24,5 +19,8 @@ export default {
 </script>
 
 <style>
-
+.q-page {
+  background: url('../assets/testBg.jpg');
+  background-size: cover;
+}
 </style>

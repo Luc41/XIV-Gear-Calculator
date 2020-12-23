@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store/index'
 import Main from '../views/Main.vue'
-import { loadColumns } from '../utils/common'
+// import { loadColumns } from '../utils/common'
 // import dynamicRoutes from './dynamicRoutes'
 // import { classJobCategory } from '../utils/data'
 
@@ -15,9 +15,19 @@ const routes = [
     component: Main
   },
   {
-    path: '/c/:job',
+    path: '/c',
     name: 'Container',
-    component: () => import('../views/Container.vue')
+    component: () => import('../views/Container.vue'),
+    children: [
+      // {
+      //   path: '',
+      //   component: () => import('../components/containerHome.vue')
+      // },
+      {
+        path: ':job',
+        component: () => import('../components/panel.vue')
+      }
+    ]
   }
   // {
   //   path: '/Bard',
@@ -72,11 +82,11 @@ router.beforeEach((to, from, next) => {
     //   val: to.name
     // })
     // load columns before goto next
-    var columns = loadColumns()
-    store.commit('updateSessionStorage', {
-      name: 'columns',
-      val: JSON.stringify(columns)
-    })
+    // var columns = loadColumns()
+    // store.commit('updateSessionStorage', {
+    //   name: 'columns',
+    //   val: JSON.stringify(columns)
+    // })
     next()
   } else {
     next()
