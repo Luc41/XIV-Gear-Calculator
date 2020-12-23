@@ -178,7 +178,7 @@
     >
       <q-toolbar>
         <q-toolbar-title>
-          {{ $store.state.selectedJob }}
+          {{ $route.params.job }}
           <q-badge
             align="top"
             color="green"

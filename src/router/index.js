@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 import store from '../store/index'
 import Main from '../views/Main.vue'
 import { loadColumns } from '../utils/common'
-import dynamicRoutes from './dynamicRoutes'
-import { classJobCategory } from '../utils/data'
+// import dynamicRoutes from './dynamicRoutes'
+// import { classJobCategory } from '../utils/data'
 
 Vue.use(VueRouter)
 
@@ -13,6 +13,11 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
+  },
+  {
+    path: '/c/:job',
+    name: 'Container',
+    component: () => import('../views/Container.vue')
   }
   // {
   //   path: '/Bard',
@@ -52,7 +57,7 @@ const router = new VueRouter({
   routes
 })
 
-router.addRoutes(dynamicRoutes(classJobCategory))
+// router.addRoutes(dynamicRoutes(classJobCategory))
 
 router.beforeEach((to, from, next) => {
   // clear itemsStorage before goto next
@@ -62,10 +67,10 @@ router.beforeEach((to, from, next) => {
   })
   // load job from route name
   if (to.name !== 'Main') {
-    store.commit('updateSessionStorage', {
-      name: 'selectedJob',
-      val: to.name
-    })
+    // store.commit('updateSessionStorage', {
+    //   name: 'selectedJob',
+    //   val: to.name
+    // })
     // load columns before goto next
     var columns = loadColumns()
     store.commit('updateSessionStorage', {
