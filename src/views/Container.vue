@@ -3,14 +3,21 @@
     class="q-pa-md"
     padding
   >
-    <div class="column">
-      <div class="col">
+    <div class="row justify-center">
+      <div class="col-8 col-auto">
         <q-banner
           rounded
+          dense
           inline-actions
           class="bg-grey text-white"
         >
-          <span class="text-h5">Bard</span>
+          <q-btn-dropdown
+            flat
+            icon="img:/images/03_DPS/Job/Bard.png"
+            :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
+          >
+            <joblist />
+          </q-btn-dropdown>
           <q-badge
             align="top"
             color="green"
@@ -33,24 +40,28 @@
               align="right"
             />
           </template>
-          <template v-slot:avatar>
+          <!-- <template v-slot:avatar>
             <q-icon
               name="img:/images/03_DPS/Job/Bard.png"
               color="primary"
+              size="lg"
             />
-          </template>
+          </template> -->
         </q-banner>
       </div>
-      <div class="col">
-        <router-view />
-      </div>
     </div>
+    <router-view />
   </q-page>
 </template>
 
 <script>
+import joblist from '../components/joblist'
+
 export default {
   name: 'Container',
+  components: {
+    joblist
+  },
   data () {
     return {
 
