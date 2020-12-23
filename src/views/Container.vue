@@ -4,57 +4,57 @@
     padding
   >
     <div class="row justify-center">
-      <div class="col-8 col-auto">
-        <q-banner
-          rounded
-          dense
-          inline-actions
-          class="bg-grey-7 text-white"
+      <q-banner
+        rounded
+        dense
+        inline-actions
+        class="bg-grey-7 text-white col-8"
+      >
+        <q-btn-dropdown
+          flat
+          split
+          icon="img:/images/03_DPS/Job/Bard.png"
+          class="bg-transparent"
+          :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
         >
-          <q-btn-dropdown
-            flat
-            split
-            icon="img:/images/03_DPS/Job/Bard.png"
-            class="bg-transparent"
-            :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
-          >
-            <joblist />
-          </q-btn-dropdown>
+          <joblist />
+        </q-btn-dropdown>
 
-          <q-badge
-            align="top"
-            color="green"
-            class="shadow-1"
-          >
-            <template v-if="$store.state.patch === null">
-              <q-spinner-dots
-                color="white"
-              />
-            </template>
-            <template v-else>
-              {{ $store.state.patch.Name }}
-            </template>
-          </q-badge>
-
-          <template v-slot:action>
-            <q-btn
-              flat
-              label="share"
-              icon="share"
-              align="right"
+        <q-badge
+          align="top"
+          color="green"
+          class="shadow-1"
+        >
+          <template v-if="$store.state.patch === null">
+            <q-spinner-dots
+              color="white"
             />
           </template>
-          <!-- <template v-slot:avatar>
+          <template v-else>
+            {{ $store.state.patch.Name }}
+          </template>
+        </q-badge>
+
+        <template v-slot:action>
+          <q-btn
+            flat
+            label="share"
+            icon="share"
+            align="right"
+          />
+        </template>
+        <!-- <template v-slot:avatar>
             <q-icon
               name="img:/images/03_DPS/Job/Bard.png"
               color="primary"
               size="lg"
             />
           </template> -->
-        </q-banner>
-      </div>
+      </q-banner>
     </div>
-    <router-view />
+    <div class="row">
+      <router-view class="col" />
+    </div>
   </q-page>
 </template>
 
