@@ -9,15 +9,18 @@
           rounded
           dense
           inline-actions
-          class="bg-grey text-white"
+          class="bg-grey-7 text-white"
         >
           <q-btn-dropdown
             flat
+            split
             icon="img:/images/03_DPS/Job/Bard.png"
+            class="bg-transparent"
             :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
           >
             <joblist />
           </q-btn-dropdown>
+
           <q-badge
             align="top"
             color="green"
@@ -32,6 +35,7 @@
               {{ $store.state.patch.Name }}
             </template>
           </q-badge>
+
           <template v-slot:action>
             <q-btn
               flat

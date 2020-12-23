@@ -6,7 +6,7 @@ import { baseParams, baseParamsModifier, classJobCategory } from './data'
 /**
  * load data table columns as array
  */
-export const loadColumns = () => {
+export const loadColumns = (selectedJob) => {
   var columns = [
     {
       name: 'Name',
@@ -25,7 +25,7 @@ export const loadColumns = () => {
   ]
   for (var index in baseParamsModifier) {
     var columnIDs = []
-    if (baseParamsModifier[index].jobs.includes(store.state.selectedJob)) {
+    if (baseParamsModifier[index].jobs.includes(selectedJob)) {
       columnIDs = baseParamsModifier[index].currentParams
       for (var i in baseParams) {
         if (columnIDs.includes(baseParams[i].ID)) {
