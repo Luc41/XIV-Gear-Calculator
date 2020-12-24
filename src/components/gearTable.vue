@@ -1,8 +1,8 @@
 <template>
   <q-table
     :title="title"
-    flat
     dense
+    square
     card-class="bg-grey-2 text-black"
     table-header-class="bg-grey-4"
     table-class="text-black"
@@ -336,9 +336,9 @@
       </q-td>
     </template>
 
-    <template #bottom>
+    <!-- <template #bottom>
       {{ JSON.stringify(selected) }}
-    </template>
+    </template> -->
   </q-table>
 </template>
 

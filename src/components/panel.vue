@@ -114,7 +114,7 @@
         style="height: 100vh;"
         :delay="1200"
       >
-        <div class="q-gutter-sm">
+        <div class="q-gutter-xs">
           <gear-table
             v-for="equipslot in equipSlotCategory.primary"
             :key="equipslot.index"
