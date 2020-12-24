@@ -8,7 +8,7 @@
         rounded
         dense
         inline-actions
-        class="bg-grey-7 text-white col-8"
+        class="bg-grey-7 text-white col-10"
       >
         <q-btn-dropdown
           flat
@@ -16,6 +16,7 @@
           icon="img:/images/03_DPS/Job/Bard.png"
           class="bg-transparent"
           :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
+          :to="'/c/'.concat(this.$route.params.job)"
         >
           <joblist />
         </q-btn-dropdown>
@@ -52,8 +53,8 @@
           </template> -->
       </q-banner>
     </div>
-    <div class="row">
-      <router-view class="col" />
+    <div class="row justify-center">
+      <router-view class="col-10" />
     </div>
   </q-page>
 </template>

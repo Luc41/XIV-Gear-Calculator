@@ -74,7 +74,7 @@ const getShort = (param) => {
   var short = ''
   for (var index in param) {
     for (var i in param[index]) {
-      if (store.state.submitedQuery.classjob === param[index][i].job) {
+      if (store.state.submitedQuery.classjob === param[index][i].name) {
         short = param[index][i].short
         return short.toUpperCase()
       } else {

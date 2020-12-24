@@ -1,119 +1,115 @@
 <template>
-  <div class="row justify-center q-gutter-sm">
-    <div class="col-12 col-md-auto col-sm-auto col-xs-auto">
-      <div class="column">
-        <div class="col q-gutter-y-sm">
-          <q-form
-            @submit="onSubmit"
-            @reset="onReset"
-            class="q-gutter-y-sm"
-          >
-            <spec-filter ref="specFilter" />
+  <div class="row justify-center">
+    <div class="col-auto">
+      <q-form
+        @submit="onSubmit"
+        @reset="onReset"
+        class="q-gutter-y-sm"
+      >
+        <spec-filter ref="specFilter" />
 
-            <level-filter ref="levelFilter" />
+        <level-filter ref="levelFilter" />
 
-            <gear-filter ref="gearFilter" />
+        <gear-filter ref="gearFilter" />
 
-            <q-btn-group
-              spread
-            >
-              <q-btn
-                label="Apply"
-                color="green"
-                text-color="white"
-                icon="sync"
-                type="submit"
-              />
+        <q-btn-group
+          spread
+        >
+          <q-btn
+            label="Apply"
+            color="green"
+            text-color="white"
+            icon="sync"
+            type="submit"
+          />
 
-              <q-btn
-                label="Reset"
-                color="grey-6"
-                text-color="white"
-                icon="replay"
-                type="reset"
-              />
-            </q-btn-group>
-          </q-form>
+          <q-btn
+            label="Reset"
+            color="grey-6"
+            text-color="white"
+            icon="replay"
+            type="reset"
+          />
+        </q-btn-group>
+      </q-form>
 
-          <q-card class="bg-grey-2">
-            <q-card-section class="q-py-none q-px-xs">
-              <div class="text-h5 text-center">
-                Overall
-              </div>
-            </q-card-section>
+      <q-card class="bg-grey-2">
+        <q-card-section class="q-py-none q-px-xs">
+          <div class="text-h5 text-center">
+            Overall
+          </div>
+        </q-card-section>
 
-            <q-separator />
-            <q-card-section class="q-pa-none">
-              <div class="row">
-                <div class="col">
-                  <q-card
-                    bordered
-                    class="q-ma-xs text-center bg-grey-5"
-                  >
-                    <q-chip
-                      color="transparent"
-                      text-color="black"
-                    >
-                      {{ baseParams[0].Name }}
-                      :
-                      {{ baseParams[0].BaseValue }}
-                    </q-chip>
-                    <q-space />
-                    <q-chip
-                      color="green"
-                      text-color="white"
-                      class="q-mt-none"
-                      style="border-radius: 4px;"
-                    >
-                      + {{ baseParams[0].BonusValue }}
-                    </q-chip>
-                  </q-card>
-                </div>
-              </div>
-              <div
-                v-for="i in 4"
-                :key="i"
-                class="row"
+        <q-separator />
+        <q-card-section class="q-pa-none">
+          <div class="row">
+            <div class="col">
+              <q-card
+                bordered
+                class="q-ma-xs text-center bg-grey-5"
               >
-                <div
-                  class="col"
-                  v-for="stat in baseParams.slice(2*i-1, 2*i+1)"
-                  :key="stat.index"
+                <q-chip
+                  color="transparent"
+                  text-color="black"
                 >
-                  <q-card
-                    bordered
-                    class="q-ma-xs text-center bg-grey-5"
-                  >
-                    <q-chip
-                      color="transparent"
-                      text-color="black"
-                    >
-                      {{ stat.Name }}
-                      :
-                      {{ stat.BaseValue }}
-                    </q-chip>
-                    <q-space />
-                    <q-chip
-                      color="green"
-                      text-color="white"
-                      class="q-mt-none"
-                      style="border-radius: 4px;"
-                    >
-                      + {{ stat.BonusValue }}
-                    </q-chip>
-                  </q-card>
-                </div>
-                <div
-                  class="col"
-                  v-if="i > 3"
-                />
-              </div>
-            </q-card-section>
-          </q-card>
-        </div>
-      </div>
+                  {{ baseParams[0].Name }}
+                  :
+                  {{ baseParams[0].BaseValue }}
+                </q-chip>
+                <q-space />
+                <q-chip
+                  color="green"
+                  text-color="white"
+                  class="q-mt-none"
+                  style="border-radius: 4px;"
+                >
+                  + {{ baseParams[0].BonusValue }}
+                </q-chip>
+              </q-card>
+            </div>
+          </div>
+          <div
+            v-for="i in 4"
+            :key="i"
+            class="row"
+          >
+            <div
+              class="col"
+              v-for="stat in baseParams.slice(2*i-1, 2*i+1)"
+              :key="stat.index"
+            >
+              <q-card
+                bordered
+                class="q-ma-xs text-center bg-grey-5"
+              >
+                <q-chip
+                  color="transparent"
+                  text-color="black"
+                >
+                  {{ stat.Name }}
+                  :
+                  {{ stat.BaseValue }}
+                </q-chip>
+                <q-space />
+                <q-chip
+                  color="green"
+                  text-color="white"
+                  class="q-mt-none"
+                  style="border-radius: 4px;"
+                >
+                  + {{ stat.BonusValue }}
+                </q-chip>
+              </q-card>
+            </div>
+            <div
+              class="col"
+              v-if="i > 3"
+            />
+          </div>
+        </q-card-section>
+      </q-card>
     </div>
-    <div class="col-12 col-md-8 col-sm col-xs">
+    <div class="col">
       <q-scroll-area
         style="height: 100vh;"
         :delay="1200"
