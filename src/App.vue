@@ -15,9 +15,20 @@
           icon="menu"
         />
 
-        <q-toolbar-title>Gear Calculator</q-toolbar-title>
+        <q-toolbar-title>
+          Gear Calculator
+          <q-btn
+            flat
+            dense
+            round
+            to="/"
+            icon="home"
+          />
+        </q-toolbar-title>
 
+        <!-- temp disabled -->
         <q-btn
+          v-show="false"
           outline
           dense
           round
@@ -35,14 +46,14 @@
       test
     </q-footer>
 
-    <q-drawer
+    <!-- <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
       :width="200"
       content-class="bg-grey-2"
     >
       <left-drawer />
-    </q-drawer>
+    </q-drawer> -->
 
     <q-drawer
       v-model="rightDrawerOpen"
@@ -78,13 +89,13 @@
 
 <script>
 import { getPatches, getRacies, getTribes } from './api/api'
-import leftDrawer from './components/leftDrawer'
+// import leftDrawer from './components/leftDrawer'
 
 export default {
   name: 'LayoutDefault',
 
   components: {
-    leftDrawer
+    // leftDrawer
   },
 
   data () {

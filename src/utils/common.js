@@ -6,14 +6,14 @@ import { baseParams, baseParamsModifier, classJobCategory } from './data'
 /**
  * load data table columns as array
  */
-// need rewrite
-export const loadColumns = () => {
+export const loadColumns = (selectedJob) => {
   var columns = [
     {
       name: 'Name',
       required: true,
       label: 'Name',
       align: 'left',
+      style: 'width: 350px',
       field: 'LevelItem',
       sortable: true
     },
@@ -26,7 +26,7 @@ export const loadColumns = () => {
   ]
   for (var index in baseParamsModifier) {
     var columnIDs = []
-    if (baseParamsModifier[index].jobs.includes(store.state.selectedJob)) {
+    if (baseParamsModifier[index].jobs.includes(selectedJob)) {
       columnIDs = baseParamsModifier[index].currentParams
       for (var i in baseParams) {
         if (columnIDs.includes(baseParams[i].ID)) {
@@ -75,7 +75,7 @@ const getShort = (param) => {
   var short = ''
   for (var index in param) {
     for (var i in param[index]) {
-      if (store.state.submitedQuery.classjob === param[index][i].job) {
+      if (store.state.submitedQuery.classjob === param[index][i].name) {
         short = param[index][i].short
         return short.toUpperCase()
       } else {
