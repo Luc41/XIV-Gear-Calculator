@@ -1,6 +1,7 @@
 <template>
   <q-table
     :title="title"
+    flat
     dense
     card-class="bg-grey-2 text-black"
     table-header-class="bg-grey-4"
@@ -34,25 +35,34 @@
     <template #body-cell-Name="props">
       <q-td
         :props="props"
-        class="q-gutter-x-xs text-weight-bold text-grey-9"
+        class="ellipsis"
         @mouseover="itemInfo = true"
         @mouseout="itemInfo = false"
       >
-        <q-icon
-          :name="'img:https://xivapi.com' + props.row.Icon"
-          size="sm"
-        />
-        <q-badge
-          color="grey-8"
-          :label="'iLv ' + props.row.LevelItem"
-          class="text-caption text-weight-thin"
-        />
-        {{ props.row.Name }}
-        <q-icon
-          :name="'img:/images/hq-dark.png'"
-          v-if="props.row.CanBeHq === 1"
-          class="q-ma-none"
-        />
+        <div class="row">
+          <q-icon
+            :name="'img:https://xivapi.com' + props.row.Icon"
+            size="md"
+          />
+          <div class="q-ml-xs col">
+            <div class="column">
+              <q-badge
+                align="middle"
+                color="grey-8"
+                class="self-start"
+                :label="'iLv ' + props.row.LevelItem"
+              />
+              <div class="col">
+                {{ props.row.Name }}
+                <q-icon
+                  :name="'img:/images/hq-dark.png'"
+                  v-if="props.row.CanBeHq === 1"
+                  class="q-ma-none"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </q-td>
     </template>
 

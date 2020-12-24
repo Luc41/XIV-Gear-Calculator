@@ -13,6 +13,7 @@ export const loadColumns = (selectedJob) => {
       required: true,
       label: 'Name',
       align: 'left',
+      style: 'width: 350px',
       field: 'LevelItem',
       sortable: true
     },
