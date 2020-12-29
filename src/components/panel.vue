@@ -4,13 +4,11 @@
       <q-form
         @submit="onSubmit"
         @reset="onReset"
-        class="q-gutter-y-sm"
+        class="q-pr-xs"
       >
         <spec-filter ref="specFilter" />
 
-        <level-filter ref="levelFilter" />
-
-        <gear-filter ref="gearFilter" />
+        <!-- <gear-filter ref="gearFilter" /> -->
 
         <q-btn-group
           spread
@@ -33,7 +31,8 @@
         </q-btn-group>
       </q-form>
 
-      <q-card class="bg-grey-2">
+      <!-- discarded dom,will rewrite -->
+      <!-- <q-card class="bg-grey-2">
         <q-card-section class="q-py-none q-px-xs">
           <div class="text-h5 text-center">
             Overall
@@ -107,9 +106,12 @@
             />
           </div>
         </q-card-section>
-      </q-card>
+      </q-card> -->
     </div>
-    <q-scroll-area class="col">
+    <q-scroll-area
+      class="col"
+      style="height: 100vh"
+    >
       <gear-table
         v-for="equipslot in equipSlotCategory.primary"
         :key="equipslot.index"
@@ -160,16 +162,16 @@
 import { queryObject, baseParamsFilter } from '../utils/common'
 import { getItems } from '../api/api'
 
-import gearFilter from './gearFilter'
-import levelFilter from './levelFilter'
+// import gearFilter from './gearFilter'
+// import levelFilter from './levelFilter'
 import specFilter from './specFilter'
 import gearTable from './gearTable'
 
 export default {
   name: 'Panel',
   components: {
-    gearFilter,
-    levelFilter,
+    // gearFilter,
+    // levelFilter,
     specFilter,
     gearTable
   },
@@ -221,8 +223,8 @@ export default {
     // reset search filters
     onReset () {
       this.$refs.specFilter.onReset()
-      this.$refs.levelFilter.onReset()
-      this.$refs.gearFilter.onReset()
+      // this.$refs.levelFilter.onReset()
+      // this.$refs.gearFilter.onReset()
       this.$q.notify({
         type: 'positive',
         position: 'top',
@@ -252,11 +254,11 @@ export default {
         },
         {
           name: 'levelitem',
-          val: this.$refs.levelFilter.itemLevel.bottom.toString() + ',' + this.$refs.levelFilter.itemLevel.top.toString()
+          val: this.$refs.specFilter.itemLevel.bottom.toString() + ',' + this.$refs.specFilter.itemLevel.top.toString()
         },
         {
           name: 'levelequip',
-          val: this.$refs.levelFilter.equipLevel.bottom.toString() + ',' + this.$refs.levelFilter.equipLevel.top.toString()
+          val: this.$refs.specFilter.equipLevel.bottom.toString() + ',' + this.$refs.specFilter.equipLevel.top.toString()
         }
       ]
       arr = arr.concat(childrenData)

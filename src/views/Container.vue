@@ -44,13 +44,6 @@
             align="right"
           />
         </template>
-        <!-- <template v-slot:avatar>
-            <q-icon
-              name="img:/images/03_DPS/Job/Bard.png"
-              color="primary"
-              size="lg"
-            />
-          </template> -->
       </q-banner>
     </div>
     <div class="row justify-center q-mt-xs">

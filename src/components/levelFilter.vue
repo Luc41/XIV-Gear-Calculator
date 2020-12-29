@@ -77,9 +77,9 @@ export default {
   data () {
     return {
       itemLevel: {
-        bottom: 470,
-        top: 505,
-        max: 505
+        bottom: 500,
+        top: 535,
+        max: 535
       },
       equipLevel: {
         bottom: 1,
@@ -91,9 +91,9 @@ export default {
   methods: {
     onReset () {
       this.itemLevel = {
-        bottom: 470,
-        top: 505,
-        max: 505
+        bottom: 500,
+        top: 535,
+        max: 535
       }
       this.equipLevel = {
         bottom: 1,
