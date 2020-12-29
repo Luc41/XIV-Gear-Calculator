@@ -8,7 +8,7 @@
         rounded
         dense
         inline-actions
-        class="bg-grey-7 text-white col-md-8 col-sm-10"
+        class="bg-grey-7 text-white col-md-10 col-sm-auto"
       >
         <q-btn-dropdown
           flat
@@ -53,8 +53,8 @@
           </template> -->
       </q-banner>
     </div>
-    <div class="row justify-center">
-      <router-view class="col-md-8 col-sm-10" />
+    <div class="row justify-center q-mt-xs">
+      <router-view class="col-md-10 col-sm-auto" />
     </div>
   </q-page>
 </template>

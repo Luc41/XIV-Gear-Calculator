@@ -1,7 +1,8 @@
 <template>
-  <span class="text-white">hello world</span>
+  <div>
+    test
+  </div>
 </template>
-
 <script>
 export default {
 

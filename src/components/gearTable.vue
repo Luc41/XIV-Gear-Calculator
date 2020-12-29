@@ -3,6 +3,8 @@
     :title="title"
     dense
     square
+    flat
+    bordered
     card-class="bg-grey-2 text-black"
     table-header-class="bg-grey-4"
     table-class="text-black"

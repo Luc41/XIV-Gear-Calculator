@@ -109,57 +109,50 @@
         </q-card-section>
       </q-card>
     </div>
-    <div class="col">
-      <q-scroll-area
-        style="height: 100vh;"
-        :delay="1200"
-      >
-        <div class="q-gutter-xs">
-          <gear-table
-            v-for="equipslot in equipSlotCategory.primary"
-            :key="equipslot.index"
-            :title="equipslot.name"
-            :loading="showTableLoading"
-            :ref="equipslot.name"
-          />
+    <q-scroll-area class="col">
+      <gear-table
+        v-for="equipslot in equipSlotCategory.primary"
+        :key="equipslot.index"
+        :title="equipslot.name"
+        :loading="showTableLoading"
+        :ref="equipslot.name"
+      />
 
-          <template v-if="showOffhand">
-            <gear-table
-              v-for="equipslot in equipSlotCategory.secondary"
-              :key="equipslot.index"
-              :title="equipslot.name"
-              :loading="showTableLoading"
-              :ref="equipslot.name"
-            />
-          </template>
+      <template v-if="showOffhand">
+        <gear-table
+          v-for="equipslot in equipSlotCategory.secondary"
+          :key="equipslot.index"
+          :title="equipslot.name"
+          :loading="showTableLoading"
+          :ref="equipslot.name"
+        />
+      </template>
 
-          <gear-table
-            v-for="equipslot in equipSlotCategory.armor"
-            :key="equipslot.index"
-            :title="equipslot.name"
-            :loading="showTableLoading"
-            :ref="equipslot.name"
-          />
-          <gear-table
-            v-for="equipslot in equipSlotCategory.accessories"
-            :key="equipslot.index"
-            :title="equipslot.name"
-            :loading="showTableLoading"
-            :ref="equipslot.name"
-          />
+      <gear-table
+        v-for="equipslot in equipSlotCategory.armor"
+        :key="equipslot.index"
+        :title="equipslot.name"
+        :loading="showTableLoading"
+        :ref="equipslot.name"
+      />
+      <gear-table
+        v-for="equipslot in equipSlotCategory.accessories"
+        :key="equipslot.index"
+        :title="equipslot.name"
+        :loading="showTableLoading"
+        :ref="equipslot.name"
+      />
 
-          <template v-if="showFood">
-            <gear-table
-              v-for="equipslot in equipSlotCategory.food"
-              :key="equipslot.index"
-              :title="equipslot.name"
-              :loading="showTableLoading"
-              :ref="equipslot.name"
-            />
-          </template>
-        </div>
-      </q-scroll-area>
-    </div>
+      <template v-if="showFood">
+        <gear-table
+          v-for="equipslot in equipSlotCategory.food"
+          :key="equipslot.index"
+          :title="equipslot.name"
+          :loading="showTableLoading"
+          :ref="equipslot.name"
+        />
+      </template>
+    </q-scroll-area>
   </div>
 </template>
 
