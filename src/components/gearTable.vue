@@ -7,7 +7,7 @@
     bordered
     card-class="bg-grey-2 text-black"
     table-header-class="bg-grey-4"
-    table-class="text-black"
+    table-class="text-black hide-scrollbar"
     :data="itemsShow"
     :columns="columns"
     row-key="Name"
@@ -16,6 +16,7 @@
     :loading="loading"
     :pagination.sync="pagination"
     :rows-per-page-options="[0]"
+    hide-bottom
     no-data-label="Found nothing, please refresh"
     loading-label="Loading data"
   >
@@ -37,34 +38,34 @@
     <template #body-cell-Name="props">
       <q-td
         :props="props"
-        class="ellipsis"
         @mouseover="itemInfo = true"
         @mouseout="itemInfo = false"
       >
-        <div class="row">
+        <q-icon
+          :name="'img:https://xivapi.com' + props.row.Icon"
+          size="md"
+        />
+        <q-badge
+          align="top"
+          color="grey-8"
+          class="q-ml-xs"
+          :label="'iLv ' + props.row.LevelItem"
+        />
+        <q-badge
+          align="bottom"
+          color="transparent"
+          text-color="black"
+          style="margin: 0 0 0 -4.5em;"
+          class="ellipsis"
+        >
+          {{ props.row.Name }}
           <q-icon
-            :name="'img:https://xivapi.com' + props.row.Icon"
-            size="md"
+            :name="'img:/images/hq-dark.png'"
+            size="10px"
+            class="q-mx-xs"
+            v-if="props.row.CanBeHq === 1"
           />
-          <div class="q-ml-xs col">
-            <div class="column">
-              <q-badge
-                align="middle"
-                color="grey-8"
-                class="self-start"
-                :label="'iLv ' + props.row.LevelItem"
-              />
-              <div class="col">
-                {{ props.row.Name }}
-                <q-icon
-                  :name="'img:/images/hq-dark.png'"
-                  v-if="props.row.CanBeHq === 1"
-                  class="q-ma-none"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+        </q-badge>
       </q-td>
     </template>
 
@@ -74,21 +75,24 @@
           flat
           :ripple="false"
           padding="xs"
+          class="row"
         >
-          <q-icon
-            v-for="slot in props.row.MateriaSlotCount"
-            :key="'slot' + slot"
-            class="slot q-pr-xs"
-            :id="'slot' + slot"
-          />
-          <template v-if="props.row.IsAdvancedMeldingPermitted === 1">
+          <div class="col">
             <q-icon
-              v-for="advanceslot in props.row.MateriaSlotCount === 2 ? 3 : 4"
-              :key="'advanceslot' + advanceslot"
-              class="advanceSlot q-pr-xs"
-              :id="'advanceSlot' + advanceslot"
+              v-for="slot in props.row.MateriaSlotCount"
+              :key="'slot' + slot"
+              class="slot q-pr-xs"
+              :id="'slot' + slot"
             />
-          </template>
+            <template v-if="props.row.IsAdvancedMeldingPermitted === 1">
+              <q-icon
+                v-for="advanceslot in props.row.MateriaSlotCount === 2 ? 3 : 4"
+                :key="'advanceslot' + advanceslot"
+                class="advanceSlot q-pr-xs"
+                :id="'advanceSlot' + advanceslot"
+              />
+            </template>
+          </div>
           <q-popup-proxy>
             <pop-materia-melding :data="props.row" />
           </q-popup-proxy>
@@ -448,5 +452,9 @@ export default {
 #advanceSlot1,#advanceSlot2,#advanceSlot3,#advanceSlot4 {
   background-position: -5px -29px;
   background-size: 9em;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 </style>

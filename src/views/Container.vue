@@ -15,6 +15,7 @@
           split
           icon="img:/images/03_DPS/Job/Bard.png"
           class="bg-transparent"
+          content-class="hide-scrollbar"
           :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
           :to="'/c/'.concat(this.$route.params.job)"
         >
@@ -72,5 +73,9 @@ export default {
 body {
   background-image: url('../assets/testBg.jpg');
   background-position: inherit;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 </style>
