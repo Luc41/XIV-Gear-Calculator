@@ -43,16 +43,14 @@ router.beforeEach((to, from, next) => {
     val: null
   })
   // load job from route name
-  if (to.name !== 'Main') {
+  if (to.params.job !== undefined) {
     store.commit('updateSessionStorage', {
       name: 'selectedJob',
       val: to.params.job
     })
-    // load columns before goto next
-    var columns = loadColumns(to.params.job)
     store.commit('updateSessionStorage', {
       name: 'columns',
-      val: JSON.stringify(columns)
+      val: JSON.stringify(loadColumns(to.params.job))
     })
     next()
   } else {

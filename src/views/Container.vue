@@ -8,11 +8,10 @@
         rounded
         dense
         inline-actions
-        class="bg-grey-7 text-white col-md-10 col-sm-auto"
+        class="bg-grey-7 text-white col-md-10 col-sm"
       >
         <q-btn-dropdown
           flat
-          split
           icon="img:/images/03_DPS/Job/Bard.png"
           class="bg-transparent"
           content-class="hide-scrollbar"
@@ -48,7 +47,7 @@
       </q-banner>
     </div>
     <div class="row justify-center q-mt-xs">
-      <router-view class="col-md-10 col-sm-auto" />
+      <router-view class="col-md-10 col-sm" />
     </div>
   </q-page>
 </template>
