@@ -8,13 +8,13 @@
         rounded
         dense
         inline-actions
-        class="bg-grey-7 text-white col-md-8 col-sm-10"
+        class="bg-grey-7 text-white col-md-10 col-sm"
       >
         <q-btn-dropdown
           flat
-          split
           icon="img:/images/03_DPS/Job/Bard.png"
           class="bg-transparent"
+          content-class="hide-scrollbar"
           :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
           :to="'/c/'.concat(this.$route.params.job)"
         >
@@ -44,17 +44,10 @@
             align="right"
           />
         </template>
-        <!-- <template v-slot:avatar>
-            <q-icon
-              name="img:/images/03_DPS/Job/Bard.png"
-              color="primary"
-              size="lg"
-            />
-          </template> -->
       </q-banner>
     </div>
-    <div class="row justify-center">
-      <router-view class="col-md-8 col-sm-10" />
+    <div class="row justify-center q-mt-xs">
+      <router-view class="col-md-10 col-sm" />
     </div>
   </q-page>
 </template>
@@ -79,5 +72,9 @@ export default {
 body {
   background-image: url('../assets/testBg.jpg');
   background-position: inherit;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 </style>

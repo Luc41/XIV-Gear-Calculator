@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { getPatches, getRacies, getTribes } from './api/api'
+import { getPatches, getRacies, getTribes, getBaseParams } from './api/api'
 // import leftDrawer from './components/leftDrawer'
 
 export default {
@@ -115,7 +115,7 @@ export default {
         const patches = await getPatches()
         const racies = await getRacies()
         const tribes = await getTribes()
-
+        const baseParams = await getBaseParams()
         this.$store.commit('updatePatch', patches)
         this.$store.commit('updateSessionStorage', {
           name: 'raciesStorage',
@@ -125,9 +125,14 @@ export default {
           name: 'clansStorage',
           val: JSON.stringify(tribes.Results)
         })
+        this.$store.commit('updateSessionStorage', {
+          name: 'baseParamsStorage',
+          val: JSON.stringify(baseParams.Results)
+        })
         return Promise.resolve(true)
       } catch (error) {
         console.log(error)
+        this.$q.loading.hide()
         this.$q.notify({
           type: 'negative',
           position: 'top',

@@ -21,14 +21,22 @@ export const getPatches = () => {
   })
 }
 
+export const getBaseParams = () => {
+  return service({
+    url: '/baseparam',
+    method: 'GET'
+  })
+}
+
 /**
  * get game content by id
  * @param {String} index game content name.
  * @param {Number} id game content id
+ * @param {Array} arr columns filter
  */
-export const getGameContent = (index, id) => {
+export const getGameContent = (index, id, arr) => {
   return service({
-    url: `/${index}/${id}`,
+    url: `/${index}/${id}?columns=${arr}`,
     method: 'GET'
   })
 }

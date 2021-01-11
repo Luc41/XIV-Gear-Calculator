@@ -89,8 +89,6 @@ export const classJobCategory = {
   ]
 }
 
-// keep data,rewrite function.
-// now it cause data table shows extra columns.
 export const baseParamsModifier = [
   {
     jobs: ['Bard', 'Machinist', 'Dancer', 'Ninja'],

@@ -13,7 +13,6 @@ export const loadColumns = (selectedJob) => {
       required: true,
       label: 'Name',
       align: 'left',
-      style: 'width: 350px',
       field: 'LevelItem',
       sortable: true
     },
@@ -28,17 +27,19 @@ export const loadColumns = (selectedJob) => {
     var columnIDs = []
     if (baseParamsModifier[index].jobs.includes(selectedJob)) {
       columnIDs = baseParamsModifier[index].currentParams
-      for (var i in baseParams) {
-        if (columnIDs.includes(baseParams[i].ID)) {
-          columns.push({
-            name: baseParams[i].ID,
-            align: baseParams[i].ID > 5 ? 'center' : 'left',
-            label: baseParams[i].Name
-          })
-        }
+
+      for (var i in columnIDs) {
+        const columnName = store.state.baseParamsStorage[columnIDs[i] - 1]
+        columns.push({
+          name: columnName.ID,
+          align: columnName.ID > 5 ? 'center' : 'left',
+          label: columnName.Name
+        })
       }
-      return columns
+    } else {
+      continue
     }
+    return columns
   }
 }
 

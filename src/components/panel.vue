@@ -4,13 +4,11 @@
       <q-form
         @submit="onSubmit"
         @reset="onReset"
-        class="q-gutter-y-sm"
+        class="q-pr-xs"
       >
         <spec-filter ref="specFilter" />
 
-        <level-filter ref="levelFilter" />
-
-        <gear-filter ref="gearFilter" />
+        <!-- <gear-filter ref="gearFilter" /> -->
 
         <q-btn-group
           spread
@@ -33,7 +31,8 @@
         </q-btn-group>
       </q-form>
 
-      <q-card class="bg-grey-2">
+      <!-- discarded dom,will rewrite -->
+      <!-- <q-card class="bg-grey-2">
         <q-card-section class="q-py-none q-px-xs">
           <div class="text-h5 text-center">
             Overall
@@ -107,59 +106,55 @@
             />
           </div>
         </q-card-section>
-      </q-card>
+      </q-card> -->
     </div>
-    <div class="col">
-      <q-scroll-area
-        style="height: 100vh;"
-        :delay="1200"
-      >
-        <div class="q-gutter-xs">
-          <gear-table
-            v-for="equipslot in equipSlotCategory.primary"
-            :key="equipslot.index"
-            :title="equipslot.name"
-            :loading="showTableLoading"
-            :ref="equipslot.name"
-          />
+    <q-scroll-area
+      class="col"
+      style="height: 100vh"
+    >
+      <gear-table
+        v-for="equipslot in equipSlotCategory.primary"
+        :key="equipslot.index"
+        :title="equipslot.name"
+        :loading="showTableLoading"
+        :ref="equipslot.name"
+      />
 
-          <template v-if="showOffhand">
-            <gear-table
-              v-for="equipslot in equipSlotCategory.secondary"
-              :key="equipslot.index"
-              :title="equipslot.name"
-              :loading="showTableLoading"
-              :ref="equipslot.name"
-            />
-          </template>
+      <template v-if="showOffhand">
+        <gear-table
+          v-for="equipslot in equipSlotCategory.secondary"
+          :key="equipslot.index"
+          :title="equipslot.name"
+          :loading="showTableLoading"
+          :ref="equipslot.name"
+        />
+      </template>
 
-          <gear-table
-            v-for="equipslot in equipSlotCategory.armor"
-            :key="equipslot.index"
-            :title="equipslot.name"
-            :loading="showTableLoading"
-            :ref="equipslot.name"
-          />
-          <gear-table
-            v-for="equipslot in equipSlotCategory.accessories"
-            :key="equipslot.index"
-            :title="equipslot.name"
-            :loading="showTableLoading"
-            :ref="equipslot.name"
-          />
+      <gear-table
+        v-for="equipslot in equipSlotCategory.armor"
+        :key="equipslot.index"
+        :title="equipslot.name"
+        :loading="showTableLoading"
+        :ref="equipslot.name"
+      />
+      <gear-table
+        v-for="equipslot in equipSlotCategory.accessories"
+        :key="equipslot.index"
+        :title="equipslot.name"
+        :loading="showTableLoading"
+        :ref="equipslot.name"
+      />
 
-          <template v-if="showFood">
-            <gear-table
-              v-for="equipslot in equipSlotCategory.food"
-              :key="equipslot.index"
-              :title="equipslot.name"
-              :loading="showTableLoading"
-              :ref="equipslot.name"
-            />
-          </template>
-        </div>
-      </q-scroll-area>
-    </div>
+      <template v-if="showFood">
+        <gear-table
+          v-for="equipslot in equipSlotCategory.food"
+          :key="equipslot.index"
+          :title="equipslot.name"
+          :loading="showTableLoading"
+          :ref="equipslot.name"
+        />
+      </template>
+    </q-scroll-area>
   </div>
 </template>
 
@@ -167,16 +162,16 @@
 import { queryObject, baseParamsFilter } from '../utils/common'
 import { getItems } from '../api/api'
 
-import gearFilter from './gearFilter'
-import levelFilter from './levelFilter'
+// import gearFilter from './gearFilter'
+// import levelFilter from './levelFilter'
 import specFilter from './specFilter'
 import gearTable from './gearTable'
 
 export default {
   name: 'Panel',
   components: {
-    gearFilter,
-    levelFilter,
+    // gearFilter,
+    // levelFilter,
     specFilter,
     gearTable
   },
@@ -228,8 +223,8 @@ export default {
     // reset search filters
     onReset () {
       this.$refs.specFilter.onReset()
-      this.$refs.levelFilter.onReset()
-      this.$refs.gearFilter.onReset()
+      // this.$refs.levelFilter.onReset()
+      // this.$refs.gearFilter.onReset()
       this.$q.notify({
         type: 'positive',
         position: 'top',
@@ -259,11 +254,11 @@ export default {
         },
         {
           name: 'levelitem',
-          val: this.$refs.levelFilter.itemLevel.bottom.toString() + ',' + this.$refs.levelFilter.itemLevel.top.toString()
+          val: this.$refs.specFilter.itemLevel.bottom.toString() + ',' + this.$refs.specFilter.itemLevel.top.toString()
         },
         {
           name: 'levelequip',
-          val: this.$refs.levelFilter.equipLevel.bottom.toString() + ',' + this.$refs.levelFilter.equipLevel.top.toString()
+          val: this.$refs.specFilter.equipLevel.bottom.toString() + ',' + this.$refs.specFilter.equipLevel.top.toString()
         }
       ]
       arr = arr.concat(childrenData)
@@ -339,6 +334,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scope>
 
 </style>
