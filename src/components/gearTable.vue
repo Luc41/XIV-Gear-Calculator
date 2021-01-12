@@ -4,7 +4,6 @@
     dense
     square
     flat
-    bordered
     style="margin-right: 9px;"
     card-class="bg-grey-2 text-black"
     table-header-class="bg-grey-4"

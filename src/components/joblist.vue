@@ -12,7 +12,7 @@
       :key="job.name"
       clickable
       v-close-popup
-      :to="'/c/'.concat(job.name)"
+      :to="{ name: 'Panel', params: { job: job.name } }"
     >
       <q-item-section avatar>
         <q-avatar :icon="'img:'.concat(job.src)" />
@@ -34,7 +34,7 @@
       :key="job.name"
       clickable
       v-close-popup
-      :to="'/c/'.concat(job.name)"
+      :to="{ name: 'Panel', params: { job: job.name } }"
     >
       <q-item-section avatar>
         <q-avatar :icon="'img:'.concat(job.src)" />
@@ -56,7 +56,7 @@
       :key="job.name"
       clickable
       v-close-popup
-      :to="'/c/'.concat(job.name)"
+      :to="{ name: 'Panel', params: { job: job.name } }"
     >
       <q-item-section avatar>
         <q-avatar :icon="'img:'.concat(job.src)" />
@@ -78,7 +78,7 @@
       :key="job.name"
       clickable
       v-close-popup
-      :to="'/c/'.concat(job.name)"
+      :to="{ name: 'Panel', params: { job: job.name } }"
     >
       <q-item-section avatar>
         <q-avatar :icon="'img:'.concat(job.src)" />
@@ -100,7 +100,7 @@
       :key="job.name"
       clickable
       v-close-popup
-      :to="'/c/'.concat(job.name)"
+      :to="{ name: 'Panel', params: { job: job.name } }"
     >
       <q-item-section avatar>
         <q-avatar :icon="'img:'.concat(job.src)" />
@@ -122,7 +122,7 @@
       :key="job.name"
       clickable
       v-close-popup
-      :to="'/c/'.concat(job.name)"
+      :to="{ name: 'Panel', params: { job: job.name } }"
     >
       <q-item-section avatar>
         <q-avatar :icon="'img:'.concat(job.src)" />
@@ -144,7 +144,7 @@
       :key="job.name"
       clickable
       v-close-popup
-      :to="'/c/'.concat(job.name)"
+      :to="{ name: 'Panel', params: { job: job.name } }"
     >
       <q-item-section avatar>
         <q-avatar :icon="'img:'.concat(job.src)" />

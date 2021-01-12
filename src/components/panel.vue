@@ -110,7 +110,6 @@
     </div>
     <q-scroll-area
       class="col"
-      style="height: 100vh"
     >
       <gear-table
         v-for="equipslot in equipSlotCategory.primary"

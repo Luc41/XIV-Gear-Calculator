@@ -16,7 +16,6 @@
           class="bg-transparent"
           content-class="hide-scrollbar"
           :label="this.$route.params.job !== undefined ? this.$route.params.job : 'select job'"
-          :to="'/c/'.concat(this.$route.params.job)"
         >
           <joblist />
         </q-btn-dropdown>

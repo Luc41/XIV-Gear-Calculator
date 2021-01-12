@@ -4,6 +4,7 @@
       <span class="text-h1 text-orange text-weight-bold">test title</span>
       <br>
       <span class="text-h3 text-orange-5">test subtitle</span>
+      <br>
       <q-btn
         label="test"
         to="/c"
