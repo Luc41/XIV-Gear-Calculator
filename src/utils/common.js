@@ -32,7 +32,7 @@ export const loadColumns = (selectedJob) => {
         const columnName = store.state.baseParamsStorage[columnIDs[i] - 1]
         columns.push({
           name: columnName.ID,
-          align: columnName.ID > 5 ? 'center' : 'left',
+          align: 'center',
           label: columnName.Name
         })
       }

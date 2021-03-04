@@ -7,7 +7,7 @@
     style="margin-right: 9px;"
     card-class="bg-grey-2 text-black"
     table-header-class="bg-grey-4"
-    table-class="text-black hide-scrollbar"
+    table-class="text-black"
     :data="itemsShow"
     :columns="columns"
     row-key="Name"
